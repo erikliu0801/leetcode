@@ -33,24 +33,24 @@ def twoSum(nums, target):
 				return i, last_i
 
 
-## 1 brute force solution-> Status:Wrong_Answer nums2 = [3,2,4], target = 6 -> 1.1
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-    	for i, element in enumerate(nums):
-    		for last_i, last_element in enumerate(nums[i:]):
-    			if element+last_element == target:
-    				# return [element, last_element] #[2,7]
-    				return [i, last_i] #[0,1]
+# ## 1 brute force solution-> Status:Wrong_Answer nums2 = [3,2,4], target = 6 -> 1.1
+# class Solution:
+#     def twoSum(self, nums: List[int], target: int) -> List[int]:
+#     	for i, element in enumerate(nums):
+#     		for last_i, last_element in enumerate(nums[i:]):
+#     			if element+last_element == target:
+#     				# return [element, last_element] #[2,7]
+#     				return [i, last_i] #[0,1]
 
 
-## 1.1 brute force solution-> Status:Time_Limit_Exceeded -> 1.2
-class Solution:
-	def twoSum(self, nums: List[int], target: int) -> List[int]:
-		for i, element in enumerate(nums):
-			for _last_i, last_element in enumerate(nums[i+1:]):
-				last_i = _last_i + i + 1		
-				if element+last_element == target:					
-					return [i, last_i] 
+# ## 1.1 brute force solution-> Status:Time_Limit_Exceeded -> 1.2
+# class Solution:
+# 	def twoSum(self, nums: List[int], target: int) -> List[int]:
+# 		for i, element in enumerate(nums):
+# 			for _last_i, last_element in enumerate(nums[i+1:]):
+# 				last_i = _last_i + i + 1		
+# 				if element+last_element == target:					
+# 					return [i, last_i] 
 
 ## 1.2 brute force solution-> Success
 """
@@ -72,17 +72,22 @@ class Solution:
 Runtime: 5724 ms, faster than 9.30% of Python3 online submissions for Two Sum.
 Memory Usage: 13.7 MB, less than 79.07% of Python3 online submissions for Two Sum.
 """
-class Solution:
-	def twoSum(self, nums: List[int], target: int) -> List[int]:
-		for i, element in enumerate(nums):
-			for _last_i, last_element in enumerate(nums[i+1:]):
-				if last_element == target - element:
-					last_i = _last_i + i + 1
-					return [i, last_i] 
+# class Solution:
+# 	def twoSum(self, nums: List[int], target: int) -> List[int]:
+# 		for i, element in enumerate(nums):
+# 			for _last_i, last_element in enumerate(nums[i+1:]):
+# 				if last_element == target - element:
+# 					last_i = _last_i + i + 1
+# 					return [i, last_i] 
+
+
+
 
 ## 3 hash map
 class Solution:
 	def twoSum(self, nums: List[int], target: int) -> List[int]:
+
+
 
 
 # Test
