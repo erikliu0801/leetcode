@@ -108,7 +108,34 @@ class Solution:
 		return Int2LL(LL2Int(l1) + LL2Int(l2))[0]
 
 # 1.2 Save Memory
-
+class Solution:
+	def addTwoNumbers(self, l1, l2):
+		def LL2Int(Linked_List): #ok
+			LL_Int = 0
+			i = 0
+			while Linked_List.next != None:
+				LL_Int += Linked_List.val*10**i
+				i += 1
+				Linked_List = Linked_List.next
+			LL_Int += Linked_List.val*10**i
+			return LL_Int
+			gc.enable()
+		def Int2LL(Int): #bug
+			i = 0
+			var_list = [] # List of objects(ListNode)
+			while Int//10 != 0:
+				var_list.append(ListNode(0))
+				var_list[i].val = Int%10
+				if i != 0:
+					var_list[i-1].next = var_list[i]
+				i += 1
+				Int = Int//10
+			var_list.append(ListNode(0))
+			var_list[i].val = Int%10
+			var_list[i-1].next = var_list[i]
+			return var_list
+			gc.enable()
+		return Int2LL(LL2Int(l1) + LL2Int(l2))[0]
 
 
 # 2
@@ -161,6 +188,22 @@ class Solution:
 	def addTwoNumbers(self, l1, l2):
 		l1_num = 0
 		if 
+
+# 3 List of Objects(ListNode)
+	def addTwoNumbers(self, l1, l2):
+		def list_LL(first_ListNode):
+			var_list = [] # List of objects(ListNode)
+			_ListNode = first_ListNode
+			while _ListNode:
+				var_list.append(_ListNode)
+				_ListNode = _ListNode.next
+			return var_list
+		def twoListSum(List1,List2):
+			ListSum = []
+			for i in List1:
+				ListSum.append(List1[i].val+List2[i].val)
+			return ListSum
+		
 
 
 # Test
