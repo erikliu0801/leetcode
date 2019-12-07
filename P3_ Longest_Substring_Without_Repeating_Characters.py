@@ -61,8 +61,31 @@ class Solution:
 
 #1 List of List of String
 """
-whrong Logic 
+Wrong Logic!!! 
 'dvdf'
+"""
+	# def lengthOfLongestSubstring(self, s):
+	# 	unrepeated_substring = []
+	# 	string_list = list(s)
+	# 	substring = ""
+	# 	for i, j in enumerate(string_list):
+	# 		if substring.count(j) == 0:
+	# 			substring = substring + j
+	# 		else:
+	# 			unrepeated_substring.append(substring)
+	# 			substring = j
+	# 	unrepeated_substring.append(substring)
+	# 	max_count = 0
+	# 	for i, j in enumerate(unrepeated_substring):
+	# 		x = len(unrepeated_substring[i])
+	# 		if x > max_count:
+	# 			max_count = x
+	# 	return max_count
+
+#1.2 Success
+"""
+Runtime: 368 ms, faster than 17.82% of Python3 online submissions for Longest Substring Without Repeating Characters.
+Memory Usage: 17.8 MB, less than 5.10% of Python3 online submissions for Longest Substring Without Repeating Characters.
 """
 	def lengthOfLongestSubstring(self, s):
 		unrepeated_substring = []
@@ -73,7 +96,13 @@ whrong Logic
 				substring = substring + j
 			else:
 				unrepeated_substring.append(substring)
-				substring = j
+				for i, k in enumerate(list(substring)):
+					if k == j:
+						p_substring = ""
+						for y in list(substring)[i + 1:]:
+							p_substring = p_substring + y
+						substring = p_substring + j
+						break
 		unrepeated_substring.append(substring)
 		max_count = 0
 		for i, j in enumerate(unrepeated_substring):
@@ -82,8 +111,7 @@ whrong Logic
 				max_count = x
 		return max_count
 
-#2
-	def lengthOfLongestSubstring(self, s):
+
 
 
 

@@ -7,7 +7,13 @@ def lengthOfLongestSubstring(s):
             substring = substring + j
         else:
             unrepeated_substring.append(substring)
-            substring = j
+            for i, k in enumerate(list(substring)):
+                if k == j:
+                    p_substring = ""
+                    for y in list(substring)[i + 1:]:
+                        p_substring = p_substring + y
+                    substring = p_substring + j
+                    break
     unrepeated_substring.append(substring)
     max_count = 0
     for i, j in enumerate(unrepeated_substring):
