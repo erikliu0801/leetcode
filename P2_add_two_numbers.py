@@ -200,11 +200,55 @@ class Solution:
 			return var_list
 		def twoListSum(List1,List2):
 			ListSum = []
-			for i in List1:
-				ListSum.append(List1[i].val+List2[i].val)
+			i = 0
+			carry = 0
+			while  List1 or List2:
+				ListSum.append(ListNode((List1[i].val+List2[i].val+carry)%10))
+				if List1[i].val+List2[i].val >= 10:
+					carry = 1
+				else:
+					carry = 0
+				i += 1
+				List1, List2 = List1[i], List2[i]
 			return ListSum
+		return twoListSum(list_LL(l1),list_LL(l2))[0]
 		
-
+# 4
+"""
+Success
+Details 
+Runtime: 68 ms, faster than 87.42% of Python3 online submissions for Add Two Numbers.
+Memory Usage: 12.6 MB, less than 100.00% of Python3 online submissions for Add Two Numbers.
+"""
+	def addTwoNumbers(self, l1, l2):
+		# func.val
+		ListSum = []
+		i = 0
+		carry = 0
+		while  l1 or l2:
+			if l1:
+				l1_val = l1.val
+			else:
+				l1_val = 0
+			if l2:
+				l2_val = l2.val
+			else:
+				l2_val = 0
+			ListSum.append(ListNode((l1_val+l2_val+carry)%10))
+			if l1_val+l2_val+carry >= 10:
+				carry = 1
+			else:
+				carry = 0
+			if l1:
+				l1 = l1.next
+			if l2:
+				l2 = l2.next
+		if carry == 1 :
+			ListSum.append(ListNode(1))
+		# func.next
+		for i, j in enumerate(ListSum[:-1]):
+			ListSum[i].next = ListSum[i+1]
+		return ListSum[0]
 
 # Test
 ## Functional Test
