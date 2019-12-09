@@ -209,7 +209,26 @@ Memory Usage: 12.9 MB, less than 100.00% of Python3 online submissions for Media
 Condition:
 
 """
+if __name__ == "__main__":
+    nums = [
+    [[[3],[1,2,5],2.5],
+    [[1,2],[3,4],2.5],
+    [[1,2,7,8],[3,4,5],4.0],
+    [[3,4,5],[1,2,7,8],4.0]
+    ]
 
+    # nums0 = [[[3],[1,2,5],2.5] =nums[0]
+    # nums1 = [[1,2],[3,4],2.5]
+    # nums2 = [[1,2,7,8],[3,4,5],4.0]
+    # nums3 = [[3,4,5],[1,2,7,8],4.0]
+
+    nums1, nums2, nums3 = nums[0][0:]
+
+    print("nums1= %s ,nums2= %s " %(nums1, nums2))
+    if nums3 != findMedianSortedArrays(nums1,nums2):
+        print("Wrong Answer! Expect:%s, Output%s"%(nums3, findMedianSortedArrays(nums1,nums2)))
+    else:
+        print("Right Answer! %s"%(findMedianSortedArrays(nums1,nums2)))
 
 ## Performance Test
 import cProfile
