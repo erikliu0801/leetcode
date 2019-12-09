@@ -57,22 +57,49 @@ def findMedianSortedArrays(nums1, nums2):
 	else:
 		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
+#5
+def IsPalindrome(substring):
+    answer = True
+    half_len = len(substring)//2
+    for i, j in enumerate(substring):
+        if i >= half_len :
+            if len(substring)%2 == 1:
+                break
+            else:
+                break
+        if substring[i] == substring[-1-i]:
+            pass
+        else:
+            answer = False
+    if answer != False:
+        answer = True
+    return answer
+
+
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
     # string03 = "dvdf"
     # print(lengthOfLongestSubstring(string03))
     
     
-    # P4
-    nums0 = [[[3],[1,2,5],2.5]
-    nums1 =[[1,2],[3,4],2.5]
-    nums2 =[[1,2,7,8],[3,4,5],4.0]
-    nums3 = [[3,4,5],[1,2,7,8],4.0]
+    # # P4
+    # nums0 = [[[3],[1,2,5],2.5]
+    # nums1 = [[1,2],[3,4],2.5]
+    # nums2 = [[1,2,7,8],[3,4,5],4.0]
+    # nums3 = [[3,4,5],[1,2,7,8],4.0]
 
-    nums1, nums2, nums3 = nums3[0:]
+    # nums1, nums2, nums3 = nums3[0:]
 
-    print("nums1= %s ,nums2= %s " %(nums1, nums2))
-    if nums3 != findMedianSortedArrays(nums1,nums2):
-        print("Wrong Answer! Expect:%s, Output%s"%(nums3, findMedianSortedArrays(nums1,nums2)))
-    else:
-        print("Right Answer! %s"%(findMedianSortedArrays(nums1,nums2)))
+    # print("nums1= %s ,nums2= %s " %(nums1, nums2))
+    # if nums3 != findMedianSortedArrays(nums1,nums2):
+    #     print("Wrong Answer! Expect:%s, Output%s"%(nums3, findMedianSortedArrays(nums1,nums2)))
+    # else:
+    #     print("Right Answer! %s"%(findMedianSortedArrays(nums1,nums2)))
+
+    #5
+    substring_list = ["aba", "kfsgsfgfsgsfk","abcdefgfedcba","lkjkl"]
+    for i, j in enumerate(substring_list):
+        if IsPalindrome(substring_list[i]) == True:
+            print("Right")
+        else:
+            print("Wrong!")

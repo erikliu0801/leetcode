@@ -80,7 +80,7 @@ Output
 Expected
 2.5
 """
-	def findMedianSortedArrays(self, nums1, nums2):
+def findMedianSortedArrays(self, nums1, nums2):
 	def Combine2SortedArrays(l1,l2):			
 		# if len(l2)>len(l1): #l1 should be longer
 		# if l2[0]<l1[0]: #l2[0] should be smaller
