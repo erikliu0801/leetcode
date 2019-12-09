@@ -67,6 +67,49 @@ def findMedianSortedArrays(self, nums1, nums2):
 			return nums1[mid1]
 		else
 
+#4 btute force
+"""
+Wrong Answer
+Details
+Playground Debug
+Input
+[1,2]
+[3,4]
+Output
+1.50000
+Expected
+2.5
+"""
+	def findMedianSortedArrays(self, nums1, nums2):
+    def Combine2SortedArrays(l1,l2):			
+        # if len(l2)>len(l1): #l1 should be longer
+        # if l2[0]<l1[0]: #l2[0] should be smaller
+        #     l1, l2 = l2, l1
+        l0 = []
+        for i, j in enumerate(l2):
+            for l, k in enumerate(l1):
+                if k < j:
+                    l0.append(k)
+                else:
+                    l0.append(j)
+                    break 
+            if len(l1) <= l +1:
+                l1 = []
+            else:
+                l1 = l1[l+1:]
+            if len(l2) <= i +1:
+                l2 = []
+            else:
+                l2 = l2[i:]
+            l0.append(j)
+        return l0
+    nums_combined = Combine2SortedArrays(nums1,nums2)
+    if len(nums_combined)%2 == 1:
+        return float(nums_combined[len(nums_combined)//2])
+    else:
+        return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
+
+
 
 # Test
 ## Functional Test
