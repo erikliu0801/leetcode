@@ -21,35 +21,41 @@ def lengthOfLongestSubstring(s):
             max_count = count
     return max_count
 
+#P4
 def findMedianSortedArrays(nums1, nums2):
-    def Combine2SortedArrays(l1,l2):			
-        # if len(l2)>len(l1): #l1 should be longer
-        # if l2[0]<l1[0]: #l2[0] should be smaller
-        #     l1, l2 = l2, l1
-        l0 = []
-        for i, j in enumerate(l2):
-            for l, k in enumerate(l1):
-                if k < j:
-                    l0.append(k)
-                else:
-                    l0.append(j)
-                    break 
-            if len(l1) <= l +1:
-                l1 = []
-            else:
-                l1 = l1[l+1:]
-            if len(l2) <= i +1:
-                l2 = []
-            else:
-                l2 = l2[i:]
-            l0.append(j)
-        return l0
-    nums_combined = Combine2SortedArrays(nums1,nums2)
-    if len(nums_combined)%2 == 1:
-        return float(nums_combined[len(nums_combined)//2])
-    else:
-        return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
+	def Combine2SortedArrays(l1,l2):
+		l0 = []
+		if l1 == []:
+			l1, l2 = l2, l1
+		for i, j in enumerate(l1):
+			if l2 != []:
+				if j < l2[0]:
+					l0.append(j)
+					l1 = l1[1:]
+				else:
+					for l, k in enumerate(l2):
+						if k < j:
+							l0.append(k)
+							l2 = l2[1:]
+						else:
+							l0.append(j)
+							l1 = l1[1:]
+							break
+					if l2 == []:
+						l0.append(j)
+						l1 = l1[1:]
+			else:
+				l0.append(j)
+				l1 = l1[1:]
+		for k in l2:
+			l0.append(k)
+		return l0
 
+	nums_combined = Combine2SortedArrays(nums1,nums2)
+	if len(nums_combined)%2 == 1:
+		return float(nums_combined[len(nums_combined)//2])
+	else:
+		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
@@ -57,25 +63,16 @@ if __name__ == "__main__":
     # print(lengthOfLongestSubstring(string03))
     
     
-    
-    nums10 = [3]
-    nums20 = [1,2,5]
-    nums30 = 2.5
-    
-    nums11 =[1,2]
-    nums21 =[3,4]
-    nums31 = 2.5
+    # P4
+    nums0 = [[[3],[1,2,5],2.5]
+    nums1 =[[1,2],[3,4],2.5]
+    nums2 =[[1,2,7,8],[3,4,5],4.0]
+    nums3 = [[3,4,5],[1,2,7,8],4.0]
 
-    nums12 =[1,2,7,8]
-    nums22 =[3,4,5]
-    nums32 = 4.0
-
-    nums1 = nums12
-    nums2 = nums22
-    nums3 =  nums32
+    nums1, nums2, nums3 = nums3[0:]
 
     print("nums1= %s ,nums2= %s " %(nums1, nums2))
-    if nums3 != findMedianSortedArrays(nums11,nums21):
-        print("Wrong Answer! Expect:%s, Output%s"%(nums3, findMedianSortedArrays(nums11,nums21)))
+    if nums3 != findMedianSortedArrays(nums1,nums2):
+        print("Wrong Answer! Expect:%s, Output%s"%(nums3, findMedianSortedArrays(nums1,nums2)))
     else:
-        print("Right Answer! %s"%(findMedianSortedArrays(nums11,nums21)))
+        print("Right Answer! %s"%(findMedianSortedArrays(nums1,nums2)))

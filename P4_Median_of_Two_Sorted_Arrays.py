@@ -30,7 +30,7 @@ The median is (2 + 3)/2 = 2.5
 # Code
 ## submit part
 class Solution:
-    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+	def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
 ## test part
 
 ## code here
@@ -81,35 +81,127 @@ Expected
 2.5
 """
 	def findMedianSortedArrays(self, nums1, nums2):
-    def Combine2SortedArrays(l1,l2):			
-        # if len(l2)>len(l1): #l1 should be longer
-        # if l2[0]<l1[0]: #l2[0] should be smaller
-        #     l1, l2 = l2, l1
-        l0 = []
-        for i, j in enumerate(l2):
-            for l, k in enumerate(l1):
-                if k < j:
-                    l0.append(k)
-                else:
-                    l0.append(j)
-                    break 
-            if len(l1) <= l +1:
-                l1 = []
-            else:
-                l1 = l1[l+1:]
-            if len(l2) <= i +1:
-                l2 = []
-            else:
-                l2 = l2[i:]
-            l0.append(j)
-        return l0
-    nums_combined = Combine2SortedArrays(nums1,nums2)
-    if len(nums_combined)%2 == 1:
-        return float(nums_combined[len(nums_combined)//2])
-    else:
-        return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
+	def Combine2SortedArrays(l1,l2):			
+		# if len(l2)>len(l1): #l1 should be longer
+		# if l2[0]<l1[0]: #l2[0] should be smaller
+		#	 l1, l2 = l2, l1
+		l0 = []
+		for i, j in enumerate(l2):
+			for l, k in enumerate(l1):
+				if k < j:
+					l0.append(k)
+				else:
+					l0.append(j)
+					break 
+			if len(l1) <= l +1:
+				l1 = []
+			else:
+				l1 = l1[l+1:]
+			if len(l2) <= i +1:
+				l2 = []
+			else:
+				l2 = l2[i:]
+			l0.append(j)
+		return l0
+	nums_combined = Combine2SortedArrays(nums1,nums2)
+	if len(nums_combined)%2 == 1:
+		return float(nums_combined[len(nums_combined)//2])
+	else:
+		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
+##4.1
+def findMedianSortedArrays(self, nums1, nums2):
+	def Combine2SortedArrays(l1,l2):			
+		# if len(l2)>len(l1): #l1 should be longer
+		if l2[0]<l1[0]: #l1[0] should be smaller
+			l1, l2 = l2, l1
+		l0 = []
+		l = 0
 
+		for i, j in enumerate(l1):
+			# if l2 != []:
+				for l, k in enumerate(l2):
+					if j < k:
+						l0.append(j)
+						# l1 = l1[1:]
+						break
+					else: #
+
+						
+			# else:
+			#	 l0.append(j)
+		return l0
+	nums_combined = Combine2SortedArrays(nums1,nums2)
+	if len(nums_combined)%2 == 1:
+		return float(nums_combined[len(nums_combined)//2])
+	else:
+		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
+
+#4.2
+def findMedianSortedArrays(self, nums1, nums2):
+	def Combine2SortedArrays(l1,l2):
+		l0 = []
+		l = 0			
+		for i, j in enumerate(l1):			
+			if j < l2[l]:
+				l0.append(j)
+				l1 = l1[1:]
+			else:
+				for m, n in enumerate(l2):
+					if n < j:
+						l0.append(n)
+					else:
+						l2 = l2[m:]						
+			# else:
+			#	 l0.append(j)
+		return l0
+	nums_combined = Combine2SortedArrays(nums1,nums2)
+	if len(nums_combined)%2 == 1:
+		return float(nums_combined[len(nums_combined)//2])
+	else:
+		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
+
+#4.3
+"""
+Success
+Details
+Runtime: 168 ms, faster than 5.07% of Python3 online submissions for Median of Two Sorted Arrays.
+Memory Usage: 12.9 MB, less than 100.00% of Python3 online submissions for Median of Two Sorted Arrays.
+"""
+	def findMedianSortedArrays(self, nums1, nums2):
+		def Combine2SortedArrays(l1,l2):
+			l0 = []
+			if l1 == []:
+				l1, l2 = l2, l1
+			for i, j in enumerate(l1):
+				if l2 != []:
+					if j < l2[0]:
+						l0.append(j)
+						l1 = l1[1:]
+					else:
+						for l, k in enumerate(l2):
+							if k < j:
+								l0.append(k)
+								l2 = l2[1:]
+							else:
+								l0.append(j)
+								l1 = l1[1:]
+								break
+						if l2 == []:
+							l0.append(j)
+							l1 = l1[1:]
+				else:
+					l0.append(j)
+					l1 = l1[1:]
+			for k in l2:
+				l0.append(k)
+			return l0
+
+		nums_combined = Combine2SortedArrays(nums1,nums2)
+		if len(nums_combined)%2 == 1:
+			return float(nums_combined[len(nums_combined)//2])
+		else:
+			return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
 # Test
 ## Functional Test
@@ -131,4 +223,4 @@ class Test(unittest.TestCase):
 		pass
 
 if __name__ == '__main__':
-    unittest.main()
+	unittest.main()
