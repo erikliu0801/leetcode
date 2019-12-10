@@ -342,10 +342,24 @@ def longestPalindrome(s):
 
 #2.3
 """
-Your input: "babad"
+input: "babad"
 Output: "d"
 Expected: "bab"
-=> optimize Fuc CutSubstring2CombinedList
+=> optimize Fuc CutSubstring2CombinedList OK
+
+input: "abayghdfg"
+Output: "a"
+Expected: "aba"
+=> optimize Fuc CutSubstring2CombinedList OK
+
+input: "aba"
+Output: "a"
+Expected: "aba"
+=> optimize Fuc RecursiveCheckStringList OK
+
+Time Limit Exceeded
+"ibvjkmpyzsifuxcabqqpahjdeuzaybqsrsmbfplxycsafogotliyvhxjtkrbzqxlyfwujzhkdafhebvsdhkkdbhlhmaoxmbkqiwiusngkbdhlvxdyvnjrzvxmukvdfobzlmvnbnilnsyrgoygfdzjlymhprcpxsnxpcafctikxxybcusgjwmfklkffehbvlhvxfiddznwumxosomfbgxoruoqrhezgsgidgcfzbtdftjxeahriirqgxbhicoxavquhbkaomrroghdnfkknyigsluqebaqrtcwgmlnvmxoagisdmsokeznjsnwpxygjjptvyjjkbmkxvlivinmpnpxgmmorkasebngirckqcawgevljplkkgextudqaodwqmfljljhrujoerycoojwwgtklypicgkyaboqjfivbeqdlonxeidgxsyzugkntoevwfuxovazcyayvwbcqswzhytlmtmrtwpikgacnpkbwgfmpavzyjoxughwhvlsxsgttbcyrlkaarngeoaldsdtjncivhcfsaohmdhgbwkuemcembmlwbwquxfaiukoqvzmgoeppieztdacvwngbkcxknbytvztodbfnjhbtwpjlzuajnlzfmmujhcggpdcwdquutdiubgcvnxvgspmfumeqrofewynizvynavjzkbpkuxxvkjujectdyfwygnfsukvzflcuxxzvxzravzznpxttduajhbsyiywpqunnarabcroljwcbdydagachbobkcvudkoddldaucwruobfylfhyvjuynjrosxczgjwudpxaqwnboxgxybnngxxhibesiaxkicinikzzmonftqkcudlzfzutplbycejmkpxcygsafzkgudy"
+no count"1" obejcts!! => change algorithm
 """
 def longestPalindrome(s):
 	def SubstringCountList(s):
@@ -353,7 +367,7 @@ def longestPalindrome(s):
 		for i, j  in enumerate(s):
 			substring_count_list.append(s.count(s[i]))
 		return substring_count_list
-	def CutSubstring2CombinedList(s,substring_count_list):		
+	def CutSubstring2CombinedList(s,substring_count_list): #ok	
 		substring_list =[]
 		s1 = s
 		l=0
@@ -361,7 +375,7 @@ def longestPalindrome(s):
 		#
 		for i, j in enumerate(SubstringCountList(s)):
 			if j == 1 and s[l:i] != "":
-				if len(s) > i +1:
+				if len(s) >= i +1:
 					substring_list.append(s[l:i])
 				substring_list.append(s[i])
 				s1 = s[i+1:]
@@ -374,7 +388,7 @@ def longestPalindrome(s):
 		for i, j in enumerate(substring_list):
 			if len(substring_list[i])==1 and i-1 >= 0 and i+2 <= len(substring_list):
 				#
-				if len(substring_list[i-1]) != 1 and len(substring_list[i+1]) != 1:
+				if substring_list[i-1] != 1 and substring_list[i+1] != 1:
 					if substring_list[i-1][-1] == substring_list[i+1][0]:
 						substring_list[i] = substring_list[i-1] +substring_list[i] +substring_list[i+1]
 		if substring_list == []:
@@ -398,13 +412,13 @@ def longestPalindrome(s):
 			answer = True
 		return answer
 	#Recursive Test
-	def RecursiveCheckStringList(substring_list):
+	def RecursiveCheckStringList(substring_list): #
+		palindrome_list = []
 		for l, s in enumerate(substring_list):
 			for i, j in enumerate(s):
 				if s.count(s[0])==len(s):
-						return s
-				else:		
-					palindrome_list = []
+					palindrome_list.append(s)
+				else:
 					for i in range(len(s)):
 						if len(s) == 1:
 							break
@@ -422,14 +436,17 @@ def longestPalindrome(s):
 								else: 
 									s1 = s1[:-1]
 							s = s[1:]
-					answer = ""
-					for i, j in enumerate(palindrome_list):
-						if len(j) > len(answer):
-							answer = j
-					if answer == "":
-						return s[0]
-					else:	
-						return answer
+		answer = ""
+		for i, j in enumerate(palindrome_list):
+			if len(j) > len(answer):
+				answer = j
+		if answer == "" and s != "":
+			return s[0]
+		elif s =="":
+			return s
+		else:
+			return answer
+
 	substring_count_list = SubstringCountList(s)
 	substring_list = CutSubstring2CombinedList(s, substring_count_list)
 	answer = RecursiveCheckStringList(substring_list)
@@ -437,8 +454,37 @@ def longestPalindrome(s):
 		answer = ''
 	return answer
 
-#2.4
-
+#3 
+"""
+Algorithm:
+* Reverse
+* Expand Around Center
+* Manacher's Algorithm
+"""
+"""
+'abcda'
+"""
+def longestPalindrome(s):
+	palindrome_list = []
+	s1 = s
+	for i, j in enumerate(s):
+		s2 = s1
+		for l, k in enumerate(s1):
+			if s1[0] != s2[-1]:
+				s2 = s2[:-1]
+			else:
+				palindrome_list.append(s2)
+		s1 = s1[i+1:]
+	answer = ""
+	for i, j in enumerate(palindrome_list):
+		if len(j) > len(answer):
+			answer = j
+	if answer == "" and s != "":
+		return s[0]
+	elif s =="":
+		return s
+	else:
+		return answer
 
 
 # Test
@@ -449,7 +495,9 @@ Condition:
 """
 if __name__ == '__main__':
    # P_substring_list = ["aba", "kfsgsfgfsgsfk"]
-	substring_list = ["abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","ca","bb","abcda","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"]
+	substring_list = ["aba","abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","ca","bb","abcda","babad","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth",
+	"ibvjkmpyzsifuxcabqqpahjdeuzaybqsrsmbfplxycsafogotliyvhxjtkrbzqxlyfwujzhkdafhebvsdhkkdbhlhmaoxmbkqiwiusngkbdhlvxdyvnjrzvxmukvdfobzlmvnbnilnsyrgoygfdzjlymhprcpxsnxpcafctikxxybcusgjwmfklkffehbvlhvxfiddznwumxosomfbgxoruoqrhezgsgidgcfzbtdftjxeahriirqgxbhicoxavquhbkaomrroghdnfkknyigsluqebaqrtcwgmlnvmxoagisdmsokeznjsnwpxygjjptvyjjkbmkxvlivinmpnpxgmmorkasebngirckqcawgevljplkkgextudqaodwqmfljljhrujoerycoojwwgtklypicgkyaboqjfivbeqdlonxeidgxsyzugkntoevwfuxovazcyayvwbcqswzhytlmtmrtwpikgacnpkbwgfmpavzyjoxughwhvlsxsgttbcyrlkaarngeoaldsdtjncivhcfsaohmdhgbwkuemcembmlwbwquxfaiukoqvzmgoeppieztdacvwngbkcxknbytvztodbfnjhbtwpjlzuajnlzfmmujhcggpdcwdquutdiubgcvnxvgspmfumeqrofewynizvynavjzkbpkuxxvkjujectdyfwygnfsukvzflcuxxzvxzravzznpxttduajhbsyiywpqunnarabcroljwcbdydagachbobkcvudkoddldaucwruobfylfhyvjuynjrosxczgjwudpxaqwnboxgxybnngxxhibesiaxkicinikzzmonftqkcudlzfzutplbycejmkpxcygsafzkgudy"]
+	
 	substring_count_list = [
 			[2, 1, 2, 1, 2, 1, 1, 1, 2],
 			[6, 6, 3, 6, 6, 2, 6, 6, 4, 6, 6, 4, 6, 6, 4, 6, 6, 2, 3, 4, 3, 3, 3, 3, 3, 3, 3],
