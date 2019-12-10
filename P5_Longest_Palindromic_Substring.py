@@ -291,21 +291,24 @@ def longestPalindrome(s):
 		return substring_list
 
 #2.2
+
 def longestPalindrome(s):
-	def SubstringCountList(self,s):
+	def SubstringCountList(s):
 		substring_count_list = []
-		for i, j  in enumerate(substring):
-			substring_count_list.append(substring.count(substring[i]))
+		for i, j  in enumerate(s):
+			substring_count_list.append(s.count(s[i]))
 		return substring_count_list
 
 	substring_count_list = SubstringCountList(s)
-	def CutSubstring2List(self,s,substring_count_list):		
+	
+	def CutSubstring2List(s,substring_count_list):		
 		substring_list =[]
 		s1 = s
 		l=0
 		count = 0
+		#
 		for i, j in enumerate(SubstringCountList(s)):
-			if j == 1:
+			if j == 1 and s[l:i] != "":
 				if len(s) > i +1:
 					substring_list.append(s[l:i])
 				substring_list.append(s[i])
@@ -313,13 +316,67 @@ def longestPalindrome(s):
 				l = i+1
 			else:
 				count +=1
-		substring_list.append(s1)
-		return substring_list
-		#Combine
-		for i, j in substring_list:
-			if len(substring_list[i])==1 and i-1>0 and i+1 <= lenlen(substring_list):
+		if s1 != '':
+			substring_list.append(s1)
+		#Combine	
+		for i, j in enumerate(substring_list):
+			if len(substring_list[i])==1 and i-1 >= 0 and i+2 <= len(substring_list):
 				#
-				if substring_list[i-1][-1] == substring_list[i-1][0]:
+				if len(substring_list[i-1]) != 1 and len(substring_list[i+1]) != 1:
+					if substring_list[i-1][-1] == substring_list[i+1][0]:
+						substring_list[i] = substring_list[i-1] +substring_list[i] +substring_list[i+1]
+		return substring_list
+
+	substring_list = CutSubstring2List(s, substring_count_list)
+	
+	#IsPalindrome
+	def IsPalindrome(substring):
+		answer = True
+		half_len = len(substring)//2
+		for i, j in enumerate(substring):
+			if i >= half_len :
+				if len(substring)%2 == 1:
+					break
+				else:
+					break
+			if substring[i] == substring[-1-i]:
+				pass
+			else:
+				answer = False
+		if answer != False:
+			answer = True
+		return answer
+	#Recursive Test
+	for i, j in enumerate(s):
+		if s.count(s[0])==len(s):
+				return s
+		else:		
+			palindrome_list = []
+			for i in range(len(s)):
+				if len(s) == 1:
+					break
+				elif IsPalindrome(s) == True:
+					palindrome_list.append(s)
+					break
+				else:
+					s1 = s
+					for l in range(len(s1)):
+						if len(s1) <= 2:
+							break
+						elif IsPalindrome(s1[:-1]) == True:
+							palindrome_list.append(s1[:-1])
+							break
+						else: 
+							s1 = s1[:-1]
+					s = s[1:]
+			answer = ""
+			for i, j in enumerate(palindrome_list):
+				if len(j) > len(answer):
+					answer = j
+			if answer == "":
+				return s[0]
+			else:	
+				return answer
 
 
 

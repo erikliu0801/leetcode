@@ -58,28 +58,42 @@ def findMedianSortedArrays(nums1, nums2):
 		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
 #5
-def longestPalindrome(s):	
-	def SubstringCountList(substring):
+def longestPalindrome(s):
+	def SubstringCountList(s):
 		substring_count_list = []
-		for i, j  in enumerate(substring):
-			substring_count_list.append(substring.count(substring[i]))
+		for i, j  in enumerate(s):
+			substring_count_list.append(s.count(s[i]))
 		return substring_count_list
-	substring_list =[]
-	y = SubstringCountList(s)
-	s1 = s
-	l=0
-	count = 0
-	for i, j in enumerate(SubstringCountList(s)):
-		if j == 1:
-			if len(s) > i +1:
-				substring_list.append(s[l:i])
-			substring_list.append(s[i])
-			s1 = s[i+1:]
-			l = i+1
-		else:
-			count +=1
-	substring_list.append(s1)
-	return substring_list
+
+	substring_count_list = SubstringCountList(s)
+	
+	def CutSubstring2List(s,substring_count_list):		
+		substring_list =[]
+		s1 = s
+		l=0
+		count = 0
+		for i, j in enumerate(SubstringCountList(s)):
+			if j == 1:
+				if len(s) > i +1 and s[l:i] != "":
+					substring_list.append(s[l:i])
+				substring_list.append(s[i])
+				s1 = s[i+1:]
+				l = i+1
+			else:
+				count +=1
+		if s1 != '':
+			substring_list.append(s1)
+		#Combine	
+		for i, j in enumerate(substring_list):
+			if len(substring_list[i])==1 and i-1 >= 0 and i+2 <= len(substring_list):
+				if len(substring_list[i-1]) != 1 and len(substring_list[i+1]) != 1:
+					if substring_list[i-1][-1] == substring_list[i+1][0]:
+						substring_list[i] = substring_list[i-1] +substring_list[i] +substring_list[i+1]
+		return substring_list
+	
+	return CutSubstring2List(s, substring_count_list)
+	
+	
 
 
 if __name__ == "__main__":
@@ -115,10 +129,10 @@ if __name__ == "__main__":
     # for i, j in enumerate(P_substring_list):
     #     print(longestPalindrome(P_substring_list[i]))
 
-	# for i, j in enumerate(substring_list):
-	# 	print(longestPalindrome(substring_list[i]))
+	for i, j in enumerate(substring_list):
+		print(longestPalindrome(substring_list[i]))
 	
-	print(longestPalindrome(substring_list[7]))
+	# print(longestPalindrome(substring_list[2]))
 	
 	# for i, j in enumerate(substring_list):
 	# 	print(SubstringCountList(substring_list[i]))
