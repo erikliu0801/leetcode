@@ -58,22 +58,53 @@ def findMedianSortedArrays(nums1, nums2):
 		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
 #5
-def IsPalindrome(substring):
-    answer = True
-    half_len = len(substring)//2
-    for i, j in enumerate(substring):
-        if i >= half_len :
-            if len(substring)%2 == 1:
-                break
-            else:
-                break
-        if substring[i] == substring[-1-i]:
-            pass
-        else:
-            answer = False
-    if answer != False:
-        answer = True
-    return answer
+def longestPalindrome(s):
+	def IsPalindrome(substring): #ok
+		answer = True
+		half_len = len(substring)//2
+		for i, j in enumerate(substring):
+			if i >= half_len :
+				if len(substring)%2 == 1:
+					break
+				else:
+					break
+			if substring[i] == substring[-1-i]:
+				pass
+			else:
+				answer = False
+		if answer != False:
+			answer = True
+		return answer
+	# 
+	if len(s) <= 1:
+		return s
+	else:
+		if s.count(s[0])==len(s):
+			return s
+		else:		
+			palindrome_list = []
+			for i in range(len(s)):
+				if len(s) == 1:
+					break
+				elif IsPalindrome(s) == True:
+					palindrome_list.append(s)
+					break
+				else:
+					s1 = s
+					for l in range(len(s1)):
+						if len(s1) <= 2:
+							break
+						elif IsPalindrome(s1[:-1]) == True:
+							palindrome_list.append(s1[:-1])
+							break
+						else: 
+							s1 = s1[:-1]
+					s = s[1:]
+			answer = ""
+			for i, j in enumerate(palindrome_list):
+				if len(j) > len(answer):
+					answer = j
+			return answer
 
 
 if __name__ == "__main__":
@@ -97,9 +128,16 @@ if __name__ == "__main__":
     #     print("Right Answer! %s"%(findMedianSortedArrays(nums1,nums2)))
 
     #5
-    substring_list = ["aba", "kfsgsfgfsgsfk","abcdefgfedcba","lkjkl"]
-    for i, j in enumerate(substring_list):
-        if IsPalindrome(substring_list[i]) == True:
-            print("Right")
-        else:
-            print("Wrong!")
+    # P_substring_list = ["aba", "kfsgsfgfsgsfk"]
+	substring_list = ["abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"]
+    # for i, j in enumerate(substring_list):
+    #     if IsPalindrome(substring_list[i]) == True:
+    #         print("Right")            
+    #     else:
+    #         print("Wrong!")
+    
+    # for i, j in enumerate(P_substring_list):
+    #     print(longestPalindrome(P_substring_list[i]))
+
+	for i, j in enumerate(substring_list):
+		print(longestPalindrome(substring_list[i]))
