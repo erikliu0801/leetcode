@@ -58,53 +58,28 @@ def findMedianSortedArrays(nums1, nums2):
 		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
 #5
-def longestPalindrome(s):
-	def IsPalindrome(substring): #ok
-		answer = True
-		half_len = len(substring)//2
-		for i, j in enumerate(substring):
-			if i >= half_len :
-				if len(substring)%2 == 1:
-					break
-				else:
-					break
-			if substring[i] == substring[-1-i]:
-				pass
-			else:
-				answer = False
-		if answer != False:
-			answer = True
-		return answer
-	# 
-	if len(s) <= 1:
-		return s
-	else:
-		if s.count(s[0])==len(s):
-			return s
-		else:		
-			palindrome_list = []
-			for i in range(len(s)):
-				if len(s) == 1:
-					break
-				elif IsPalindrome(s) == True:
-					palindrome_list.append(s)
-					break
-				else:
-					s1 = s
-					for l in range(len(s1)):
-						if len(s1) <= 2:
-							break
-						elif IsPalindrome(s1[:-1]) == True:
-							palindrome_list.append(s1[:-1])
-							break
-						else: 
-							s1 = s1[:-1]
-					s = s[1:]
-			answer = ""
-			for i, j in enumerate(palindrome_list):
-				if len(j) > len(answer):
-					answer = j
-			return answer
+def longestPalindrome(s):	
+	def SubstringCountList(substring):
+		substring_count_list = []
+		for i, j  in enumerate(substring):
+			substring_count_list.append(substring.count(substring[i]))
+		return substring_count_list
+	substring_list =[]
+	y = SubstringCountList(s)
+	s1 = s
+	l=0
+	count = 0
+	for i, j in enumerate(SubstringCountList(s)):
+		if j == 1:
+			if len(s) > i +1:
+				substring_list.append(s[l:i])
+			substring_list.append(s[i])
+			s1 = s[i+1:]
+			l = i+1
+		else:
+			count +=1
+	substring_list.append(s1)
+	return substring_list
 
 
 if __name__ == "__main__":
@@ -129,7 +104,8 @@ if __name__ == "__main__":
 
     #5
     # P_substring_list = ["aba", "kfsgsfgfsgsfk"]
-	substring_list = ["abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"]
+	substring_list = ["abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","ca","bb","abcda","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"]
+	
     # for i, j in enumerate(substring_list):
     #     if IsPalindrome(substring_list[i]) == True:
     #         print("Right")            
@@ -139,5 +115,10 @@ if __name__ == "__main__":
     # for i, j in enumerate(P_substring_list):
     #     print(longestPalindrome(P_substring_list[i]))
 
-	for i, j in enumerate(substring_list):
-		print(longestPalindrome(substring_list[i]))
+	# for i, j in enumerate(substring_list):
+	# 	print(longestPalindrome(substring_list[i]))
+	
+	print(longestPalindrome(substring_list[7]))
+	
+	# for i, j in enumerate(substring_list):
+	# 	print(SubstringCountList(substring_list[i]))
