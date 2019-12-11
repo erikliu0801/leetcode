@@ -217,7 +217,70 @@ def isPalindrome(x):
 
 #13
 def romanToInt(s):
-	
+	answer = 0
+	step = 0
+	for i in range(len(s)):
+		if step == 1:
+			step = 0
+			pass
+		elif s[i] == 'M':
+			answer += 1000
+		elif s[i] == 'D':
+			answer += 500
+		elif s[i] == 'L':
+			answer += 50
+		elif s[i] == 'V':
+			answer += 5
+		elif i+1 == len(s):
+			if s[i] == 'M':
+				answer += 1000
+			elif s[i] == 'D':
+				answer += 500
+			elif s[i] == 'C':
+				answer += 100
+			elif s[i] == 'L':
+				answer += 50
+			elif s[i] == 'X':
+				answer += 10
+			elif s[i] == 'V':
+				answer += 5
+			elif s[i] == 'I':
+				answer += 1
+		elif i+1 < len(s):
+			if s[i] == 'C':
+				if s[i+1] == 'M':
+					answer += 900
+					step = 1
+				elif s[i+1] == 'D':
+					answer += 400
+					step = 1
+				else:
+					answer += 100
+			
+			elif s[i] == 'X':
+				if s[i+1] == 'C':
+					answer += 90
+					step = 1
+				elif s[i+1] == 'L':
+					answer += 40
+					step = 1
+				else:
+					answer += 10
+			
+			elif s[i] == 'I':
+				if s[i+1] == 'X':
+					answer += 9
+					step = 1
+				elif s[i+1] == 'V':
+					answer += 4
+					step = 1
+				else:
+					answer += 1
+	return answer
+
+
+
+
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
     # string03 = "dvdf"
@@ -292,4 +355,12 @@ if __name__ == "__main__":
 	# # print(myAtoi(input[2]))
 
 	#13
-
+	input = ["III", "IV", "IX", "LVIII", "MCMXCIV", "MDLXX"]
+	expected_output = [3, 4, 9, 58, 1994, 1570]
+	for i, j in enumerate(input):
+		if romanToInt(input[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(romanToInt(input[i]))
+		else:
+			print("Right")
+	# print(romanToInt(input[1]))

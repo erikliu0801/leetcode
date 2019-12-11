@@ -65,7 +65,167 @@ class Solution:
 ## test part
 
 ## code here
+#1
 def romanToInt(s):
+	answer = 0
+	step = 0
+	for i in range(len(s)):
+		if step == 1:
+			step = 0
+			pass
+		elif s[i] == 'M' and step != 1:
+			answer += 1000
+		elif s[i] == 'D' and step != 1:
+			answer += 500
+		elif s[i] == 'L' and step != 1:
+			answer += 50
+		elif s[i] == 'V' and step != 1:
+			answer += 5
+		elif s[i] == 'I' and step != 1:
+			answer += 1
+		elif i+1 < len(s):
+			if s[i] == 'C' and s[i+1] == 'M':
+				answer += 900
+				step = 1
+			elif s[i] == 'C' and s[i+1] == 'D':
+				answer += 400
+				step = 1
+			elif s[i] == 'C' and s[i+1] != 'D' and s[i+1] == 'M':
+				answer += 100
+				step = 1
+			
+			elif s[i] == 'X':
+				answer += 10
+			
+			elif s[i] == 'I':
+				answer += 1
+	return answer
+
+#1.1
+"""
+"III"
+"LVIII"
+"""
+def romanToInt(s):
+	answer = 0
+	step = 0
+	for i in range(len(s)):
+		if step == 1:
+			step = 0
+			pass
+		elif s[i] == 'M' and step != 1:
+			answer += 1000
+		elif s[i] == 'D' and step != 1:
+			answer += 500
+		elif s[i] == 'L' and step != 1:
+			answer += 50
+		elif s[i] == 'V' and step != 1:
+			answer += 5
+		elif s[i] == 'I' and step != 1:
+			answer += 1
+		elif i+1 < len(s):
+			if s[i] == 'C' 
+				if s[i+1] == 'M':
+					answer += 900
+					step = 1
+				elif s[i+1] == 'D':
+					answer += 400
+					step = 1
+				else:
+					answer += 100
+			
+			elif s[i] == 'X':
+				if s[i+1] == 'C':
+					answer += 90
+					step = 1
+				elif s[i+1] == 'L':
+					answer += 40
+					step = 1
+				else:
+					answer += 10
+			
+			elif s[i] == 'I':
+				if s[i+1] == 'X':
+					answer += 9
+					step = 1
+				elif s[i+1] == 'V':
+					answer += 4
+					step = 1
+				else:
+					answer += 1
+	return answer
+#1.2
+"""
+"IV", "IX", "MCMXCIV" => ok
+Input:"MDLXX"
+Output:1560
+Expected:1570
+
+Success
+Runtime: 44 ms, faster than 89.53% of Python3 online submissions for Roman to Integer.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Roman to Integer.
+"""
+def romanToInt(s):
+	answer = 0
+	step = 0
+	for i in range(len(s)):
+		if step == 1:
+			step = 0
+			pass
+		elif s[i] == 'M':
+			answer += 1000
+		elif s[i] == 'D':
+			answer += 500
+		elif s[i] == 'L':
+			answer += 50
+		elif s[i] == 'V':
+			answer += 5
+		elif i+1 == len(s):
+			if s[i] == 'M':
+				answer += 1000
+			elif s[i] == 'D':
+				answer += 500
+			elif s[i] == 'C':
+				answer += 100
+			elif s[i] == 'L':
+				answer += 50
+			elif s[i] == 'X':
+				answer += 10
+			elif s[i] == 'V':
+				answer += 5
+			elif s[i] == 'I':
+				answer += 1
+		elif i+1 < len(s):
+			if s[i] == 'C':
+				if s[i+1] == 'M':
+					answer += 900
+					step = 1
+				elif s[i+1] == 'D':
+					answer += 400
+					step = 1
+				else:
+					answer += 100
+			
+			elif s[i] == 'X':
+				if s[i+1] == 'C':
+					answer += 90
+					step = 1
+				elif s[i+1] == 'L':
+					answer += 40
+					step = 1
+				else:
+					answer += 10
+			
+			elif s[i] == 'I':
+				if s[i+1] == 'X':
+					answer += 9
+					step = 1
+				elif s[i+1] == 'V':
+					answer += 4
+					step = 1
+				else:
+					answer += 1
+	return answer
 
 # Test
 ## Functional Test
