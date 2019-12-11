@@ -12,35 +12,11 @@ An input string is valid if:
     Open brackets must be closed in the correct order.
 
 Note that an empty string is also considered valid.
-
-Example 1:
-
-Input: "()"
-Output: true
-
-Example 2:
-
-Input: "()[]{}"
-Output: true
-
-Example 3:
-
-Input: "(]"
-Output: false
-
-Example 4:
-
-Input: "([)]"
-Output: false
-
-Example 5:
-
-Input: "{[]}"
-Output: true
-
 """
 # Concepts
-
+# out of '(', ')', '{', '}', '[' and ']'
+# e.g. []{}
+# e.g. {[]}
 
 # Code
 ## submit part
@@ -51,6 +27,25 @@ class Solution:
 ## code here
 #1
 def isValid(s):
+	answer = True
+	list_s = list(s)
+	symbol_list = []
+	for j in list_s:
+		if j in '(){}[]':
+			symbol_list.append(j)
+	for i, j in enumerate(symbol_list):
+		if j == '(': j1 =')'
+		elif j == '{': j1 ='}'
+		elif  j == '[': j1 =']'
+
+		if j1!=symbol_list[-1-i]:
+			answer = False
+			break
+	return answer
+
+
+
+
 
 # Test
 ## Functional Test
@@ -59,8 +54,8 @@ Condition:
 
 """
 if __name__ == '__main__':
-	input = []
-	expected_output = []
+	input = ["()", "()[]{}", "(]", "([)]", "{[]}"]
+	expected_output = [true, false, true, false, true]
 	for i, j in enumerate(input):
 		if isValid(input[i]) != expected_output[i]:
 			print("Wrong!!!")
