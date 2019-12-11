@@ -165,6 +165,38 @@ def reverse(x):
 	return revers_x
 
 #8
+def myAtoi(str):
+	negative = False
+	nums = 0
+	pre_answer = ''
+	for i, j in enumerate(str):
+		if j == ' ' and pre_answer == '' and nums==0:
+			pass
+		elif j == '-' and pre_answer == '' and nums == 0:
+			negative = True
+			nums += 1
+		elif j == '+' and pre_answer == '' and nums == 0:
+			nums += 1
+		elif j == '1' or j == '2' or j == '3' or j == '4' or j == '5' or j == '6' or j == '7' or j == '8' or j == '9' or j == '0':
+			pre_answer = pre_answer + j
+		else:
+			if pre_answer == '':
+				pre_answer = '0'
+			break
+	if pre_answer == '':
+		pre_answer = '0'
+	if negative == False:
+		answer = int(pre_answer)
+	else: 
+		answer = 0 - int(pre_answer)
+	if answer<-2**31 or answer>2**31-1:
+		if answer < -2**31:
+			answer = -2147483648
+		else:
+			answer = 2147483647
+	return answer
+
+
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
@@ -218,3 +250,14 @@ if __name__ == "__main__":
 	# 	print(reverse(x[i]))
 
 	#8
+	input = ['42','   -42', '4193 with words', 'words and 987', '-91283472332', '+1','+-2', '--1', '-+1', '   +0 123', '-   234' ,'0-1']
+	expected_output = [42, -42, 4193, 0, -2147483648, 1, 0, 0 ,0, 0, 0, 0]
+	for i, j in enumerate(input):
+		if myAtoi(input[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(myAtoi(input[i]))
+		else:
+			print("Right")
+	# print(myAtoi(input[2]))
+
+
