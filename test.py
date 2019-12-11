@@ -196,7 +196,24 @@ def myAtoi(str):
 			answer = 2147483647
 	return answer
 
-
+#9
+def isPalindrome(x):
+	substring =str(x)
+	answer = True
+	half_len = len(substring)//2
+	for i, j in enumerate(substring):
+		if i >= half_len :
+			if len(substring)%2 == 1:
+				break
+			else:
+				break
+		if substring[i] == substring[-1-i]:
+			pass
+		else:
+			answer = False
+	if answer != False:
+		answer = True
+	return answer
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
@@ -250,14 +267,24 @@ if __name__ == "__main__":
 	# 	print(reverse(x[i]))
 
 	#8
-	input = ['42','   -42', '4193 with words', 'words and 987', '-91283472332', '+1','+-2', '--1', '-+1', '   +0 123', '-   234' ,'0-1']
-	expected_output = [42, -42, 4193, 0, -2147483648, 1, 0, 0 ,0, 0, 0, 0]
+	# input = ['42','   -42', '4193 with words', 'words and 987', '-91283472332', '+1','+-2', '--1', '-+1', '   +0 123', '-   234' ,'0-1']
+	# expected_output = [42, -42, 4193, 0, -2147483648, 1, 0, 0 ,0, 0, 0, 0]
+	# for i, j in enumerate(input):
+	# 	if myAtoi(input[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(myAtoi(input[i]))
+	# 	else:
+	# 		print("Right")
+	# print(myAtoi(input[2]))
+
+	#9
+	input = [121, 1234, 1234321]
+	expected_output = [True, False, True]
 	for i, j in enumerate(input):
-		if myAtoi(input[i]) != expected_output[i]:
+		if isPalindrome(input[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(myAtoi(input[i]))
+			print(isPalindrome(input[i]))
 		else:
 			print("Right")
 	# print(myAtoi(input[2]))
-
 
