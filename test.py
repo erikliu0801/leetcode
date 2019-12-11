@@ -278,6 +278,31 @@ def romanToInt(s):
 					answer += 1
 	return answer
 
+#14
+def longestCommonPrefix(strs):
+	if strs == []:
+		return ''
+	elif len(strs) == 1:
+		return strs[0]
+	else:
+		nums_shortest_str = 1000
+		longest_common_prefix = ''
+		for i, j in enumerate(strs):
+			if nums_shortest_str > len(strs[i]):
+				nums_shortest_str = len(strs[i])
+		for i in range(nums_shortest_str):
+			common = 0
+			prefix = strs[1][i]
+			for l in range(len(strs)):
+				if strs[l][i] == prefix:
+					common += 1
+				else:
+					break
+			if common == len(strs):
+				longest_common_prefix = longest_common_prefix + prefix
+			else:
+				break
+		return longest_common_prefix
 
 
 
@@ -355,12 +380,34 @@ if __name__ == "__main__":
 	# # print(myAtoi(input[2]))
 
 	#13
-	input = ["III", "IV", "IX", "LVIII", "MCMXCIV", "MDLXX"]
-	expected_output = [3, 4, 9, 58, 1994, 1570]
+	# input = ["III", "IV", "IX", "LVIII", "MCMXCIV", "MDLXX"]
+	# expected_output = [3, 4, 9, 58, 1994, 1570]
+	# for i, j in enumerate(input):
+	# 	if romanToInt(input[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(romanToInt(input[i]))
+	# 	else:
+	# 		print("Right")
+	# print(romanToInt(input[1]))
+
+	#14
+	input = [["flower","flow","flight"], ["dog","racecar","car"], [], ["a"], ["c","c"], ["aca","cba"]]
+	expected_output = ["fl", "", "", "a", "c", ""]
 	for i, j in enumerate(input):
-		if romanToInt(input[i]) != expected_output[i]:
+		if longestCommonPrefix(input[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(romanToInt(input[i]))
+			print(longestCommonPrefix(input[i]))
 		else:
 			print("Right")
-	# print(romanToInt(input[1]))
+	# print(longestCommonPrefix(input[-1]))
+
+	#20
+	input = ["()", "()[]{}", "(]", "([)]", "{[]}"]
+	expected_output = [true, false, true, false, true]
+	for i, j in enumerate(input):
+		if isValid(input[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(isValid(input[i]))
+		else:
+			print("Right")		
+	# print(isValid(input[-1]))
