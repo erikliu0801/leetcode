@@ -79,8 +79,17 @@ def isPalindrome(x):
 Condition:
 
 """
-
-
+if __name__ == '__main__':
+	input = [121, 1234, 1234321]
+	expected_output = [True, False, True]
+	for i, j in enumerate(input):
+		if isPalindrome(input[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(isPalindrome(input[i]))
+		else:
+			print("Right")
+	# print(myAtoi(input[2]))
+	
 ## Performance Test
 import cProfile
 cProfile.run('')

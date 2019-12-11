@@ -215,6 +215,9 @@ def isPalindrome(x):
 		answer = True
 	return answer
 
+#13
+def romanToInt(s):
+	
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
     # string03 = "dvdf"
@@ -278,13 +281,15 @@ if __name__ == "__main__":
 	# print(myAtoi(input[2]))
 
 	#9
-	input = [121, 1234, 1234321]
-	expected_output = [True, False, True]
-	for i, j in enumerate(input):
-		if isPalindrome(input[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(isPalindrome(input[i]))
-		else:
-			print("Right")
-	# print(myAtoi(input[2]))
+	# input = [121, 1234, 1234321]
+	# expected_output = [True, False, True]
+	# for i, j in enumerate(input):
+	# 	if isPalindrome(input[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(isPalindrome(input[i]))
+	# 	else:
+	# 		print("Right")
+	# # print(myAtoi(input[2]))
+
+	#13
 
