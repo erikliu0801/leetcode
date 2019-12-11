@@ -233,7 +233,15 @@ def romanToInt(s):
 Condition:
 
 """
-
+if __name__ == '__main__':
+	input = ["III", "IV", "IX", "LVIII", "MCMXCIV", "MDLXX"]
+	expected_output = [3, 4, 9, 58, 1994, 1570]
+	for i, j in enumerate(input):
+		if romanToInt(input[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(romanToInt(input[i]))
+		else:
+			print("Right")
 
 ## Performance Test
 import cProfile

@@ -21,7 +21,8 @@ Problem Description
 Condition:
 
 """
-
+if __name__ == '__main__':
+	
 
 ## Performance Test
 import cProfile
