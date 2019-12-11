@@ -462,7 +462,9 @@ Algorithm:
 * Manacher's Algorithm
 """
 """
-'abcda'
+input: "eabcb"
+Output: "e"
+Expected: "bcb"
 """
 def longestPalindrome(s):
 	palindrome_list = []
@@ -473,7 +475,7 @@ def longestPalindrome(s):
 			if s1[0] != s2[-1]:
 				s2 = s2[:-1]
 			else:
-				palindrome_list.append(s2)
+				palindrome_list.append(s2) #
 		s1 = s1[i+1:]
 	answer = ""
 	for i, j in enumerate(palindrome_list):
@@ -485,6 +487,198 @@ def longestPalindrome(s):
 		return s
 	else:
 		return answer
+
+#3.1
+def longestPalindrome(s):
+	palindrome_list = []
+	s1 = s
+	for i in range(len(s)):
+		s2 = s1
+		for l in range(len(s1)):
+			if s1[0] == s2[-1]:
+				count = 0
+				for m in range(len(s2)):
+					if s2[-1-m] == s1[m]:
+						count += 1
+					else:
+						break
+				s1 = s1[i+1:]
+				if count == len(s2):
+					palindrome_list.append(s2)
+					break
+			else:				
+				s2 = s2[:-1] #
+	answer = ""
+	for i, j in enumerate(palindrome_list):
+		if len(j) > len(answer):
+			answer = j
+	if answer == "" and s != "":
+		return s[0]
+	elif s =="":
+		return s
+	else:
+		return answer
+
+#3.2
+"""
+Time Limit Exceeded
+Last executed input:
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"""
+def longestPalindrome(s):
+	palindrome_list = []
+	s1 = s
+	for i in range(len(s)):
+		s2 = s1
+		for l in range(len(s1)):
+			if s1[0] == s2[-1]:
+				count = 0
+				for m in range(len(s2)):
+					if s2[-1-m] == s1[m]:
+						count += 1
+					else:
+						break				
+				if count == len(s2):
+					palindrome_list.append(s2)
+					break
+				else:
+					s2 = s2[:-1]
+			else:				
+				s2 = s2[:-1]
+		s1 = s1[1:]
+	answer = ""
+	for i, j in enumerate(palindrome_list):
+		if len(j) > len(answer):
+			answer = j
+	if answer == "" and s != "":
+		return s[0]
+	elif s =="":
+		return s
+	else:
+		return answer
+
+#3.3
+"""
+Runtime Error
+''
+"""
+def longestPalindrome(s):
+	palindrome_list = []
+	s1 = s
+	j1 = s[0]
+	l = 0
+	for i, j in enumerate(s):
+		if j != j1:
+			j1 = j
+			if len(s[l:i]) > 1:
+				palindrome_list.append(s[l:i])
+			l = i
+		elif i+1 == len(s) and j1 == j:
+			palindrome_list.append(s[l:i+1])
+	step2 = True
+	for j in palindrome_list:
+		if len(j)>len(s)%3:			
+			step2 = False
+			break
+	if step2 == True:
+		s1 = s
+		for i in range(len(s)):
+			s2 = s1
+			for l in range(len(s1)):
+				if s1[0] == s2[-1]:
+					count = 0
+					for m in range(len(s2)):
+						if s2[-1-m] == s1[m]:
+							count += 1
+						else:
+							break				
+					if count == len(s2):
+						palindrome_list.append(s2)
+						break
+					else:
+						s2 = s2[:-1]
+				else:				
+					s2 = s2[:-1]
+			s1 = s1[1:]
+	answer = ""
+	for i, j in enumerate(palindrome_list):
+		if len(j) > len(answer):
+			answer = j
+	if answer == "" and s != "":
+		return s[0]
+	elif s =="":
+		return s
+	else:
+		return answer
+
+#3.4
+"""
+'cbbd' => ok
+'abadd' => step1 need to be optimized => ok
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"""
+def longestPalindrome(s):
+	palindrome_list = []
+	step1, step2 = False, True
+	if len(s)<5:
+		if len(s)<=1:
+			palindrome_list.append(s)
+		elif 1<len(s) and len(s)<4 and s[0]==s[-1]:
+			palindrome_list.append(s)
+		elif len(s)==4 and s[1]==s[-2] and s[0]==s[-1]:
+			palindrome_list.append(s)
+		else:
+			palindrome_list.append(s[0])
+	else:
+		step1 = True
+	if step1 == True:
+		j1 = s[0]
+		l = 0
+		for i, j in enumerate(s):
+			if j != j1:
+				j1 = j
+				if len(s[l:i]) > 1:
+					palindrome_list.append(s[l:i])
+				l = i
+			elif i+1 == len(s) and j1 == j:
+				palindrome_list.append(s[l:i+1])
+		for j in palindrome_list:
+			if len(j)>len(s)/2: #		
+				step2 = False
+				break
+			# elif :
+	if step2 == True:
+		s1 = s
+		for i in range(len(s)):
+			s2 = s1
+			for l in range(len(s1)):
+				if s1[0] == s2[-1]:
+					count = 0
+					for m in range(len(s2)):
+						if s2[-1-m] == s1[m]:
+							count += 1
+						else:
+							break				
+					if count == len(s2):
+						palindrome_list.append(s2)
+						break
+					else:
+						s2 = s2[:-1]
+				else:				
+					s2 = s2[:-1]
+			s1 = s1[1:]
+	answer = ""
+	for i, j in enumerate(palindrome_list):
+		if len(j) > len(answer):
+			answer = j
+	if answer == "" and s != "":
+		return s[0]
+	elif s =="":
+		return s
+	else:
+		return answer
+
+#4
 
 
 # Test
