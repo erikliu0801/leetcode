@@ -129,7 +129,11 @@ def reverse(x):
 Condition:
 
 """
-
+if __name__ == '__main__':
+	x = [123, -123, 120, 1534236469, 900000, 1463847412]
+	expected_output = [321, -321, 21, 0, 9, 2147483641]
+	for i, j in enumerate(x):
+		print(reverse(x[i]))
 
 ## Performance Test
 import cProfile

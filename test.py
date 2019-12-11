@@ -164,6 +164,8 @@ def reverse(x):
 		revers_x = 0
 	return revers_x
 
+#8
+
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
     # string03 = "dvdf"
@@ -210,7 +212,9 @@ if __name__ == "__main__":
 	# print(convert(string[1],numRows[1]))
 
 	#7
-	x = [123, -123, 120, 1534236469, 900000, 1463847412]
-	expected_output = [321, -321, 21, 0, 9, 2147483641]
-	for i, j in enumerate(x):
-		print(reverse(x[i]))
+	# x = [123, -123, 120, 1534236469, 900000, 1463847412]
+	# expected_output = [321, -321, 21, 0, 9, 2147483641]
+	# for i, j in enumerate(x):
+	# 	print(reverse(x[i]))
+
+	#8
