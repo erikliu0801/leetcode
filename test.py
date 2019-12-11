@@ -143,6 +143,27 @@ def convert(s, numRows):
 				answer += i
 	return answer
 
+#7
+def reverse(x):
+	#
+	negative = False
+	if x < 0:
+		x = -x
+		negative = True
+	#
+	reverse_str = []
+	for i in range(len(str(x))):
+		reverse_str.append(str(x)[-1-i])
+	revers_x = ''
+	for j in reverse_str:
+		revers_x = revers_x + j
+	revers_x = int(revers_x)
+	if negative==True:
+		revers_x = 0 - revers_x
+	if revers_x<-2**31 or revers_x>2**31-1:
+		revers_x = 0
+	return revers_x
+
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
     # string03 = "dvdf"
@@ -183,8 +204,13 @@ if __name__ == "__main__":
 	# print(longestPalindrome('abadd'))
 
 	#6
-	string = ["PAYPALISHIRING","PAYPALISHIRING"]
-	numRows = [3, 4]
-	expected_output = ["PAHNAPLSIIGYIR","PINALSIGYAHRPI"]
-	print(convert(string[1],numRows[1]))
-	
+	# string = ["PAYPALISHIRING","PAYPALISHIRING"]
+	# numRows = [3, 4]
+	# expected_output = ["PAHNAPLSIIGYIR","PINALSIGYAHRPI"]
+	# print(convert(string[1],numRows[1]))
+
+	#7
+	x = [123, -123, 120, 1534236469, 900000, 1463847412]
+	expected_output = [321, -321, 21, 0, 9, 2147483641]
+	for i, j in enumerate(x):
+		print(reverse(x[i]))
