@@ -87,10 +87,10 @@ Condition:
 
 """
 if __name__ == '__main__':
-	input_nums = [[3,2,2,3]]
-	input_val = [3]
-	expected_output = [2]
-	expected_nums = [[2,2]]
+	input_nums = [[3,2,2,3],[0,1,2,2,3,0,4,2]]
+	input_val = [3,2]
+	expected_output = [2,5]
+	expected_nums = [[2,2],[0,1,3,0,4]]
 	for i, j in enumerate(input_nums):
 		if removeElement(input_nums[i],input_val[i]) != expected_output[i]:
 			print("Wrong!!!")

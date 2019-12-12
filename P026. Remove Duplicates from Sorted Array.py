@@ -101,17 +101,39 @@ def removeDuplicates(nums):
 	return len(nums)
 
 #1.3
+"""
+[]
+"""
 def removeDuplicates(nums):
 	j1 = nums[0]
-	count = 0
-	for i, j in enumerate(nums):
-		if j1 == j:
+	count = 1
+	for j in nums:
+		if j1 != j:
+			nums[count] = j
+			j1 = j
 			count += 1
-		else:
-			nums[i+count]
-
+	nums = nums[:count]
 	return len(nums)
 
+#1.4
+"""
+Success
+Runtime: 80 ms, faster than 96.93% of Python3 online submissions for Remove Duplicates from Sorted Array.
+Memory Usage: 14.5 MB, less than 98.36% of Python3 online submissions for Remove Duplicates from Sorted Array.
+"""
+def removeDuplicates(nums):
+	if nums == []:
+		return 0
+	else:
+		j1 = nums[0]
+		count = 1
+		for j in nums:
+			if j1 != j:
+				nums[count] = j
+				j1 = j
+				count += 1
+		nums = nums[:count]
+		return len(nums)
 
 # Test
 ## Functional Test

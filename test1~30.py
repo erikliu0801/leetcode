@@ -347,7 +347,15 @@ def mergeTwoLists(l1, l2):
 
 #26
 def removeDuplicates(nums):
-	pass
+	j1 = nums[0]
+	count = 1
+	for j in nums:
+		if j1 != j:
+			nums[count] = j
+			j1 = j
+			count += 1
+	nums = nums[:count]
+	return len(nums)
 
 #27
 def removeElement(nums,val):
@@ -359,6 +367,27 @@ def removeElement(nums,val):
 	nums = nums[:count]
 	return len(nums)
 
+#28
+def strStr(haystack, needle):
+	if needle not in haystack:
+		return -1
+	elif needle == "":
+		return 0
+	else:
+		answer = -1
+		for i in range(len(haystack)):
+			if haystack[i] == needle[0]:
+				count = 0
+				for l in range(len(needle)):
+					if haystack[i+l] == needle[l]:
+						count += 1
+				if count == len(needle):
+					answer = i
+					break
+		if answer != -1:
+			return answer
+		else:
+			return -1
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
@@ -530,16 +559,27 @@ if __name__ == "__main__":
 	# 		print("Right")
 	# print(removeDuplicates(input1[-1]))
 
-
 	#27
-	input_nums = [[3,2,2,3],[0,1,2,2,3,0,4,2]]
-	input_val = [3,2]
-	expected_output = [2,5]
-	expected_nums = [[2,2],[0,1,3,0,4]]
+	# input_nums = [[3,2,2,3],[0,1,2,2,3,0,4,2]]
+	# input_val = [3,2]
+	# expected_output = [2,5]
+	# expected_nums = [[2,2],[0,1,3,0,4]]
 	# for i, j in enumerate(input_nums):
 	# 	if removeElement(input_nums[i],input_val[i]) != expected_output[i]:
 	# 		print("Wrong!!!")
 	# 		print(removeElement(input_nums[i],input_val[i]))
 	# 	else:
 	# 		print("Right")
-	print(removeElement(input_nums[-1],input_val[-1]))
+	# print(removeElement(input_nums[-1],input_val[-1]))
+
+	#28
+	input_haystack = ["hello", "aaaaa", "aaaaa","helloll","heLLoll","a"]
+	input_needle = ["ll", "bba", "","ll","ll","a"]
+	expected_output = [2, -1, 0, 2, 5, 0]
+	for i, j in enumerate(input_haystack):
+		if strStr(input_haystack[i], input_needle[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(strStr(input_haystack[i], input_needle[i]))
+		else:
+			print("Right")		
+	# print(strStr(input_haystack[-1], input_needle[-1]))
