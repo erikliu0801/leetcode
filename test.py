@@ -345,6 +345,21 @@ def mergeTwoLists(l1, l2):
 		else:
 			return
 
+#26
+def removeDuplicates(nums):
+	pass
+
+#27
+def removeElement(nums,val):
+	count = 0
+	for i, j in enumerate(nums):
+		if j != val:
+			nums[count] = nums[i]
+			count += 1
+	nums = nums[:count]
+	return len(nums)
+
+
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
     # string03 = "dvdf"
@@ -451,47 +466,80 @@ if __name__ == "__main__":
 	# print(isValid(input[-1]))
 
 	#21
-	class ListNode:
-	    def __init__(self, x):
-	        self.val = x
-	        self.next = None
-	class LinkedListFuc:
-		def LinkedList2List(ListNode):
-			list1 = []
-			l0 = ListNode
-			while l0.next !=None:
-				list1.append(l0.val)
-				l0 = l0.next
-			list1.append(l0.val)
-			return list1
-		def List2LinkedList(List):
-			l = [] 
-			l0 = ListNode(List[0])
-			for i, j in enumerate(List):
-				l0.val = j
-				if i + 1 < len(List):
-					l0.next = ListNode(List[i+1])
-				l.append(l0)
-				if i + 1 < len(List):
-					l0 = l0.next
-			return l
-	input0 = [[1,2,4],[1,3,4]]
-	input1 = [
-		[[1,2,4],[1,3,4]],
-		[[1,9],[6,12,50,100]],
-		[[],[]],
-		[[1,2,3],[]],
-		[[],[1,2,3]]
-		]
-	expected_output = [[1,1,2,3,4,4],[1,6,9,12,50,100],[],[1,2,3],[1,2,3]]
-	# print(LinkedListFuc.List2LinkedList(input0[0]))
-	# print(LinkedListFuc.List2LinkedList(input0[0])[2].val)
+	# class ListNode:
+	#     def __init__(self, x):
+	#         self.val = x
+	#         self.next = None
+	# class LinkedListFuc:
+	# 	def LinkedList2List(ListNode):
+	# 		list1 = []
+	# 		l0 = ListNode
+	# 		while l0.next !=None:
+	# 			list1.append(l0.val)
+	# 			l0 = l0.next
+	# 		list1.append(l0.val)
+	# 		return list1
+	# 	def List2LinkedList(List):
+	# 		l = [] 
+	# 		l0 = ListNode(List[0])
+	# 		for i, j in enumerate(List):
+	# 			l0.val = j
+	# 			if i + 1 < len(List):
+	# 				l0.next = ListNode(List[i+1])
+	# 			l.append(l0)
+	# 			if i + 1 < len(List):
+	# 				l0 = l0.next
+	# 		return l
+	# input0 = [[1,2,4],[1,3,4]]
+	# input1 = [
+	# 	[[1,2,4],[1,3,4]],
+	# 	[[1,9],[6,12,50,100]],
+	# 	[[],[]],
+	# 	[[1,2,3],[]],
+	# 	[[],[1,2,3]]
+	# 	]
+	# expected_output = [[1,1,2,3,4,4],[1,6,9,12,50,100],[],[1,2,3],[1,2,3]]
+	# # print(LinkedListFuc.List2LinkedList(input0[0]))
+	# # print(LinkedListFuc.List2LinkedList(input0[0])[2].val)
 	
-	for i, j in enumerate(input1):
-		l1, l2 = LinkedListFuc.List2LinkedList(input1[i][0]), LinkedListFuc.List2LinkedList(input1[i][1])
-		if LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])) != expected_output[i]:
-			print("Wrong!!! Output:", LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])))
-			print("Expected Output:", expected_output[i])
-		else:
-			print("Right")
+	# for i, j in enumerate(input1):
+	# 	l1, l2 = LinkedListFuc.List2LinkedList(input1[i][0]), LinkedListFuc.List2LinkedList(input1[i][1])
+	# 	if LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])) != expected_output[i]:
+	# 		print("Wrong!!! Output:", LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])))
+	# 		print("Expected Output:", expected_output[i])
+	# 	else:
+	# 		print("Right")
 	
+	#26
+	# input1 = [
+	# 	[1,1,2],
+	# 	[1,1,1,1],
+	# 	[-50,-50,-50,-49,-49,-48,-46,-46,-46,-46,-45,-45,-45,-45,-44,-44,-44,-43,-43,-43,-43,-43,-43,-43,-42,-41,-41,-40,-40,-39,-38,-38,-38,-38,-38,-38,-36,-35,-34,-33,-32,-31,-31,-30,-29,-28,-27,-26,-26,-26,-25,-22,-21,-21,-21,-21,-20,-20,-19,-18,-17,-17,-17,-17,-17,-17,-17,-16,-16,-14,-13,-12,-11,-11,-11,-10,-9,-7,-7,-7,-5,-5,-5,-4,-4,-4,-3,-3,-3,-2,-2,-1,-1,-1,-1,0,1,1,1,2,2,3,3,5,6,6,7,8,8,10,10,10,11,11,11,14,14,17,17,17,18,18,18,19,20,21,21,23,23,23,23,24,24,24,24,24,25,27,27,27,28,29,30,30,31,32,33,34,35,36,37,37,37,37,37,38,38,38,39,39,41,41,41,41,44,44,45,45,46,46,46,46,46,47,47,47,47,48,48,50,50]
+	# 	]
+	# expected_nums = [
+	# 	[1,2],
+	# 	[1],
+	# 	[-50,-49,-48,-46,-45,-44,-43,-42,-41,-40,-39,-38,-36,-35,-34,-33,-32,-31,-30,-29,-28,-27,-26,-25,-22,-21,-20,-19,-18,-17,-16,-14,-13,-12,-11,-10,-9,-7,-5,-4,-3,-2,-1,0,1,2,3,5,6,7,8,10,11,14,17,18,19,20,21,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,41,44,45,46,47,48,50]
+	# ]
+	# expected_output = [2,1,82]
+	# for i, j in enumerate(input1):
+	# 	if removeDuplicates(input1[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(removeDuplicates(input1[i]))
+	# 	else:
+	# 		print("Right")
+	# print(removeDuplicates(input1[-1]))
+
+
+	#27
+	input_nums = [[3,2,2,3],[0,1,2,2,3,0,4,2]]
+	input_val = [3,2]
+	expected_output = [2,5]
+	expected_nums = [[2,2],[0,1,3,0,4]]
+	# for i, j in enumerate(input_nums):
+	# 	if removeElement(input_nums[i],input_val[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(removeElement(input_nums[i],input_val[i]))
+	# 	else:
+	# 		print("Right")
+	print(removeElement(input_nums[-1],input_val[-1]))
