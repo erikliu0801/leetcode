@@ -308,6 +308,8 @@ def longestCommonPrefix(strs):
 def isValid(s):
 	pass
 
+#21
+
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
