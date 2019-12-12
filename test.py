@@ -309,7 +309,8 @@ def isValid(s):
 	pass
 
 #21
-
+def mergeTwoLists(l1, l2):
+	return 0
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
@@ -407,11 +408,51 @@ if __name__ == "__main__":
 	# print(longestCommonPrefix(input[-1]))
 
 	#20
-	input = ["()", "()[]{}", "(]", "([)]", "{[]}", "[", "]","][]","[]{","(afadfadf)","(([]){})"]
-	expected_output = [True, True, False, False, True, False, False, False, False, False, True]
+	# input = ["()", "()[]{}", "(]", "([)]", "{[]}", "[", "]","][]","[]{","(afadfadf)","(([]){})"]
+	# expected_output = [True, True, False, False, True, False, False, False, False, False, True]
 	# for i, j in enumerate(input):
 	# 	if isValid(input[i]) != expected_output[i]:
 	# 		print("Wrong!!! Output:", isValid(input[i]))
 	# 	else:
 	# 		print("Right")		
-	print(isValid(input[-1]))
+	# print(isValid(input[-1]))
+
+	#21
+	class ListNode:
+	    def __init__(self, x):
+	        self.val = x
+	        self.next = None
+	class LinkedListFuc:
+		def LinkedList2List(ListNode):
+			list1 = []
+			l0 = ListNode
+			while l0.next !=None:
+				list1.append(l0.val)
+				l0 = l0.next
+			list1.append(l0.val)
+			return list1
+		def List2LinkedList(List):
+			l = [] 
+			l0 = ListNode(List[0])
+			for i, j in enumerate(List):
+				l0.val = j
+				if i + 1 < len(List):
+					l0.next = ListNode(List[i+1])
+				l.append(l0)
+				if i + 1 < len(List):
+					l0 = l0.next
+			return l
+	input0 = [[1,2,4],[1,3,4]]
+	input1 = [[[1,2,4],[1,3,4]]]
+	expected_output = [[1,1,2,3,4,4]]
+	# print(LinkedListFuc.List2LinkedList(input0[0]))
+	# print(LinkedListFuc.List2LinkedList(input0[0])[2].val)
+	
+	for i, j in enumerate(input1):
+		l1, l2 = LinkedListFuc.List2LinkedList(input1[i][0]), LinkedListFuc.List2LinkedList(input1[i][1])
+		if mergeTwoLists(l1, l2) != expected_output[i]:
+			print("Wrong!!! Output:", mergeTwoLists(l1, l2))
+			print("Expected Output:", expected_output[i])
+		else:
+			print("Right")
+	
