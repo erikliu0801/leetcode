@@ -26,7 +26,25 @@ def searchInsert(nums, target):
 
 ## code here
 #1
-def searchInsert(nums, target):
+"""
+Success
+Runtime: 52 ms, faster than 80.69% of Python3 online submissions for Search Insert Position.
+Memory Usage: 13.5 MB, less than 100.00% of Python3 online submissions for Search Insert Position.
+"""
+def searchInsert(nums, target):	
+	if len(nums) == 0:
+		return 0
+	else:
+		if target < nums[0]:
+			return 0
+		elif target > nums[-1]:
+			return len(nums)
+		else:
+			for i in range(len(nums)):
+				if nums[i] == target:
+					return i
+				elif target < nums[i]:
+					return i
 
 # Test
 ## Functional Test
@@ -43,13 +61,13 @@ if __name__ == '__main__':
 	]
 	input_target = [5,2,7,0]
 	expected_output = [2,1,4,0]
-	for i, j in enumerate(input1):
-		if searchInsert(input1[i]) != expected_output[i]:
+	for i, j in enumerate(input_nums):
+		if searchInsert(input_target[i],expected_output[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(searchInsert(input1[i]))
+			print(searchInsert(input_target[i],expected_output[i]))
 		else:
 			print("Right")		
-	# print(searchInsert(input1[-1]))
+	# print(searchInsert(input_target[-1],expected_output[-1]))
 	
 
 ## Performance Test
