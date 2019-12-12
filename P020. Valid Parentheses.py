@@ -1,5 +1,5 @@
 # ToDo:
-
+# to be continued
 """
 20. Valid Parentheses
 Easy
@@ -33,19 +33,169 @@ def isValid(s):
 	for j in list_s:
 		if j in '(){}[]':
 			symbol_list.append(j)
-	for i, j in enumerate(symbol_list):
-		if j == '(': j1 =')'
-		elif j == '{': j1 ='}'
-		elif  j == '[': j1 =']'
+	if len(symbol_list)%2 != 0:
+		answer = False
+	else:
+		for i, j in enumerate(symbol_list):
+			if j == '(': j1 =')'
+			elif j == '{': j1 ='}'
+			elif  j == '[': j1 =']'	
 
-		if j1!=symbol_list[-1-i]:
-			answer = False
-			break
+			if j in '({[':
+				if i+1 == len(symbol_list):
+					answer = False
+					break
+				elif j1 != symbol_list[-1-i] and j1 != symbol_list[i+1]:
+					answer = False
+					break
 	return answer
 
+#1.1
+def isValid(s):
+	answer = True
+	symbol_list = list(s)
+	if len(symbol_list)%2 != 0:
+		answer = False
+	else:
+		for i, j in enumerate(symbol_list):
+			if j == '(': j1 =')'
+			elif j == '{': j1 ='}'
+			elif  j == '[': j1 =']'	
 
+			if j in '({[':
+				if i+1 == len(symbol_list):
+					answer = False
+					break
+				elif j1 != symbol_list[-1-i] and j1 != symbol_list[i+1]:
+					answer = False
+					break
+	return answer
 
+#1.2
+"""
+"(([]){})"
+True
+"""
+def isValid(s):
+	answer = True
+	symbol_list = list(s)
+	if len(symbol_list)%2 != 0:
+		answer = False
+	else:
+		for i, j in enumerate(symbol_list):
+			if j == '(': j1 =')'
+			elif j == '{': j1 ='}'
+			elif  j == '[': j1 =']'	
 
+			if j in '({[':
+				if i+1 == len(symbol_list):
+					answer = False
+					break
+				elif j1 != symbol_list[-1-i] and j1 != symbol_list[i+1]:
+					answer = False
+					break
+	for j in symbol_list:
+		if j not in '(){}[]':
+			answer = False
+	return answer
+
+#1.3
+def isValid(s):
+	answer = True
+	symbol_list = list(s)
+	if len(symbol_list)%2 != 0:
+		answer = False
+	else:
+		for i, j in enumerate(symbol_list):
+			if j == '(': j1 =')'
+			elif j == '{': j1 ='}'
+			elif  j == '[': j1 =']'	
+
+			if j in '({[':
+				if i+1 == len(symbol_list):
+					answer = False
+					break
+				elif j1 != symbol_list[-1-i] and j1 != symbol_list[i+1]:
+					answer = False
+					break
+				elif j1 == symbol_list[-1-i]:
+					symbol_list = symbol_list[i+1:-i]
+				elif j1 == symbol_list[i+1]:
+					symbol_list = symbol_list[i+2:]
+	for j in symbol_list:
+		if j not in '(){}[]':
+			answer = False
+	return answer
+
+#1.4
+def isValid(s):
+	answer = True
+	symbol_list = list(s)
+	if len(symbol_list)%2 != 0:
+		answer = False
+	else:
+		for i, j in enumerate(symbol_list):
+			if j == '(': j1 =')'
+			elif j == '{': j1 ='}'
+			elif  j == '[': j1 =']'	
+
+			if j in '({[':
+				if i+1 == len(symbol_list):
+					answer = False
+					break
+				elif j1 != symbol_list[-1-i] and j1 != symbol_list[i+1]:
+					answer = False
+					break
+				elif j1 == symbol_list[-1-i]:
+					symbol_list = symbol_list[i+1:-i]
+				elif j1 == symbol_list[i+1]:
+					symbol_list = symbol_list[i+2:]
+	for j in symbol_list:
+		if j not in '(){}[]':
+			answer = False
+	return answer
+
+#2
+"""
+1. []
+2. [...]
+"""
+def isValid(s):
+	answer = True
+	symbol_list = list(s)
+	if len(symbol_list)%2 != 0:
+		answer = False
+	else:
+		#1
+		for i, j in enumerate(symbol_list):
+			if j == '(' and symbol_list[i+1] == ')':
+				symbol_list = symbol_list[i+2:]
+			elif j == '{' and symbol_list[i+1] == '}':
+				symbol_list = symbol_list[i+2:]
+			elif  j == '[' and symbol_list[i+1] == ']':
+				symbol_list = symbol_list[i+2:]
+		#2
+		for i, j in enumerate(symbol_list):
+			if j == '(': j1 =')'
+			elif j == '{': j1 ='}'
+			elif  j == '[': j1 =']'	
+
+			if j in '({[':
+				if i+1 == len(symbol_list):
+					answer = False
+					break
+				elif j1 != symbol_list[-1-i] and j1 != symbol_list[i+1]:
+					answer = False
+					break
+				elif j1 == symbol_list[-1-i]:
+					symbol_list = symbol_list[i+1:-i]
+				elif j1 == symbol_list[i+1]:
+					symbol_list = symbol_list[i+2:]
+
+	for j in symbol_list:
+		if j not in '(){}[]':
+			answer = False
+	return answer
 
 # Test
 ## Functional Test

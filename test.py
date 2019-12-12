@@ -306,21 +306,8 @@ def longestCommonPrefix(strs):
 
 #20
 def isValid(s):
-	answer = True
-	list_s = list(s)
-	symbol_list = []
-	for j in list_s:
-		if j in '(){}[]':
-			symbol_list.append(j)
-	for i, j in enumerate(symbol_list):
-		if j == '(': j1 =')'
-		elif j == '{': j1 ='}'
-		elif  j == '[': j1 =']'
+	pass
 
-		if j1!=symbol_list[-1-i]:
-			answer = False
-			break
-	return answer
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
@@ -418,11 +405,11 @@ if __name__ == "__main__":
 	# print(longestCommonPrefix(input[-1]))
 
 	#20
-	input = ["()", "()[]{}", "(]", "([)]", "{[]}"]
-	expected_output = [True, False, True, False, True]
-	for i, j in enumerate(input):
-		if isValid(input[i]) != expected_output[i]:
-			print("Wrong!!! Outpu:", isValid(input[i]))
-		else:
-			print("Right")		
-	# print(isValid(input[-1]))
+	input = ["()", "()[]{}", "(]", "([)]", "{[]}", "[", "]","][]","[]{","(afadfadf)","(([]){})"]
+	expected_output = [True, True, False, False, True, False, False, False, False, False, True]
+	# for i, j in enumerate(input):
+	# 	if isValid(input[i]) != expected_output[i]:
+	# 		print("Wrong!!! Output:", isValid(input[i]))
+	# 	else:
+	# 		print("Right")		
+	print(isValid(input[-1]))
