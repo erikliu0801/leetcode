@@ -310,7 +310,40 @@ def isValid(s):
 
 #21
 def mergeTwoLists(l1, l2):
-	return 0
+	if l1 or l2:
+		l0 = ListNode(0)
+		l = []
+		while l1 and l2:
+			if l1.val < l2.val:
+				l0.val = l1.val
+				l1 = l1.next
+			else:
+				l0.val = l2.val
+				l2 = l2.next
+			l.append(l0)
+			l0.next = ListNode(0)
+			l0 = l0.next	
+		while l1:
+			l0.val = l1.val
+			l1 = l1.next
+			l.append(l0)
+			l0.next = ListNode(0)
+			l0 = l0.next
+		while l2:
+			l0.val = l2.val
+			l2 = l2.next
+			l.append(l0)
+			l0.next = ListNode(0)
+			l0 = l0.next
+		l[-1].next = None
+		return l[0]
+	else:
+		if l1:
+			return l1
+		elif l2:
+			return l2
+		else:
+			return
 
 if __name__ == "__main__":
    # string01: str = "abcabcbb"    # string02 = " "
@@ -443,15 +476,21 @@ if __name__ == "__main__":
 					l0 = l0.next
 			return l
 	input0 = [[1,2,4],[1,3,4]]
-	input1 = [[[1,2,4],[1,3,4]]]
-	expected_output = [[1,1,2,3,4,4]]
+	input1 = [
+		[[1,2,4],[1,3,4]],
+		[[1,9],[6,12,50,100]],
+		[[],[]],
+		[[1,2,3],[]],
+		[[],[1,2,3]]
+		]
+	expected_output = [[1,1,2,3,4,4],[1,6,9,12,50,100],[],[1,2,3],[1,2,3]]
 	# print(LinkedListFuc.List2LinkedList(input0[0]))
 	# print(LinkedListFuc.List2LinkedList(input0[0])[2].val)
 	
 	for i, j in enumerate(input1):
 		l1, l2 = LinkedListFuc.List2LinkedList(input1[i][0]), LinkedListFuc.List2LinkedList(input1[i][1])
-		if mergeTwoLists(l1, l2) != expected_output[i]:
-			print("Wrong!!! Output:", mergeTwoLists(l1, l2))
+		if LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])) != expected_output[i]:
+			print("Wrong!!! Output:", LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])))
 			print("Expected Output:", expected_output[i])
 		else:
 			print("Right")

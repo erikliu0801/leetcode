@@ -1,5 +1,5 @@
 # ToDo:
-
+# optimize test
 """
 21. Merge Two Sorted Lists
 Easy
@@ -63,35 +63,47 @@ def mergeTwoLists(l1, l2):
 	
 	return l0
 
-#1.1
+#2
+"""
+Success
+Runtime: 32 ms, faster than 93.21% of Python3 online submissions for Merge Two Sorted Lists.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Merge Two Sorted Lists.
+"""
 def mergeTwoLists(l1, l2):
-	def LinkedList2List(ListNode):
-		list1 = []
-		l0 = ListNode
-		while l0.next !=None:
-			list1.append(l0.val)
+	if l1 or l2:
+		l0 = ListNode(0)
+		l = []
+		while l1 and l2:
+			if l1.val < l2.val:
+				l0.val = l1.val
+				l1 = l1.next
+			else:
+				l0.val = l2.val
+				l2 = l2.next
+			l.append(l0)
+			l0.next = ListNode(0)
+			l0 = l0.next	
+		while l1:
+			l0.val = l1.val
+			l1 = l1.next
+			l.append(l0)
+			l0.next = ListNode(0)
 			l0 = l0.next
-
-	l1, l2 = LinkedList2List(l1), LinkedList2List(l2)
-	list2 = []
-	while l1 != [] and l2 != []:
-		if l1[0]>l2[0]:
-			list2.append(l2[0])
-			l2 = l2[1:]
+		while l2:
+			l0.val = l2.val
+			l2 = l2.next
+			l.append(l0)
+			l0.next = ListNode(0)
+			l0 = l0.next
+		l[-1].next = None
+		return l[0]
+	else:
+		if l1:
+			return l1
+		elif l2:
+			return l2
 		else:
-			list2.append(l1[0])
-			l1 = l1[1:]
-	list2 = list2 + l1 +l2
-
-	for i, j in enumerate(list2):
-			name_list = []
-			name = "l" + i
-			name_list.append(name)
-			name_list[i].ListNode(j)
-	
-	return l0
-
-
+			return
 
 
 # Test
@@ -107,13 +119,13 @@ if __name__ == '__main__':
 	        self.next = None
 	class LinkedListFuc:
 		def LinkedList2List(ListNode):
-			l = []
+			list1 = []
 			l0 = ListNode
 			while l0.next !=None:
-				l.append(l0.val)
+				list1.append(l0.val)
 				l0 = l0.next
-			l.append(l0.val)
-			return l
+			list1.append(l0.val)
+			return list1
 		def List2LinkedList(List):
 			l = [] 
 			l0 = ListNode(List[0])
@@ -133,8 +145,8 @@ if __name__ == '__main__':
 	
 	for i, j in enumerate(input1):
 		l1, l2 = LinkedListFuc.List2LinkedList(input1[i][0]), LinkedListFuc.List2LinkedList(input1[i][1])
-		if mergeTwoLists(l1, l2) != expected_output[i]:
-			print("Wrong!!! Output:", mergeTwoLists(l1, l2))
+		if LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])) != expected_output[i]:
+			print("Wrong!!! Output:", LinkedListFuc.LinkedList2List(mergeTwoLists(l1[0], l2[0])))
 			print("Expected Output:", expected_output[i])
 		else:
 			print("Right")
