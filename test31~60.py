@@ -37,6 +37,7 @@ def countAndSay(n):
 	else:
 		return start
 
+#53
 
 
 if __name__ == "__main__":
@@ -58,13 +59,30 @@ if __name__ == "__main__":
 	# print(searchInsert(input_nums[-1],input_target[-1]))
 
     #38
-    input1 = [1, 2, 3, 4, 5, 6, 7, 8]
-    expected_output = ["1", "11", "21", "1211", "111221", "312211", "13112221", "1113213211"]
+    # input1 = [1, 2, 3, 4, 5, 6, 7, 8]
+    # expected_output = ["1", "11", "21", "1211", "111221", "312211", "13112221", "1113213211"]
+
+    # for i, j in enumerate(input1):
+    #     if countAndSay(input1[i]) != expected_output[i]:
+    #         print("Wrong!!!")
+    #         print(countAndSay(input1[i]))
+    #     else:            
+    #         print("Right")
+    # print(countAndSay(input1[1]))
+
+	#53
+	input_nums = [
+		[-2,1,-3,4,-1,2,1,-5,4]
+	]
+    expected_output = [6 ]
+	expected_nums = [
+		[4,-1,2,1]
+	]
 
     for i, j in enumerate(input1):
-        if countAndSay(input1[i]) != expected_output[i]:
+        if maxSubArray(input_nums[i]) != expected_output[i]:
             print("Wrong!!!")
-            print(countAndSay(input1[i]))
+            print(maxSubArray(input_nums[i]))
         else:            
             print("Right")
-    # print(countAndSay(input1[1]))
+    # print(maxSubArray(input1[1]))

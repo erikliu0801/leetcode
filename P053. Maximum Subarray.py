@@ -16,7 +16,6 @@ Follow up:
 
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 
-
 """
 # Concepts
 
@@ -34,7 +33,18 @@ def maxSubArray(nums):
 ## code here
 #1
 def maxSubArray(nums):
-
+	def findAverage(nums):
+		nums_sum = 0
+		for j in nums:
+			nums_sum += j
+		nums_average = nums_sum / len(nums)
+		return nums_average
+	def discreteList(nums, nums_average):
+		for i in range(len(nums)):
+			nums[i] = nums[i] - nums_average
+		return nums
+	
+	
 # Test
 ## Functional Test
 """
@@ -42,15 +52,21 @@ Condition:
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
-	for i, j in enumerate(input1):
-		if func(input1[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(func(input1[i]))
-		else:
-			print("Right")		
-	# print(func(input1[-1]))
+	input_nums = [
+		[-2,1,-3,4,-1,2,1,-5,4]
+	]
+    expected_output = [6 ]
+	expected_nums = [
+		[4,-1,2,1]
+	]
+
+    for i, j in enumerate(input1):
+        if maxSubArray(input_nums[i]) != expected_output[i]:
+            print("Wrong!!!")
+            print(maxSubArray(input_nums[i]))
+        else:            
+            print("Right")
+    # print(maxSubArray(input_nums[1]))
 	
 
 ## Performance Test
