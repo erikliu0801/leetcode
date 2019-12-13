@@ -133,6 +133,40 @@ def addBinary(a, b):
 		bi_sum = a[:1-position] + bi_sum
 	return bi_sum
 
+#69
+def mySqrt(x):
+	if x < 0: #math.abs(x)
+		x = 0 -x
+	if x in [0,1]:
+		return x
+	else:
+		try_num = x//2
+		high_limit, low_limit = x, 0
+		answer = 0
+		while answer < 1:
+			if try_num**2 > x:
+				high_limit = try_num
+				if try_num == low_limit +1:
+					answer = low_limit
+					break
+				else:
+					try_num = (try_num + low_limit)//2						
+			elif try_num**2 < x:
+				low_limit = try_num
+				if try_num in [high_limit -1, high_limit] :
+					answer = try_num
+					break
+				else:
+					try_num = (try_num + high_limit)//2
+			else:
+				answer = try_num
+				break
+		return answer
+
+#70
+def climbStairs(n):
+	pass
+
 if __name__ == "__main__":
     #35
 	# input_nums = [
@@ -218,13 +252,35 @@ if __name__ == "__main__":
 	# print(plusOne(input_digits[4]))
 
 	#67
-	input_str_a = ["11", "1010", "100", "101111"]
-	input_str_b = ["1", "1011", "110010", "10"]
-	expected_output = ["100", "10101", "110110", "110001"]
-	for i in range(len(input_str_a)):
-		if addBinary(input_str_a[i], input_str_b[i]) != expected_output[i]:
+	# input_str_a = ["11", "1010", "100", "101111"]
+	# input_str_b = ["1", "1011", "110010", "10"]
+	# expected_output = ["100", "10101", "110110", "110001"]
+	# for i in range(len(input_str_a)):
+	# 	if addBinary(input_str_a[i], input_str_b[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(addBinary(input_str_a[i], input_str_b[i]))
+	# 	else:
+	# 		print("Right")
+	# print(addBinary(input_str_a[-1], input_str_b[-1]))
+
+	#69
+	input_int = [4, 8, 0, 1, 2, 10000000, 1495504530]
+	expected_output = [2, 2, 0, 1, 1, 3162, 38671]
+	for i in range(len(input_int)):
+		if mySqrt(input_int[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(addBinary(input_str_a[i], input_str_b[i]))
+			print(mySqrt(input_int[i]))
 		else:
 			print("Right")
-	# print(addBinary(input_str_a[-1], input_str_b[-1]))
+	# print(mySqrt(input_int[-2]))
+
+	#70
+	input_int = [2, 3]
+	expected_output = [2, 3]
+	for i in range(len(input_int)):
+		if climbStairs(input_int[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(climbStairs(input_int[i]))
+		else:
+			print("Right")		
+	# print(climbStairs(input_int[-1]))
