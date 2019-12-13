@@ -18,7 +18,9 @@ If you have figured out the O(n) solution, try coding another solution using the
 
 """
 # Concepts
-
+# start and end numbers are Positive Number
+# must > 0 or one biggest negative number
+# onece negative: record last positive sum then return 0 again
 
 # Code
 ## submit part
@@ -49,6 +51,7 @@ def maxSubArray(nums):
 
 #2
 """
+all Right, but...
 Time Limit Exceeded
 """
 def maxSubArray(nums):	
@@ -66,7 +69,7 @@ def maxSubArray(nums):
 	return final_sum
 
 #2.1 Divide and Conquer
-def maxSubArray(nums):	
+def maxSubArray(nums):
 	min_num = min(nums)
 	count, m  = 0, 0
 	for i in range(nums.count(min_num)):
@@ -75,9 +78,36 @@ def maxSubArray(nums):
 		m = l + 1
 		count +=1
 	nums[count] = nums[m:]
-	nums = nums[:count+1]
-	
+	nums = nums[:count+1]	
 	pass
+
+#2.2
+"""
+Success
+Runtime: 64 ms, faster than 93.47% of Python3 online submissions for Maximum Subarray.
+Memory Usage: 13.5 MB, less than 90.24% of Python3 online submissions for Maximum Subarray.
+"""
+def maxSubArray(nums):
+	max_sum, process_sum = 0, 0
+	max_one = float('-inf')
+	for num in nums:
+		if process_sum + num > 0 or num > 0:
+			process_sum += num
+			if process_sum > max_sum:
+				max_sum = process_sum	
+			if num > max_one:
+				max_one = num
+		else:
+			process_sum = 0
+			if num > max_one:
+				max_one = num
+	if max_one < 0:
+		max_sum = max_one
+	return max_sum
+
+
+		 
+
 
 
 # Test

@@ -38,30 +38,23 @@ def countAndSay(n):
 		return start
 
 #53
-def maxSubArray(nums):	
-	min_num = min(nums)
-	count, m  = 0, 0
-	for i in range(nums.count(min_num)):
-		l = nums.index(min_num)
-		nums[count] = nums[m: l]
-		m = l + 1
-		count +=1
-	nums[count] = nums[m:]
-	nums = nums[:count+1]
-	for nums0 in nums:
-		if nums0 != []:
-			final_sum = nums0[0]
-			for i in range(len(nums0)):
-				nums1 = nums0[i:]
-				while len(nums1) > 0:
-					sum1 = 0
-					for k in nums1:
-						sum1 += k
-					if sum1 > final_sum:
-						final_sum = sum1
-					nums1 = nums1[:-1]
-					final_nums = nums1
-	return final_sum
+def maxSubArray(nums):
+	max_sum, process_sum = 0, 0
+	max_one = float('-inf')
+	for num in nums:
+		if process_sum + num > 0 or num > 0:
+			process_sum += num
+			if process_sum > max_sum:
+				max_sum = process_sum	
+			if num > max_one:
+				max_one = num
+		else:
+			process_sum = 0
+			if num > max_one:
+				max_one = num
+	if max_one < 0:
+		max_sum = max_one
+	return max_sum
 
 if __name__ == "__main__":
     #35
@@ -106,9 +99,9 @@ if __name__ == "__main__":
 		[4,-1,2,1]
 	]
 
-	# for i, j in enumerate(input_nums):
-		# if maxSubArray(input_nums[i]) != expected_output[i]:
-		# 	print("Wrong!!! Expected Output:", expected_output[i], "; This Output:", maxSubArray(input_nums[i]))
-		# else:            
-		# 	print("Right")
-	print(maxSubArray(input_nums[0]))
+	for i, j in enumerate(input_nums):
+		if maxSubArray(input_nums[i]) != expected_output[i]:
+			print("Wrong!!! Expected Output:", expected_output[i], "; This Output:", maxSubArray(input_nums[i]))
+		else:            
+			print("Right")
+	# print(maxSubArray(input_nums[0]))
