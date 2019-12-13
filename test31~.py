@@ -67,9 +67,28 @@ def lengthOfLastWord(s):
 		else:
 			len_word += 1
 	return len_word
+
 #66
 def plusOne(digits):
-	pass
+	digits[-1] = digits[-1] + 1
+	if digits[-1] >= 10:
+		digits[-1] = digits[-1] -10
+		carry = 1
+		position = 1
+		while carry == 1:
+			if position == len(digits):
+				digits = [1] + digits
+				position += 1
+				carry = 0
+			else:
+				position += 1
+				digits[0-position] = digits[0-position] + carry
+				if digits[0-position] >= 10:
+					digits[0-position] = digits[0-position] -10
+				else:
+					carry = 0
+	return digits
+
 
 if __name__ == "__main__":
     #35
@@ -134,15 +153,23 @@ if __name__ == "__main__":
 
 	#66
 	input_digits = [
-	[1,2,3]
+	[1,2,3],
+	[4,3,2,1],
+	[9,9,9],
+	[0],
+	[9,8,9]
 	]
 	expected_output = [
-	[1,2,4]
+	[1,2,4],
+	[4,3,2,2],
+	[1,0,0,0]
+	[1],
+	[9,9,0]
 	]
-	for i, j in enumerate(input_digits):
-		if plusOne(input_digits[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(plusOne(input_digits[i]))
-		else:
-			plusOne("Right")
-	# print(plusOne(input_digits[-1]))
+	# for i in range(len(input_digits)):
+	# 	if plusOne(input_digits[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(plusOne(input_digits[i]))
+	# 	else:
+	# 		print("Right")
+	print(plusOne(input_digits[4]))

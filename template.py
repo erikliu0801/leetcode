@@ -8,7 +8,6 @@ Problem Description
 """
 
 """
-
 # Code
 ## submit part
 
@@ -20,13 +19,13 @@ Problem Description
 # Test
 ## Functional Test
 """
-Condition:
+# Conditions & Concepts
 
 """
 if __name__ == '__main__':
 	input1 = []
 	expected_output = []
-	for i, j in enumerate(input1):
+	for i in range(len(input1)):
 		if func(input1[i]) != expected_output[i]:
 			print("Wrong!!!")
 			print(func(input1[i]))
