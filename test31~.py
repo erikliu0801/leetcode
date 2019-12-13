@@ -89,6 +89,49 @@ def plusOne(digits):
 					carry = 0
 	return digits
 
+#67
+def addBinary(a, b):
+	position = 1
+	carry = False
+	bi_sum = ''
+	if len(a) < len(b):
+		a, b = b, a
+	while position <= len(b):
+		if a[0-position] == '1' and b[0-position] == '1':
+			if carry == True:
+				bi_sum = '1' + bi_sum
+			else:
+				bi_sum = '0' + bi_sum
+			carry = True
+			position +=1
+		elif a[0-position] == '0' and b[0-position] == '0':
+			if carry == True:
+				bi_sum = '1' + bi_sum
+			else:
+				bi_sum = '0' + bi_sum
+			carry = False
+			position +=1
+		else:
+			if carry == True:
+				bi_sum = '0' + bi_sum
+			else:
+				bi_sum = '1' + bi_sum
+			position +=1
+	while carry == True:
+		if position <= len(a):
+			if a[0-position] == '1':
+				bi_sum = '0' + bi_sum
+				carry = True
+			else:
+				bi_sum = '1' + bi_sum
+				carry = False			
+		else:
+			bi_sum = '1' + bi_sum
+			carry = False
+		position +=1
+	if position <= len(a):
+		bi_sum = a[:1-position] + bi_sum
+	return bi_sum
 
 if __name__ == "__main__":
     #35
@@ -152,24 +195,36 @@ if __name__ == "__main__":
 	# print(lengthOfLastWord(input_str[-1]))
 
 	#66
-	input_digits = [
-	[1,2,3],
-	[4,3,2,1],
-	[9,9,9],
-	[0],
-	[9,8,9]
-	]
-	expected_output = [
-	[1,2,4],
-	[4,3,2,2],
-	[1,0,0,0]
-	[1],
-	[9,9,0]
-	]
+	# input_digits = [
+	# [1,2,3],
+	# [4,3,2,1],
+	# [9,9,9],
+	# [0],
+	# [9,8,9]
+	# ]
+	# expected_output = [
+	# [1,2,4],
+	# [4,3,2,2],
+	# [1,0,0,0]
+	# [1],
+	# [9,9,0]
+	# ]
 	# for i in range(len(input_digits)):
 	# 	if plusOne(input_digits[i]) != expected_output[i]:
 	# 		print("Wrong!!!")
 	# 		print(plusOne(input_digits[i]))
 	# 	else:
 	# 		print("Right")
-	print(plusOne(input_digits[4]))
+	# print(plusOne(input_digits[4]))
+
+	#67
+	input_str_a = ["11", "1010", "100", "101111"]
+	input_str_b = ["1", "1011", "110010", "10"]
+	expected_output = ["100", "10101", "110110", "110001"]
+	for i in range(len(input_str_a)):
+		if addBinary(input_str_a[i], input_str_b[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(addBinary(input_str_a[i], input_str_b[i]))
+		else:
+			print("Right")
+	# print(addBinary(input_str_a[-1], input_str_b[-1]))
