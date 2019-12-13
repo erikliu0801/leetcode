@@ -264,14 +264,14 @@ if __name__ == "__main__":
 	# print(addBinary(input_str_a[-1], input_str_b[-1]))
 
 	#69
-	input_int = [4, 8, 0, 1, 2, 10000000, 1495504530]
-	expected_output = [2, 2, 0, 1, 1, 3162, 38671]
-	for i in range(len(input_int)):
-		if mySqrt(input_int[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(mySqrt(input_int[i]))
-		else:
-			print("Right")
+	# input_int = [4, 8, 0, 1, 2, 10000000, 1495504530]
+	# expected_output = [2, 2, 0, 1, 1, 3162, 38671]
+	# for i in range(len(input_int)):
+	# 	if mySqrt(input_int[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(mySqrt(input_int[i]))
+	# 	else:
+	# 		print("Right")
 	# print(mySqrt(input_int[-2]))
 
 	#70
