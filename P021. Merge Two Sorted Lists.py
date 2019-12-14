@@ -19,7 +19,29 @@ class ListNode:
 
 """
 # Concepts
-
+def LinkedList2List(ListNode):
+	"""
+	ListNode: Head
+	rtype: List
+	"""
+	list1 = []
+	l0 = ListNode
+	while l0 != None:
+		list1.append(l0.val)
+		l0 = l0.next
+	return list1
+def List2LinkedList(List):
+	"""
+	rtype: Head of ListNode
+	"""
+	l = ListNode(0)
+	l0 = l
+	for i in range(len(List)):
+		l.val = List[i]
+		if i + 1 != len(List):
+			l.next = ListNode(0)
+			l = l.next
+	return l0
 
 # Code
 ## submit part
