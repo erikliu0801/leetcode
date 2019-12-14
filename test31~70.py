@@ -165,7 +165,28 @@ def mySqrt(x):
 
 #70
 def climbStairs(n):
-	pass
+	def mathCombination(a,b):
+		if a in [0] or b in [0]:
+			return 1
+		if b > a:
+			a, b = b, a
+		numerator = 1
+		denominator = 1
+		for i in range(b):
+			numerator *= a - i
+			denominator *= 1 +i
+		return numerator//denominator
+	if n in [1,2,3]:
+		return n
+	elif n > 3:
+		two, steps = 0, 0
+		while n >= 0:
+			steps += mathCombination(n+two, two)
+			n += -2
+			two += 1
+		return steps
+	else:
+		return 0
 
 if __name__ == "__main__":
     #35
@@ -275,12 +296,12 @@ if __name__ == "__main__":
 	# print(mySqrt(input_int[-2]))
 
 	#70
-	input_int = [2, 3]
-	expected_output = [2, 3]
-	for i in range(len(input_int)):
-		if climbStairs(input_int[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(climbStairs(input_int[i]))
-		else:
-			print("Right")		
-	# print(climbStairs(input_int[-1]))
+	# input_int = [1, 2, 3, 4, 5, 6, 7, 8, 25]
+	# expected_output = [1, 2, 3, 5, 8, 13 ,21, 34, 121393]
+	# for i in range(len(input_int)):
+	# 	if climbStairs(input_int[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(climbStairs(input_int[i]))
+	# 	else:
+	# 		print("Right")
+	# print(climbStairs(input_int[5]))
