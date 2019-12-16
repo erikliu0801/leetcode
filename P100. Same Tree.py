@@ -174,6 +174,17 @@ def levelOrderTraversal(TreeNode):
 					level_order_treenode_left.append(None)
 			m += 1
 	return level_order_treenode_left, level_order_treenode_right[1:]
+#
+
+
+
+#0-2
+def TreeNode2List(TreeNode):
+		if type(TreeNode) != TreeNode:
+			return []
+		else:
+			pass
+
 
 # Test
 ## Functional Test
@@ -195,24 +206,25 @@ if __name__ == '__main__':
 		if len(nums)==0:
 			return
 		else:
-			checked_num = 0 #level
+			checked_num, level_num = 0, 1 #int: by level
 			treenode = [TreeNode(nums[0])]
 			while checked_num != len(treenode):
-				level_nums=nums[checked_num:]
-				for i in range(len(level_nums)):
-					if i+1<= len(level_nums) and level_nums[i+1] != None:
-						treenode[l].left = TreeNode(level_nums[i+1])
-						treenode.append(treenode[l].left)
-
-					if i+2<= len(level_nums) and level_nums[i+2] != None:
-						treenode[l].right = TreeNode(level_nums[i+2])
-						treenode.append(treenode[l].right)
-				checked_num += 1
-			return 1st_treenode
-
-
-
-
+				level_treenode = treenode[checked_num:] #list
+				rest_nums = nums[checked_num+level_num:]
+				level_num = 0
+				for i in range(len(level_treenode)):				
+					if i*2 <= len(rest_nums) -1 :
+						if rest_nums[i*2] != None:
+							treenode[checked_num].left = TreeNode(rest_nums[i*2])
+							treenode.append(treenode[checked_num].left)
+							level_num += 1
+					if i*2 <= len(rest_nums) -2 :
+						if rest_nums[i*2+1] != None:
+							treenode[checked_num].right = TreeNode(rest_nums[i*2+1])
+							treenode.append(treenode[checked_num].right)
+							level_num += 1
+					checked_num += 1
+			return treenode[0]
 
 	def TreeNode2List(TreeNode):
 		if type(TreeNode) != TreeNode:

@@ -123,31 +123,101 @@ if __name__ == '__main__':
 	# print(LinkedList2List(deleteDuplicates(List2LinkedList(input_list[-1]))))
 
 	#88
-	input_nums1 = [
-	[[1,2,3,0,0,0], 3],
-	[[1,2,3,7,0,0], 3],
-	[[1,2,3,7,0,0], 2],
-	[[1,2,3,4,0,0,0],4],
-	[[1,2,3,0,0,0], 2]
-	]
-	input_nums2 = [
-	[[2,5,6], 3],
-	[[2,5,6], 3],
-	[[2,5,6,8], 4],
-	[[2,5,6],2],
-	[[2,5,6], 3]
-	]
-	expected_output = [
-	[1,2,2,3,5,6],
-	[1,2,2,3,5,6],
-	[1,2,2,5,6,8],
-	[1,2,2,3,4,5,0],
-	[1,2,2,5,6,0]]
+	# input_nums1 = [
+	# [[1,2,3,0,0,0], 3],
+	# [[1,2,3,7,0,0], 3],
+	# [[1,2,3,7,0,0], 2],
+	# [[1,2,3,4,0,0,0],4],
+	# [[1,2,3,0,0,0], 2]
+	# ]
+	# input_nums2 = [
+	# [[2,5,6], 3],
+	# [[2,5,6], 3],
+	# [[2,5,6,8], 4],
+	# [[2,5,6],2],
+	# [[2,5,6], 3]
+	# ]
+	# expected_output = [
+	# [1,2,2,3,5,6],
+	# [1,2,2,3,5,6],
+	# [1,2,2,5,6,8],
+	# [1,2,2,3,4,5,0],
+	# [1,2,2,5,6,0]]
 
-	for i in range(len(input_nums1)):
-		if merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]) != expected_output[i]:
-			print("Wrong!!!")
-			print(merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]))
-		else:
-			print("Right")
+	# for i in range(len(input_nums1)):
+	# 	if merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]))
+	# 	else:
+	# 		print("Right")
 	# print(merge(input_nums1[-1][0],input_nums1[-1][1],input_nums2[-1][0],input_nums1[-1][1]))
+
+	#100
+	class TreeNode:
+		def __init__(self, x):
+			self.val = x
+			self.left = None
+			self.right = None
+	def List2TreeNode(nums):
+		"""
+		nums: List
+		rtype: highest TreeNode
+		"""
+		if len(nums)==0:
+			return
+		else:
+			checked_num, level_num = 0, 1 #int: by level
+			treenode = [TreeNode(nums[0])]
+			while checked_num != len(treenode):
+				level_treenode = treenode[checked_num:] #list
+				rest_nums = nums[checked_num+level_num:]
+				level_num = 0
+				for i in range(len(level_treenode)):				
+					if i*2 <= len(rest_nums) -1 :
+						if rest_nums[i*2] != None:
+							treenode[checked_num].left = TreeNode(rest_nums[i*2])
+							treenode.append(treenode[checked_num].left)
+							level_num += 1
+					if i*2 <= len(rest_nums) -2 :
+						if rest_nums[i*2+1] != None:
+							treenode[checked_num].right = TreeNode(rest_nums[i*2+1])
+							treenode.append(treenode[checked_num].right)
+							level_num += 1
+					checked_num += 1
+			return treenode[0]
+
+
+	def TreeNode2List(TreeNode):
+		if type(TreeNode) != TreeNode:
+			return []
+		else:
+			pass
+
+	input_p_list = [
+	[1,2],
+	[],
+	[10,5,15],
+	[2, None, 4],
+	[0],
+	[1,None,2,3],
+	[390,255,2266,-273,337,1105,3440,-425,4113,None,None,600,1355,3241,4731,-488,-367,16,None,565,780,1311,1755,3075,3392,4725,4817,None,None,None,None,-187,152,395,None,728,977,1270,None,1611,1786,2991,3175,3286,None,164,None,None,4864,-252,-95,82,None,391,469,638,769,862,1045,1138,None,1460,1663,None,1838,2891,None,None,None,None,3296,3670,4381,None,4905,None,None,None,-58,None,None,None,None,None,None,None,None,734,None,843,958,None,None,None,1163,1445,1533,None,None,None,2111,2792,None,None,None,3493,3933,4302,4488,None,None,None,None,None,None,819,None,None,None,None,1216,None,None,1522,None,1889,2238,2558,2832,None,3519,3848,4090,4165,None,4404,4630,None,None,None,None,None,None,1885,2018,2199,None,2364,2678,None,None,None,3618,3751,None,4006,None,None,4246,None,None,4554,None,None,None,1936,None,None,None,None,2444,2642,2732,None,None,None,None,None,None,None,4253,None,None,None,None,2393,2461,None,None,None,None,4250,None,None,None,None,2537]]
+	input_q_list = [
+	[1,None,2],
+	[],
+	[10,5,None,None,15],
+	[2,3,4],
+	[0],
+	[1,None,2,None,3],
+	[390,255,2266,-273,337,1105,3440,-425,4113,None,None,600,1355,3241,4731,-488,-367,16,None,565,780,1311,1755,3075,3392,4725,4817,None,None,None,None,-187,152,395,None,728,977,1270,None,1611,1786,2991,3175,3286,None,164,None,None,4864,-252,-95,82,None,391,469,638,769,862,1045,1138,None,1460,1663,None,1838,2891,None,None,None,None,3296,3670,4381,None,4905,None,None,None,-58,None,None,None,None,None,None,None,None,734,None,843,958,None,None,None,1163,1445,1533,None,None,None,2111,2792,None,None,None,3493,3933,4302,4488,None,None,None,None,None,None,819,None,None,None,None,1216,None,None,1522,None,1889,2238,2558,2832,None,3519,3848,4090,4165,None,4404,4630,None,None,None,None,None,None,1885,2018,2199,None,2364,2678,None,None,None,3618,3751,None,4006,None,None,4246,None,None,4554,None,None,None,1936,None,None,None,None,2444,2642,2732,None,None,None,None,None,None,None,4253,None,None,None,None,2461,2393,None,None,None,None,4250,None,None,None,None,2537]]
+	expected_output = [False, True, False, False, True, False, False]
+	
+	for i in range(len(input_p_list)):
+		print(List2TreeNode(input_p_list[i]))
+
+	# for i in range(len(input1)):
+	# 	if func(input1[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(func(input1[i]))
+	# 	else:
+	# 		print("Right")
+	# print(func(input1[-1]))
