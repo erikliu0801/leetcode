@@ -104,14 +104,17 @@ def levelOrderBottom(root):
 		#
 		while treenode_list.count(None) != 0:
 			treenode_list.remove(None)
-		#
 		for i in range(len(level_nums)):
 			level_val=[]
 			for _ in range(level_nums[i]):
 				level_val.append(treenode_list[0].val)
 				treenode_list.pop(0)
 			level_nums[i] = level_val
-		return level_nums.reverse()
+		# list.reverse() not work
+		answer = []
+		for i in range(1, len(level_nums)+1):
+			answer.append(level_nums[-i])
+		return answer
 
 # Test
 ## Functional Test
