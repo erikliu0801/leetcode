@@ -54,43 +54,43 @@ def isSameTree(p, q):
 	"""
 ## code here
 #1
-def isSameTree(p, q):
-	def levelOrderTraversal(TreeNode):
-		level_order_treenode = [TreeNode]
-		n, last_len = 0, 0
-		while last_len != len(level_order_treenode):
-			last_len, m = len(level_order_treenode), n
-			for i in range(len(level_order_treenode[m:])):
-				if level_order_treenode[m+i].left != None:
-					level_order_treenode.append(level_order_treenode[m+i].left)
-				if level_order_treenode[m+i].right != None:
-					level_order_treenode.append(level_order_treenode[m+i].right)
-				n+=1
-		return level_order_treenode
-	p_list, q_list = levelOrderTraversal(p), levelOrderTraversal(q)
-	if len(p_list) != len(q_list):
-		return False
-	for i in range(len(p_list)):
-		if p_list[i].val != q_list[i].val:
-			return False
-	return True
+# def isSameTree(p, q):
+# 	def levelOrderTraversal(TreeNode):
+# 		level_order_treenode = [TreeNode]
+# 		n, last_len = 0, 0
+# 		while last_len != len(level_order_treenode):
+# 			last_len, m = len(level_order_treenode), n
+# 			for i in range(len(level_order_treenode[m:])):
+# 				if level_order_treenode[m+i].left != None:
+# 					level_order_treenode.append(level_order_treenode[m+i].left)
+# 				if level_order_treenode[m+i].right != None:
+# 					level_order_treenode.append(level_order_treenode[m+i].right)
+# 				n+=1
+# 		return level_order_treenode
+# 	p_list, q_list = levelOrderTraversal(p), levelOrderTraversal(q)
+# 	if len(p_list) != len(q_list):
+# 		return False
+# 	for i in range(len(p_list)):
+# 		if p_list[i].val != q_list[i].val:
+# 			return False
+# 	return True
 
 #1.1 level-order traversal
 """
 if only .left or .right
 """
-def levelOrderTraversal(TreeNode):
-	level_order_treenode = [TreeNode]
-	n, last_len = 0, 0
-	while last_len != len(level_order_treenode):
-		last_len, m = len(level_order_treenode), n
-		for i in range(len(level_order_treenode[m:])):
-			if level_order_treenode[m+i].left != None:
-				level_order_treenode.append(level_order_treenode[m+i].left)
-			if level_order_treenode[m+i].right != None:
-				level_order_treenode.append(level_order_treenode[m+i].right)
-			n+=1
-	return level_order_treenode
+# def levelOrderTraversal(TreeNode):
+# 	level_order_treenode = [TreeNode]
+# 	n, last_len = 0, 0
+# 	while last_len != len(level_order_treenode):
+# 		last_len, m = len(level_order_treenode), n
+# 		for i in range(len(level_order_treenode[m:])):
+# 			if level_order_treenode[m+i].left != None:
+# 				level_order_treenode.append(level_order_treenode[m+i].left)
+# 			if level_order_treenode[m+i].right != None:
+# 				level_order_treenode.append(level_order_treenode[m+i].right)
+# 			n+=1
+# 	return level_order_treenode
 
 #1.2
 """
@@ -103,42 +103,125 @@ def levelOrderTraversal(TreeNode):
 [390,255,2266,-273,337,1105,3440,-425,4113,null,null,600,1355,3241,4731,-488,-367,16,null,565,780,1311,1755,3075,3392,4725,4817,null,null,null,null,-187,152,395,null,728,977,1270,null,1611,1786,2991,3175,3286,null,164,null,null,4864,-252,-95,82,null,391,469,638,769,862,1045,1138,null,1460,1663,null,1838,2891,null,null,null,null,3296,3670,4381,null,4905,null,null,null,-58,null,null,null,null,null,null,null,null,734,null,843,958,null,null,null,1163,1445,1533,null,null,null,2111,2792,null,null,null,3493,3933,4302,4488,null,null,null,null,null,null,819,null,null,null,null,1216,null,null,1522,null,1889,2238,2558,2832,null,3519,3848,4090,4165,null,4404,4630,null,null,null,null,null,null,1885,2018,2199,null,2364,2678,null,null,null,3618,3751,null,4006,null,null,4246,null,null,4554,null,null,null,1936,null,null,null,null,2444,2642,2732,null,null,null,null,null,null,null,4253,null,null,null,null,2393,2461,null,null,null,null,4250,null,null,null,null,2537], 
 [390,255,2266,-273,337,1105,3440,-425,4113,null,null,600,1355,3241,4731,-488,-367,16,null,565,780,1311,1755,3075,3392,4725,4817,null,null,null,null,-187,152,395,null,728,977,1270,null,1611,1786,2991,3175,3286,null,164,null,null,4864,-252,-95,82,null,391,469,638,769,862,1045,1138,null,1460,1663,null,1838,2891,null,null,null,null,3296,3670,4381,null,4905,null,null,null,-58,null,null,null,null,null,null,null,null,734,null,843,958,null,null,null,1163,1445,1533,null,null,null,2111,2792,null,null,null,3493,3933,4302,4488,null,null,null,null,null,null,819,null,null,null,null,1216,null,null,1522,null,1889,2238,2558,2832,null,3519,3848,4090,4165,null,4404,4630,null,null,null,null,null,null,1885,2018,2199,null,2364,2678,null,null,null,3618,3751,null,4006,null,null,4246,null,null,4554,null,null,null,1936,null,null,null,null,2444,2642,2732,null,null,null,null,null,null,null,4253,null,null,null,null,2461,2393,null,null,null,null,4250,null,null,null,null,2537]
 """
+# def isSameTree(p, q):
+# 	def levelOrderTraversal(TreeNode):
+# 		"""
+# 		rtype: left_list, right_list
+# 		highest_treenode belongs to left_list
+# 		"""
+# 		level_order_treenode_left = [TreeNode]
+# 		level_order_treenode_right = [None]
+# 		m, last_len = 0, 0
+# 		while last_len != len(level_order_treenode_left+level_order_treenode_right):
+# 			last_len= len(level_order_treenode_left+level_order_treenode_right)
+# 			level_order_treenode = level_order_treenode_left[m:] + level_order_treenode_right[m:]
+# 			for i in range(len(level_order_treenode)):
+# 				if level_order_treenode[i]!= None:
+# 					if level_order_treenode[i].left != None:
+# 						level_order_treenode_left.append(level_order_treenode[i].left)
+# 					else:
+# 						level_order_treenode_left.append(None)
+# 					if level_order_treenode[i].right != None:
+# 						level_order_treenode_right.append(level_order_treenode[i].right)
+# 					else:
+# 						level_order_treenode_left.append(None)
+# 				m += 1
+# 		return level_order_treenode_left, level_order_treenode_right[1:]
+
+# 	if p is None or q is None:
+# 		if p is None and q is None:
+# 			return True
+# 		else:
+# 			return False
+# 	else:
+# 		p_list_left, p_list_right = levelOrderTraversal(p)
+# 		q_list_left, q_list_right = levelOrderTraversal(q)
+# 		if len(p_list_left) != len(q_list_left) or len(p_list_right) != len(q_list_right):
+# 			return False
+# 		p_list, q_list = p_list_left + p_list_right, q_list_left + q_list_right
+# 		for i in range(len(p_list)):
+# 			if p_list[i]!= None and q_list[i]!= None:
+# 				if p_list[i].val != q_list[i].val:
+# 					return False
+# 			elif p_list[i] != q_list[i]:
+# 				return False
+# 		return True
+
+#1.3
+# def levelOrderTraversal(TreeNode):
+# 	"""
+# 	rtype: left_list, right_list
+# 	highest_treenode belongs to left_list
+# 	"""
+# 	level_order_treenode_left = [TreeNode]
+# 	level_order_treenode_right = [None]
+# 	m, last_len = 0, 0
+# 	while last_len != len(level_order_treenode_left+level_order_treenode_right):
+# 		last_len= len(level_order_treenode_left+level_order_treenode_right)
+# 		if m == 0 :
+# 			level_order_treenode = level_order_treenode_left
+# 		else:
+# 			level_order_treenode = level_order_treenode_left[m:] + level_order_treenode_right[m:]
+# 		for i in range(len(level_order_treenode)):
+# 			if level_order_treenode[i]!= None:
+# 				if level_order_treenode[i].left != None:
+# 					level_order_treenode_left.append(level_order_treenode[i].left)
+# 				else:
+# 					level_order_treenode_left.append(None)
+# 				if level_order_treenode[i].right != None:
+# 					level_order_treenode_right.append(level_order_treenode[i].right)
+# 				else:
+# 					level_order_treenode_left.append(None)
+# 			m += 1
+# 	return level_order_treenode_left, level_order_treenode_right[1:]
+
+#1.4 from TreeNode2List()
+"""
+Success
+Details
+Runtime: 32 ms, faster than 67.36% of Python3 online submissions for Same Tree.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Same Tree.
+"""
 def isSameTree(p, q):
-	def levelOrderTraversal(TreeNode):
+	def levelOrderTraversal(tree_node):
 		"""
 		rtype: left_list, right_list
 		highest_treenode belongs to left_list
 		"""
-		level_order_treenode_left = [TreeNode]
-		level_order_treenode_right = [None]
-		m, last_len = 0, 0
-		while last_len != len(level_order_treenode_left+level_order_treenode_right):
-			last_len= len(level_order_treenode_left+level_order_treenode_right)
-			level_order_treenode = level_order_treenode_left[m:] + level_order_treenode_right[m:]
-			for i in range(len(level_order_treenode)):
-				if level_order_treenode[i]!= None:
-					if level_order_treenode[i].left != None:
-						level_order_treenode_left.append(level_order_treenode[i].left)
-					else:
-						level_order_treenode_left.append(None)
-					if level_order_treenode[i].right != None:
-						level_order_treenode_right.append(level_order_treenode[i].right)
-					else:
-						level_order_treenode_left.append(None)
-				m += 1
-		return level_order_treenode_left, level_order_treenode_right[1:]
-
+		if type(tree_node) != TreeNode:
+				return []
+		else:
+			checked_treenode = 0
+			treenode_list = [tree_node]
+			while checked_treenode != len(treenode_list):
+				level_treenode = treenode_list[checked_treenode:]
+				for treenode in level_treenode:
+					if treenode != None:
+						if treenode.left != None:
+							treenode_list.append(treenode.left)
+						else:
+							treenode_list.append(None)
+						if treenode.right != None:
+							treenode_list.append(treenode.right)
+						else:
+							treenode_list.append(None)
+					checked_treenode += 1
+			for _ in range(len(treenode_list)):
+				if treenode_list[-1] == None:
+					treenode_list.pop(-1)
+				else:
+					break
+			return treenode_list
 	if p is None or q is None:
 		if p is None and q is None:
 			return True
 		else:
 			return False
 	else:
-		p_list_left, p_list_right = levelOrderTraversal(p)
-		q_list_left, q_list_right = levelOrderTraversal(q)
-		if len(p_list_left) != len(q_list_left) or len(p_list_right) != len(q_list_right):
+		p_list = levelOrderTraversal(p)
+		q_list = levelOrderTraversal(q)
+		if len(p_list) != len(q_list):
 			return False
-		p_list, q_list = p_list_left + p_list_right, q_list_left + q_list_right
 		for i in range(len(p_list)):
 			if p_list[i]!= None and q_list[i]!= None:
 				if p_list[i].val != q_list[i].val:
@@ -147,43 +230,6 @@ def isSameTree(p, q):
 				return False
 		return True
 
-#1.3
-def levelOrderTraversal(TreeNode):
-	"""
-	rtype: left_list, right_list
-	highest_treenode belongs to left_list
-	"""
-	level_order_treenode_left = [TreeNode]
-	level_order_treenode_right = [None]
-	m, last_len = 0, 0
-	while last_len != len(level_order_treenode_left+level_order_treenode_right):
-		last_len= len(level_order_treenode_left+level_order_treenode_right)
-		if m == 0 :
-			level_order_treenode = level_order_treenode_left
-		else:
-			level_order_treenode = level_order_treenode_left[m:] + level_order_treenode_right[m:]
-		for i in range(len(level_order_treenode)):
-			if level_order_treenode[i]!= None:
-				if level_order_treenode[i].left != None:
-					level_order_treenode_left.append(level_order_treenode[i].left)
-				else:
-					level_order_treenode_left.append(None)
-				if level_order_treenode[i].right != None:
-					level_order_treenode_right.append(level_order_treenode[i].right)
-				else:
-					level_order_treenode_left.append(None)
-			m += 1
-	return level_order_treenode_left, level_order_treenode_right[1:]
-#
-
-
-
-#0-2
-def TreeNode2List(TreeNode):
-		if type(TreeNode) != TreeNode:
-			return []
-		else:
-			pass
 
 
 # Test
@@ -198,6 +244,7 @@ if __name__ == '__main__':
 			self.val = x
 			self.left = None
 			self.right = None
+
 	def List2TreeNode(nums):
 		"""
 		nums: List
@@ -274,13 +321,20 @@ if __name__ == '__main__':
 	[1,None,2,None,3],
 	[390,255,2266,-273,337,1105,3440,-425,4113,None,None,600,1355,3241,4731,-488,-367,16,None,565,780,1311,1755,3075,3392,4725,4817,None,None,None,None,-187,152,395,None,728,977,1270,None,1611,1786,2991,3175,3286,None,164,None,None,4864,-252,-95,82,None,391,469,638,769,862,1045,1138,None,1460,1663,None,1838,2891,None,None,None,None,3296,3670,4381,None,4905,None,None,None,-58,None,None,None,None,None,None,None,None,734,None,843,958,None,None,None,1163,1445,1533,None,None,None,2111,2792,None,None,None,3493,3933,4302,4488,None,None,None,None,None,None,819,None,None,None,None,1216,None,None,1522,None,1889,2238,2558,2832,None,3519,3848,4090,4165,None,4404,4630,None,None,None,None,None,None,1885,2018,2199,None,2364,2678,None,None,None,3618,3751,None,4006,None,None,4246,None,None,4554,None,None,None,1936,None,None,None,None,2444,2642,2732,None,None,None,None,None,None,None,4253,None,None,None,None,2461,2393,None,None,None,None,4250,None,None,None,None,2537]]
 	expected_output = [False, True, False, False, True, False, False]
-	for i in range(len(input1)):
-		if func(input1[i]) != expected_output[i]:
+	
+	# for i in range(len(input_p_list)):
+	# 	print(List2TreeNode(input_p_list[i]))
+
+	# print(TreeNode2List(List2TreeNode([10,5,None,None,15,1])))
+
+	for i in range(len(input_p_list)):
+		if isSameTree(List2TreeNode(input_p_list[i]), List2TreeNode(input_q_list[i])) != expected_output[i]:
 			print("Wrong!!!")
-			print(func(input1[i]))
+			print(TreeNode2List(isSameTree(List2TreeNode(input_p_list[i]), List2TreeNode(input_q_list[i]))))
 		else:
-			print("Right")		
-	# print(func(input1[-1]))
+			print("Right")
+
+	# print(isSameTree(List2TreeNode(input_p_list[-1]), List2TreeNode(input_q_list[-1])))
 	
 
 ## Performance Test
