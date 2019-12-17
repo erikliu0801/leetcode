@@ -239,12 +239,13 @@ if __name__ == '__main__':
 	# for i in range(len(input_p_list)):
 	# 	print(List2TreeNode(input_p_list[i]))
 
-	print(TreeNode2List(List2TreeNode([10,5,None,None,15,1])))
+	# print(TreeNode2List(List2TreeNode([10,5,None,None,15,1])))
 
-	# for i in range(len(input1)):
-	# 	if func(input1[i]) != expected_output[i]:
-	# 		print("Wrong!!!")
-	# 		print(func(input1[i]))
-	# 	else:
-	# 		print("Right")
-	# print(func(input1[-1]))
+	for i in range(len(input_p_list)):
+		if isSameTree(List2TreeNode(input_p_list[i]), List2TreeNode(input_q_list[i])) != expected_output[i]:
+			print("Wrong!!!")
+			print(TreeNode2List(isSameTree(List2TreeNode(input_p_list[i]), List2TreeNode(input_q_list[i]))))
+		else:
+			print("Right")
+
+	# print(isSameTree(List2TreeNode(input_p_list[-1]), List2TreeNode(input_q_list[-1])))
