@@ -158,6 +158,7 @@ if __name__ == '__main__':
 			self.val = x
 			self.left = None
 			self.right = None
+
 	def List2TreeNode(nums):
 		"""
 		nums: List
@@ -166,32 +167,56 @@ if __name__ == '__main__':
 		if len(nums)==0:
 			return
 		else:
-			checked_num, level_num = 0, 1 #int: by level
+			alive_node, checked_num = 0, 1 #int: by level
 			treenode = [TreeNode(nums[0])]
-			while checked_num != len(treenode):
-				level_treenode = treenode[checked_num:] #list
-				rest_nums = nums[checked_num+level_num:]
-				level_num = 0
-				for i in range(len(level_treenode)):				
+			while alive_node != len(treenode):
+				level_treenode = treenode[alive_node:] #list
+				if checked_num <= len(nums):
+					rest_nums = nums[checked_num:]
+				else:
+					break
+				for i in range(len(level_treenode)):			
 					if i*2 <= len(rest_nums) -1 :
 						if rest_nums[i*2] != None:
-							treenode[checked_num].left = TreeNode(rest_nums[i*2])
-							treenode.append(treenode[checked_num].left)
-							level_num += 1
+							treenode[alive_node].left = TreeNode(rest_nums[i*2])
+							treenode.append(treenode[alive_node].left)
 					if i*2 <= len(rest_nums) -2 :
 						if rest_nums[i*2+1] != None:
-							treenode[checked_num].right = TreeNode(rest_nums[i*2+1])
-							treenode.append(treenode[checked_num].right)
-							level_num += 1
-					checked_num += 1
+							treenode[alive_node].right = TreeNode(rest_nums[i*2+1])
+							treenode.append(treenode[alive_node].right)
+					checked_num += 2
+					alive_node += 1
 			return treenode[0]
 
-
-	def TreeNode2List(TreeNode):
-		if type(TreeNode) != TreeNode:
+	def TreeNode2List(tree_node):
+		if type(tree_node) != TreeNode:
 			return []
 		else:
-			pass
+			checked_treenode = 0
+			treenode_list = [tree_node]
+			while checked_treenode != len(treenode_list):
+				level_treenode = treenode_list[checked_treenode:]
+				for treenode in level_treenode:
+					if treenode != None:
+						if treenode.left != None:
+							treenode_list.append(treenode.left)
+						else:
+							treenode_list.append(None)
+						if treenode.right != None:
+							treenode_list.append(treenode.right)
+						else:
+							treenode_list.append(None)
+					checked_treenode += 1
+			for _ in range(len(treenode_list)):
+				if treenode_list[-1] == None:
+					treenode_list.pop(-1)
+				else:
+					break
+			for i in range(len(treenode_list)):
+				if treenode_list[i] != None:
+					treenode_list[i] = treenode_list[i].val
+			return treenode_list
+
 
 	input_p_list = [
 	[1,2],
@@ -211,8 +236,10 @@ if __name__ == '__main__':
 	[390,255,2266,-273,337,1105,3440,-425,4113,None,None,600,1355,3241,4731,-488,-367,16,None,565,780,1311,1755,3075,3392,4725,4817,None,None,None,None,-187,152,395,None,728,977,1270,None,1611,1786,2991,3175,3286,None,164,None,None,4864,-252,-95,82,None,391,469,638,769,862,1045,1138,None,1460,1663,None,1838,2891,None,None,None,None,3296,3670,4381,None,4905,None,None,None,-58,None,None,None,None,None,None,None,None,734,None,843,958,None,None,None,1163,1445,1533,None,None,None,2111,2792,None,None,None,3493,3933,4302,4488,None,None,None,None,None,None,819,None,None,None,None,1216,None,None,1522,None,1889,2238,2558,2832,None,3519,3848,4090,4165,None,4404,4630,None,None,None,None,None,None,1885,2018,2199,None,2364,2678,None,None,None,3618,3751,None,4006,None,None,4246,None,None,4554,None,None,None,1936,None,None,None,None,2444,2642,2732,None,None,None,None,None,None,None,4253,None,None,None,None,2461,2393,None,None,None,None,4250,None,None,None,None,2537]]
 	expected_output = [False, True, False, False, True, False, False]
 	
-	for i in range(len(input_p_list)):
-		print(List2TreeNode(input_p_list[i]))
+	# for i in range(len(input_p_list)):
+	# 	print(List2TreeNode(input_p_list[i]))
+
+	print(TreeNode2List(List2TreeNode([10,5,None,None,15,1])))
 
 	# for i in range(len(input1)):
 	# 	if func(input1[i]) != expected_output[i]:

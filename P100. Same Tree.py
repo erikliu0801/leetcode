@@ -206,31 +206,56 @@ if __name__ == '__main__':
 		if len(nums)==0:
 			return
 		else:
-			checked_num, level_num = 0, 1 #int: by level
+			alive_node, checked_num = 0, 1 #int: by level
 			treenode = [TreeNode(nums[0])]
-			while checked_num != len(treenode):
-				level_treenode = treenode[checked_num:] #list
-				rest_nums = nums[checked_num+level_num:]
-				level_num = 0
-				for i in range(len(level_treenode)):				
+			while alive_node != len(treenode):
+				level_treenode = treenode[alive_node:] #list
+				if checked_num <= len(nums):
+					rest_nums = nums[checked_num:]
+				else:
+					break
+				for i in range(len(level_treenode)):			
 					if i*2 <= len(rest_nums) -1 :
 						if rest_nums[i*2] != None:
-							treenode[checked_num].left = TreeNode(rest_nums[i*2])
-							treenode.append(treenode[checked_num].left)
-							level_num += 1
+							treenode[alive_node].left = TreeNode(rest_nums[i*2])
+							treenode.append(treenode[alive_node].left)
 					if i*2 <= len(rest_nums) -2 :
 						if rest_nums[i*2+1] != None:
-							treenode[checked_num].right = TreeNode(rest_nums[i*2+1])
-							treenode.append(treenode[checked_num].right)
-							level_num += 1
-					checked_num += 1
+							treenode[alive_node].right = TreeNode(rest_nums[i*2+1])
+							treenode.append(treenode[alive_node].right)
+					checked_num += 2
+					alive_node += 1
 			return treenode[0]
 
-	def TreeNode2List(TreeNode):
-		if type(TreeNode) != TreeNode:
+	def TreeNode2List(tree_node):
+		if type(tree_node) != TreeNode:
 			return []
 		else:
-			pass
+			checked_treenode = 0
+			treenode_list = [tree_node]
+			while checked_treenode != len(treenode_list):
+				level_treenode = treenode_list[checked_treenode:]
+				for treenode in level_treenode:
+					if treenode != None:
+						if treenode.left != None:
+							treenode_list.append(treenode.left)
+						else:
+							treenode_list.append(None)
+						if treenode.right != None:
+							treenode_list.append(treenode.right)
+						else:
+							treenode_list.append(None)
+					checked_treenode += 1
+			for _ in range(len(treenode_list)):
+				if treenode_list[-1] == None:
+					treenode_list.pop(-1)
+				else:
+					break
+			for i in range(len(treenode_list)):
+				if treenode_list[i] != None:
+					treenode_list[i] = treenode_list[i].val
+			return treenode_list
+
 
 	input_p_list = [
 	[1,2],
