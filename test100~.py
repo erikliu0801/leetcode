@@ -130,7 +130,52 @@ def maxDepth(root):
 
 #107
 def levelOrderBottom(root):
-	pass
+	if type(root) != TreeNode:
+		return []
+	else:
+		checked_treenode, k, dead_num = 0, 0, 0
+		treenode_list, level_nums= [root], []
+		while checked_treenode != len(treenode_list):
+			level_treenode = treenode_list[checked_treenode:]
+			level_nums.append(len(level_treenode)-dead_num)
+			dead_num = 0
+			for treenode in level_treenode:
+				if treenode != None:
+					if treenode.left != None:
+						treenode_list.append(treenode.left)
+					else:
+						treenode_list.append(None)
+						dead_num += 1
+					if treenode.right != None:
+						treenode_list.append(treenode.right)
+					else:
+						treenode_list.append(None)
+						dead_num += 1
+				checked_treenode += 1			
+			k += 1
+		#
+		for _ in range(len(level_nums)):
+			if level_nums[-1] == 0:
+				level_nums.pop(-1)
+			else:
+				break
+		#
+		while treenode_list.count(None) != 0:
+			treenode_list.remove(None)
+		for i in range(len(level_nums)):
+			level_val=[]
+			for _ in range(level_nums[i]):
+				level_val.append(treenode_list[0].val)
+				treenode_list.pop(0)
+			level_nums[i] = level_val
+		# list.reverse() not work
+		answer = []
+		for i in range(1, len(level_nums)+1):
+			answer.append(level_nums[-i])
+		return answer
+
+
+
 
 if __name__ == '__main__':
 	class TreeNode:
@@ -258,7 +303,7 @@ if __name__ == '__main__':
 	#107
 	input_nums = [[3,9,20,None,None,15,7]]
 	expected_output = [[[15,7],[9,20],[3]]]
-	for i in range(len(input1)):
+	for i in range(len(input_nums)):
 		if levelOrderBottom(List2TreeNode(input_nums[i])) != expected_output[i]:
 			print("Wrong!!!")
 			print(levelOrderBottom(List2TreeNode(input_nums[i])))
