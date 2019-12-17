@@ -1,17 +1,12 @@
 # ToDo:
 
 """
-104. Maximum Depth of Binary Tree
+107. Binary Tree Level Order Traversal II
 Easy
 
-Given a binary tree, find its maximum depth.
+Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
 
-The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
-
-Note: A leaf is a node with no children.
-
-Example:
-
+For example:
 Given binary tree [3,9,20,null,null,15,7],
 
     3
@@ -20,80 +15,33 @@ Given binary tree [3,9,20,null,null,15,7],
     /  \
    15   7
 
-return its depth = 3.
+return its bottom-up level order traversal as:
+
+[
+  [15,7],
+  [9,20],
+  [3]
+]
 
 
 """
 # Conditions & Concepts
 """
-#adjust from levelOrderTraversal()
-def levelOrderTraversal(tree_node):
-	if type(tree_node) != TreeNode:
-		return []
-	else:
-		checked_treenode = 0
-		treenode_list = [tree_node]
-		while checked_treenode != len(treenode_list):
-			level_treenode = treenode_list[checked_treenode:]
-			for treenode in level_treenode:
-				if treenode != None:
-					if treenode.left != None:
-						treenode_list.append(treenode.left)
-					else:
-						treenode_list.append(None)
-					if treenode.right != None:
-						treenode_list.append(treenode.right)
-					else:
-						treenode_list.append(None)
-				checked_treenode += 1
-		for _ in range(len(treenode_list)):
-			if treenode_list[-1] == None:
-				treenode_list.pop(-1)
-			else:
-				break
-		return treenode_list
+
 """
 # Code
 ## submit part
 class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
 ## test part
-def maxDepth(root):
+def levelOrderBottom(root):
 	"""
 	root: TreeNode
-	rtype: int
+	rtype: List[List[int]]
 	"""
 ## code here
 #1
-"""
-Success
-Runtime: 36 ms, faster than 95.21% of Python3 online submissions for Maximum Depth of Binary Tree.
-Memory Usage: 13.8 MB, less than 100.00% of Python3 online submissions for Maximum Depth of Binary Tree.
-"""
-def maxDepth(root):
-	if type(root) != TreeNode:
-		return 0
-	else:
-		checked_treenode, depth = 0, 0
-		treenode_list = [root]
-		while checked_treenode != len(treenode_list):
-			alive_node = len(treenode_list)
-			level_treenode = treenode_list[checked_treenode:]			
-			for node in level_treenode:
-				if node != None:
-					if node.left != None:
-						treenode_list.append(node.left)
-					else:
-						treenode_list.append(None)
-					if node.right != None:
-						treenode_list.append(node.right)
-					else:
-						treenode_list.append(None)
-				checked_treenode += 1
-			if len(treenode_list) > alive_node:
-				depth += 1
-		return depth
-
+def levelOrderBottom(root):
 
 # Test
 ## Functional Test
@@ -165,16 +113,16 @@ if __name__ == '__main__':
 				if treenode_list[i] != None:
 					treenode_list[i] = treenode_list[i].val
 			return treenode_list
-
+	
 	input_nums = [[3,9,20,None,None,15,7]]
-	expected_output = [3]
-	for i in range(len(input_nums)):
-		if maxDepth(List2TreeNode(input_nums[i])) != expected_output[i]:
+	expected_output = [[[15,7],[9,20],[3]]]
+	for i in range(len(input1)):
+		if levelOrderBottom(List2TreeNode(input_nums[i])) != expected_output[i]:
 			print("Wrong!!!")
-			print(maxDepth(List2TreeNode(input_nums[i])))
+			print(levelOrderBottom(List2TreeNode(input_nums[i])))
 		else:
 			print("Right")		
-	# print(maxDepth(List2TreeNode(input_nums[-1])))
+	# print(levelOrderBottom(List2TreeNode(input_nums[-1])))
 	
 
 ## Performance Test

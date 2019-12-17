@@ -104,7 +104,33 @@ def isSymmetric(root):
 			return False
 
 #104
+def maxDepth(root):
+	if type(root) != TreeNode:
+		return 0
+	else:
+		checked_treenode, depth = 0, 0
+		treenode_list = [root]
+		while checked_treenode != len(treenode_list):
+			alive_node = len(treenode_list)
+			level_treenode = treenode_list[checked_treenode:]			
+			for node in level_treenode:
+				if node != None:
+					if node.left != None:
+						treenode_list.append(node.left)
+					else:
+						treenode_list.append(None)
+					if node.right != None:
+						treenode_list.append(node.right)
+					else:
+						treenode_list.append(None)
+				checked_treenode += 1
+			if len(treenode_list) > alive_node:
+				depth += 1
+		return depth
 
+#107
+def levelOrderBottom(root):
+	pass
 
 if __name__ == '__main__':
 	class TreeNode:
@@ -219,4 +245,23 @@ if __name__ == '__main__':
 	# print(isSymmetric(List2TreeNode(input_treenode[-1])))
 
 	#104
-	
+	# input_nums = [[3,9,20,None,None,15,7]]
+	# expected_output = [3]
+	# for i in range(len(input_nums)):
+	# 	if maxDepth(List2TreeNode(input_nums[i])) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(maxDepth(List2TreeNode(input_nums[i])))
+	# 	else:
+	# 		print("Right")		
+	# print(maxDepth(List2TreeNode(input_nums[-1])))
+
+	#107
+	input_nums = [[3,9,20,None,None,15,7]]
+	expected_output = [[[15,7],[9,20],[3]]]
+	for i in range(len(input1)):
+		if levelOrderBottom(List2TreeNode(input_nums[i])) != expected_output[i]:
+			print("Wrong!!!")
+			print(levelOrderBottom(List2TreeNode(input_nums[i])))
+		else:
+			print("Right")		
+	# print(levelOrderBottom(List2TreeNode(input_nums[-1])))
