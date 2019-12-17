@@ -14,13 +14,13 @@ def isSymmetric(root):
 							pass
 						elif node.left != None or node.right != None:
 							_ = node.left
-							node.left, node = node.right, _
+							node.left, node.right = node.right, _
 							if node.left != None:
 								treenode_list.append(node.left)
 							if node.right != None:
 								treenode_list.append(node.right)
 					checked_treenode += 1
-			return treenode_list[0]
+			return tree_node
 	def TreeNode2List(tree_node):
 		if type(tree_node) != TreeNode:
 			return []
@@ -49,14 +49,15 @@ def isSymmetric(root):
 				if treenode_list[i] != None:
 					treenode_list[i] = treenode_list[i].val
 			return treenode_list
+	original_list = TreeNode2List(root)
 	mirror_tree = mirrorTree(root)
 	if not mirror_tree:
 		return True
 	else:
-		if TreeNode2List(root) != TreeNode2List(mirror_tree):
-			return False
-		else:
+		if original_list == TreeNode2List(mirror_tree):
 			return True
+		else:
+			return False
 
 
 if __name__ == '__main__':
@@ -127,12 +128,13 @@ if __name__ == '__main__':
 	#101
 	input_treenode = [
 	[1,2,7,3,4,4,3],
-	[1,2,2,None,3,3]]
-	expected_output = [True, False]
+	[1,2,2,None,3,3],
+	[1,2,2,None,3,None,3]]
+	expected_output = [True, True, False]
 	# for i in range(len(input_treenode)):
 	# 	if isSymmetric(List2TreeNode(input_treenode[i])) != expected_output[i]:
 	# 		print("Wrong!!!")
 	# 		print(isSymmetric(List2TreeNode(input_treenode[i])))
 	# 	else:
-	# 		print("Right")		
-	print(isSymmetric(List2TreeNode(input_treenode[0])))
+	# 		print("Right")
+	print(isSymmetric(List2TreeNode(input_treenode[-1])))
