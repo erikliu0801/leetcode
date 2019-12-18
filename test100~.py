@@ -174,7 +174,25 @@ def levelOrderBottom(root):
 			answer.append(level_nums[-i])
 		return answer
 
-
+#108
+def sortedArrayToBST(nums):
+	if len(nums)==0:
+		return
+	else:
+		medium = len(nums)//2
+		root = TreeNode(nums[medium])
+		tree_left = nums[:medium] #exclude root
+		tree_left.reverse() #tree_left = nums[:medium+1].reverse() will return None
+		tree_right = nums[medium+1:] #exclude root
+		tree_left.insert(0, root) #include root
+		tree_right.insert(0, root) #include root
+		for i in range(len(tree_left)-1):
+			tree_left[i].left = TreeNode(tree_left[i+1])
+			tree_left[i+1] = tree_left[i].left
+		for i in range(len(tree_right)-1):
+			tree_right[i].right = TreeNode(tree_right[i+1])
+			tree_right[i + 1] = tree_right[i].right
+		return root
 
 
 if __name__ == '__main__':
@@ -301,12 +319,23 @@ if __name__ == '__main__':
 	# print(maxDepth(List2TreeNode(input_nums[-1])))
 
 	#107
-	input_nums = [[3,9,20,None,None,15,7]]
-	expected_output = [[[15,7],[9,20],[3]]]
-	for i in range(len(input_nums)):
-		if levelOrderBottom(List2TreeNode(input_nums[i])) != expected_output[i]:
-			print("Wrong!!!")
-			print(levelOrderBottom(List2TreeNode(input_nums[i])))
-		else:
-			print("Right")		
+	# input_nums = [[3,9,20,None,None,15,7]]
+	# expected_output = [[[15,7],[9,20],[3]]]
+	# for i in range(len(input_nums)):
+	# 	if levelOrderBottom(List2TreeNode(input_nums[i])) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(levelOrderBottom(List2TreeNode(input_nums[i])))
+	# 	else:
+	# 		print("Right")
 	# print(levelOrderBottom(List2TreeNode(input_nums[-1])))
+	
+	#108
+	input_nums = [[-10, -3, 0, 5, 9]]
+	expected_output = []
+	# for i in range(len(input_nums)):
+	# 	if sortedArrayToBST(input_nums[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(sortedArrayToBST(input_nums[i]))
+	# 	else:
+	# 		print("Right")
+	print(sortedArrayToBST(input_nums[-1]))
