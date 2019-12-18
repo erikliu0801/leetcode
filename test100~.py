@@ -200,6 +200,33 @@ def isBalanced(root):
 
 #111
 def minDepth(root):
+	if type(root) != TreeNode:
+		return 0
+	else:
+		checked_treenode, depth, leaf_end = 0, 0, False
+		treenode_list = [root]
+		while leaf_end != True:
+			alive_node = len(treenode_list)
+			level_treenode = treenode_list[checked_treenode:]
+			for node in level_treenode:
+				if node != None:
+					if node.left == None and node.right == None:
+						leaf_end = True
+						break
+					if node.left != None:
+						treenode_list.append(node.left)
+					else:
+						treenode_list.append(None)
+					if node.right != None:
+						treenode_list.append(node.right)
+					else:
+						treenode_list.append(None)
+				checked_treenode += 1
+			depth += 1
+		return depth
+
+#112
+def hasPathSum(root, sum):
 	pass
 
 if __name__ == '__main__':
