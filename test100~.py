@@ -194,6 +194,13 @@ def sortedArrayToBST(nums):
 			tree_right[i + 1] = tree_right[i].right
 		return root
 
+#110
+def isBalanced(root):
+	pass
+
+#111
+def minDepth(root):
+	pass
 
 if __name__ == '__main__':
 	class TreeNode:
@@ -330,12 +337,16 @@ if __name__ == '__main__':
 	# print(levelOrderBottom(List2TreeNode(input_nums[-1])))
 	
 	#108
-	input_nums = [[-10, -3, 0, 5, 9]]
-	expected_output = []
+	# input_nums = [[-10, -3, 0, 5, 9]]
+	# expected_output = []
 	# for i in range(len(input_nums)):
 	# 	if sortedArrayToBST(input_nums[i]) != expected_output[i]:
 	# 		print("Wrong!!!")
 	# 		print(sortedArrayToBST(input_nums[i]))
 	# 	else:
 	# 		print("Right")
-	print(sortedArrayToBST(input_nums[-1]))
+	# print(sortedArrayToBST(input_nums[-1]))
+
+	#110
+
+	#111

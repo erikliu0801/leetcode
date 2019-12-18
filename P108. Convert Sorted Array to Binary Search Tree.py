@@ -39,6 +39,12 @@ def sortedArrayToBST(nums):
 	"""
 ## code here
 #1
+"""
+input: [0,1,2,3,4,5]
+output: [3,2,4,1,null,null,5,0]
+expected: [3,1,5,0,2,4] => bug?
+
+"""
 def sortedArrayToBST(nums):
 	if len(nums)==0:
 		return
@@ -57,8 +63,6 @@ def sortedArrayToBST(nums):
 			tree_right[i].right = TreeNode(tree_right[i+1])
 			tree_right[i + 1] = tree_right[i].right
 		return root
-
-[3,1,5,0,2,4]
 
 # Test
 ## Functional Test

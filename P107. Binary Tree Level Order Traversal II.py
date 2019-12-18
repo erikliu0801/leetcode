@@ -93,7 +93,7 @@ def levelOrderBottom(root):
 					else:
 						treenode_list.append(None)
 						dead_num += 1
-				checked_treenode += 1			
+				checked_treenode += 1
 			k += 1
 		#
 		for _ in range(len(level_nums)):
