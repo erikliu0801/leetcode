@@ -377,3 +377,29 @@ if __name__ == '__main__':
 	#110
 
 	#111
+	def preOrderTraversal(root):
+		if type(root) != TreeNode:
+			return []
+		else:
+			checking_num, checked_node = 0, []
+			before_checked_num = 0
+			leaf_list, leaf_s_list = [root], []
+			while root:
+				while leaf_list[checking_num].left != None:
+					leaf_list.append(leaf_list[checking_num].left)
+					checking_num += 1
+				leaf_s_list.append(leaf_list)
+				while leaf_list[checking_num].right == None or leaf_list[checking_num].right in checked_node:  #
+					if leaf_list[checking_num] == root:
+						break
+					if leaf_list[checking_num] not in checked_node:
+						checked_node.append(leaf_list[checking_num])
+					checking_num -= 1
+				if root in checked_node:
+					break
+				leaf_list = leaf_list[:checking_num + 1]
+				leaf_list.append(leaf_list[checking_num].right)
+				checking_num += 1
+			return leaf_s_list
+
+	print(preOrderTraversal(List2TreeNode([5,10,20,15,25,30])))
