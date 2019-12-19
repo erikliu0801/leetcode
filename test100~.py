@@ -377,29 +377,46 @@ if __name__ == '__main__':
 	#110
 
 	#111
-	def preOrderTraversal(root):
-		if type(root) != TreeNode:
-			return []
-		else:
-			checking_num, checked_node = 0, []
-			before_checked_num = 0
-			leaf_list, leaf_s_list = [root], []
-			while root:
-				while leaf_list[checking_num].left != None:
-					leaf_list.append(leaf_list[checking_num].left)
-					checking_num += 1
-				leaf_s_list.append(leaf_list)
-				while leaf_list[checking_num].right == None or leaf_list[checking_num].right in checked_node:  #
-					if leaf_list[checking_num] == root:
-						break
-					if leaf_list[checking_num] not in checked_node:
-						checked_node.append(leaf_list[checking_num])
-					checking_num -= 1
-				if root in checked_node:
-					break
-				leaf_list = leaf_list[:checking_num + 1]
-				leaf_list.append(leaf_list[checking_num].right)
-				checking_num += 1
-			return leaf_s_list
+	# Left -> Root -> Right
+	def inOrderTraversal(root):
+		res = []
+		if root:
+			res = inOrderTraversal(root.left)
+			res.append(root.val)
+			res = res + inOrderTraversal(root.right)
+		return res
 
-	print(preOrderTraversal(List2TreeNode([5,10,20,15,25,30])))
+	# Root -> Left ->Right
+	def preOrderTraversal(root):
+		res = []
+		if root:
+			res.append(root.val)
+			res = res + preOrderTraversal(root.left)
+			res = res + preOrderTraversal(root.right)
+		return res
+
+	# Left ->Right -> Root
+	def postOrderTraversal(root):
+		res = []
+		if root:
+			res = postOrderTraversal(root.left)
+			res = res + postOrderTraversal(root.right)
+			res.append(root.val)
+		return res
+
+	# print(inOrderTraversal(List2TreeNode([5,10,20,15,25,30])))
+	# print(preOrderTraversal(List2TreeNode([5,10,20,15,25,30])))
+	# print(postOrderTraversal(List2TreeNode([5,10,20,15,25,30])))
+
+	def pathSum(root):
+		leaf, leaf_s = [], []
+		if root.left == None and root.right == None:
+			leaf.append(root.val)
+			leaf_s.append(leaf)
+			leaf = []
+		elif root:
+			leaf.append(root.val)
+			leaf = pathSum(root.left)
+			leaf = pathSum(root.right)
+		return leaf
+	print(pathSum(List2TreeNode([5,10,20,15,25,30])))
