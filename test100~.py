@@ -293,17 +293,28 @@ def getRow(rowIndex):
 
 
 #121
-def maxProfit(prices):
+def oneTimeMaxProfit(prices):
 	buy_val, earn = float('inf'), 0
 	for val in prices:
 		if val < buy_val:
 			buy_val = val
-		if val - buy_val > earn and buy_val != 0:
+		if val - buy_val > earn:
 			earn = val - buy_val
 	return earn
 
-
-
+#122 same name with P121
+def maxProfit(prices):
+	buy_val, earn, earn_sum = float('inf'), 0, 0
+	for val in prices:
+		if val < buy_val:
+			buy_val = val
+		if val - buy_val > earn:
+			earn = val - buy_val
+		elif val - buy_val < earn:
+			earn_sum += earn
+			buy_val, earn = val, 0
+	earn_sum += earn
+	return earn_sum
 
 
 
@@ -507,12 +518,23 @@ if __name__ == '__main__':
 	# print(getRow(5))
 
 	#121
-	input_prices = [[7,1,5,3,6,4],[7,6,4,3,1],[7,1,5,3,6,4,1,8],[1,2],[2,1,2,1,0,1,2]]
-	expected_output = [5,0,7,1,2]
+	# input_prices = [[7,1,5,3,6,4],[7,6,4,3,1],[7,1,5,3,6,4,1,8],[1,2],[2,1,2,1,0,1,2]]
+	# expected_output = [5,0,7,1,2]
 	# for i in range(len(input_prices)):
-	# 	if maxProfit(input_prices[i]) != expected_output[i]:
+	# 	if oneTimeMaxProfit(input_prices[i]) != expected_output[i]:
 	# 		print("Wrong!!!")
-	# 		print(maxProfit(input_prices[i]))
+	# 		print(oneTimeMaxProfit(input_prices[i]))
 	# 	else:
 	# 		print("Right")
-	print(maxProfit(input_prices[-1]))
+	# print(oneTimeMaxProfit(input_prices[-1]))
+
+	#122
+	input_prices = [[7,1,5,3,6,4],[1,2,3,4,5],[7,6,4,3,1]]
+	expected_output = [7,4,0]
+	for i in range(len(input_prices)):
+		if maxProfit(input_prices[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(maxProfit(input_prices[i]))
+		else:
+			print("Right")
+	print(maxProfit(input_prices[1]))
