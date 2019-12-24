@@ -257,8 +257,39 @@ def hasPathSum(root, sum):
 
 
 #118
+def generate(numRows):
+	def levelOfPascal(num):
+		if num == 1:
+			return [1]
+		elif num ==2:
+			return [1,1]
+		else:
+			pre_level = levelOfPascal(num-1)
+			for i in range(len(pre_level)-1):
+				pre_level[i] = pre_level[i] + pre_level[i+1]
+			level = [1] + pre_level
+			return level
+	if numRows == 0:
+		return 
+	else:
+		Triangle = []
+		for i in range(1,numRows+1):
+			Triangle.append(levelOfPascal(i))
+		return Triangle
 
 
+#119
+def getRow(rowIndex):
+	if rowIndex == 0:
+		return [1]
+	elif rowIndex == 1:
+		return [1,1]
+	else:
+		pre_level = getRow(rowIndex-1)
+		for i in range(len(pre_level)-1):
+			pre_level[i] = pre_level[i] + pre_level[i+1]
+		level = [1] + pre_level
+		return level
 
 
 
@@ -460,25 +491,9 @@ if __name__ == '__main__':
 	# 		print("Right")		
 	# print(hasPathSum(List2TreeNode(input_root[-1]),input_sum[-1]))
 
-	#118
-	def generate(numRows):
-		def levelOfPascal(num):
-			if num == 1:
-				return [1]
-			elif num ==2:
-				return [1,1]
-			else:
-				pre_level = levelOfPascal(num-1)
-				for i in range(len(pre_level)-1):
-					pre_level[i] = pre_level[i] + pre_level[i+1]
-				level = [1] + pre_level
-				return level
-		if numRows == 0:
-			return 
-		else:
-			Triangle = []
-			for i in range(1,numRows+1):
-				Triangle.append(levelOfPascal(i))
-			return Triangle
 	
-	print(generate(5))
+	#118
+	# print(generate(5))
+
+	#119
+	print(getRow(5))

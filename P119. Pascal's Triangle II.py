@@ -30,6 +30,16 @@ Could you optimize your algorithm to use only O(k) extra space?
 ## submit part
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
+        if rowIndex == 0:
+            return [1]
+        elif rowIndex == 1:
+            return [1,1]
+        else:
+            pre_level = self.getRow(rowIndex-1)
+            for i in range(len(pre_level)-1):
+                pre_level[i] = pre_level[i] + pre_level[i+1]
+            level = [1] + pre_level
+            return level
 ## test part
 def getRow(rowIndex):
 	"""
@@ -38,7 +48,36 @@ def getRow(rowIndex):
 	"""
 ## code here
 #1
+"""
+adjust from P118 levelOfPascal()
+start from 0
+def levelOfPascal(num):
+	if num == 1:
+		return [1]
+	elif num ==2:
+		return [1,1]
+	else:
+		pre_level = levelOfPascal(num-1)
+		for i in range(len(pre_level)-1):
+			pre_level[i] = pre_level[i] + pre_level[i+1]
+		level = [1] + pre_level
+		return level
+
+Success
+Runtime: 24 ms, faster than 95.13% of Python3 online submissions for Pascal's Triangle II.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Pascal's Triangle II.
+"""
 def getRow(rowIndex):
+	if rowIndex == 0:
+		return [1]
+	elif rowIndex == 1:
+		return [1,1]
+	else:
+		pre_level = getRow(rowIndex-1)
+		for i in range(len(pre_level)-1):
+			pre_level[i] = pre_level[i] + pre_level[i+1]
+		level = [1] + pre_level
+		return level
 
 # Test
 ## Functional Test
