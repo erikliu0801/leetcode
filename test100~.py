@@ -292,7 +292,15 @@ def getRow(rowIndex):
 		return level
 
 
-
+#121
+def maxProfit(prices):
+	buy_val, earn = float('inf'), 0
+	for val in prices:
+		if val < buy_val:
+			buy_val = val
+		if val - buy_val > earn and buy_val != 0:
+			earn = val - buy_val
+	return earn
 
 
 
@@ -496,4 +504,15 @@ if __name__ == '__main__':
 	# print(generate(5))
 
 	#119
-	print(getRow(5))
+	# print(getRow(5))
+
+	#121
+	input_prices = [[7,1,5,3,6,4],[7,6,4,3,1],[7,1,5,3,6,4,1,8],[1,2],[2,1,2,1,0,1,2]]
+	expected_output = [5,0,7,1,2]
+	# for i in range(len(input_prices)):
+	# 	if maxProfit(input_prices[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(maxProfit(input_prices[i]))
+	# 	else:
+	# 		print("Right")
+	print(maxProfit(input_prices[-1]))
