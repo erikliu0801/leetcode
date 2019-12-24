@@ -64,7 +64,23 @@ def getIntersectionNode(headA, headB):
 	"""
 ## code here
 #1
+"""
+Time Limit Exceeded
+"""
 def getIntersectionNode(headA, headB):
+	linked_list_A = []
+	while headA != None:
+		linked_list_A.append(headA)
+		headA = headA.next
+	while headB != None:
+		if headB in linked_list_A:
+			return headB
+		else:
+			headB = headB.next
+	return 
+
+#1.1
+
 
 # Test
 ## Functional Test
@@ -73,6 +89,36 @@ def getIntersectionNode(headA, headB):
 
 """
 if __name__ == '__main__':
+	class ListNode:
+		def __init__(self, x):
+			self.val = x
+			self.next = None
+
+	def LinkedList2List(ListNode):
+		"""
+		ListNode: Head
+		rtype: List
+		"""
+		list1 = []
+		l0 = ListNode
+		while l0 != None:
+			list1.append(l0.val)
+			l0 = l0.next
+		return list1
+	
+	def List2LinkedList(List):
+		"""
+		rtype: Head of ListNode
+		"""
+		l = ListNode(0)
+		l0 = l
+		for i in range(len(List)):
+			l.val = List[i]
+			if i + 1 != len(List):
+				l.next = ListNode(0)
+				l = l.next
+		return l0
+
 	input1 = []
 	expected_output = []
 	for i in range(len(input1)):
