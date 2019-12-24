@@ -227,32 +227,47 @@ def minDepth(root):
 
 #112
 def hasPathSum(root, sum):
-	def leafPathSum(root):
-		def leafPath(root):			
-			leaf_s, leaf_s_val = [], []
-			if root:
-				leaf_s, leaf_s_val = leaf_s + leafPath(root.left)[0], leaf_s_val + leafPath(root.left)[1]
-				leaf_s, leaf_s_val = leaf_s + leafPath(root.right)[0], leaf_s_val + leafPath(root.right)[1]
-				if root.left == None and root.right == None:
-					leaf_s.append([root])
-					leaf_s_val.append([root.val])
-				for i, leaf in enumerate(leaf_s):
-					if root.left in leaf or root.right in leaf:
-						leaf_s[i].insert(0,root)
-						leaf_s_val[i].insert(0,root.val)
-			return leaf_s, leaf_s_val
-		_, leaf_s_val = leafPath(root)
+	def leafPath(root):			
+		leaf_s, leaf_s_val = [], []
+		if root:
+			leaf_s_left, leaf_s_val_left = leafPath(root.left)
+			leaf_s_right, leaf_s_val_right = leafPath(root.right)
+			leaf_s, leaf_s_val = leaf_s + leaf_s_left + leaf_s_right, leaf_s_val + leaf_s_val_left + leaf_s_val_right
+			if root.left == None and root.right == None:
+				leaf_s.append([root])
+				leaf_s_val.append([root.val])
+			for i, leaf in enumerate(leaf_s):
+				if root.left in leaf or root.right in leaf:
+					leaf_s[i].insert(0,root)
+					leaf_s_val[i].insert(0,root.val)
+		return leaf_s, leaf_s_val
+	def leafPathSum(leaf_s_val):		
 		for i, leaf in enumerate(leaf_s_val):
 			leaf_sum = 0
 			for val in leaf:
 				leaf_sum += val
 			leaf_s_val[i] = leaf_sum
 		return leaf_s_val
-	leaf_sum = leafPathSum(root)
+	_, leaf_s_val = leafPath(root)
+	leaf_sum = leafPathSum(leaf_s_val)
 	if sum in leaf_sum:
 		return True
 	else:
 		return False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
 	class TreeNode:
