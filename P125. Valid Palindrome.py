@@ -36,6 +36,10 @@ def isPalindrome(s):
 ## code here
 #1
 def isPalindrome(s):
+	if s == '':
+		return True
+	else:
+		
 
 # Test
 ## Functional Test

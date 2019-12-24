@@ -316,7 +316,12 @@ def maxProfit(prices):
 	earn_sum += earn
 	return earn_sum
 
-
+#136
+def singleNumber(nums):
+	nums.sort()
+	for num in set(nums):
+		if nums.count(num) == 1:
+			return num
 
 
 
@@ -529,12 +534,23 @@ if __name__ == '__main__':
 	# print(oneTimeMaxProfit(input_prices[-1]))
 
 	#122
-	input_prices = [[7,1,5,3,6,4],[1,2,3,4,5],[7,6,4,3,1]]
-	expected_output = [7,4,0]
-	for i in range(len(input_prices)):
-		if maxProfit(input_prices[i]) != expected_output[i]:
+	# input_prices = [[7,1,5,3,6,4],[1,2,3,4,5],[7,6,4,3,1]]
+	# expected_output = [7,4,0]
+	# for i in range(len(input_prices)):
+	# 	if maxProfit(input_prices[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(maxProfit(input_prices[i]))
+	# 	else:
+	# 		print("Right")
+	# print(maxProfit(input_prices[1]))
+
+	#136
+	input_nums = [[2,2,1], [4,1,2,1,2]]
+	expected_output = [1,4]
+	for i in range(len(input_nums)):
+		if singleNumber(input_nums[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(maxProfit(input_prices[i]))
+			print(singleNumber(input_nums[i]))
 		else:
 			print("Right")
-	print(maxProfit(input_prices[1]))
+	# print(singleNumber(input_nums[-1]))
