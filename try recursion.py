@@ -39,4 +39,5 @@ def leafPath(root):
 		leaf = leaf + leafPath(root.right)[0]	
 		leaf_s.append(leaf)
 	return leaf, leaf_s
-#
+
+#1.1
