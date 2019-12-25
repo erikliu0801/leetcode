@@ -38,5 +38,13 @@ For example, given the above Employee table, the query should return 200 as the 
 -- ## code here
 -- #1
 /*
+Output: {"headers": ["SecondHighestSalary"], "values": [[300], [200], [100]]}
 */
+SELECT Employee.Salary AS 'SecondHighestSalary'
+FROM Employee
+ORDER BY Salary DESC
+
+
+-- #1.1
+SELECT * FROM Employee ORDER BY Salary;
 
