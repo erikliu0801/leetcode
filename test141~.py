@@ -49,8 +49,28 @@ def titleToNumber(s):
 	add_sum = addSum(len(s)-1) + 1
 	for i in range(len(s)):
 		add_sum += digits.index(s[-1-i]) * 26 ** i
-	return add_sum    
+	return add_sum	
 
+#172
+def trailingZeroes(n):
+	negative = False
+	if n < 0 and n % 2 != 0:
+		negative = True
+	n = abs(n)
+	five_scale = 5
+	five_scale_addnum = [1]
+	while five_scale < n:
+		five_scale *= 5
+		five_scale_addnum.append(five_scale_addnum[-1]*5 +1)
+	add_num = 0
+	for i in range(1,len(five_scale_addnum)+1):
+		add_num += (n // five_scale) * five_scale_addnum[-i]
+		n %= five_scale
+		five_scale //= 5
+	if negative == True:
+		return 0 - add_num
+	else:
+		return add_num
 
 if __name__ == '__main__':
 	class ListNode:
@@ -111,4 +131,9 @@ if __name__ == '__main__':
 	# print(majorityElement([2,2,1,1,1,2,2]))
 
 	#171
-	print(titleToNumber('BA'))
+	# print(titleToNumber('BA'))
+
+	#172
+	# for i in range(1,11):
+	# 	print(factorial(i))
+	print(trailingZeroes(124))
