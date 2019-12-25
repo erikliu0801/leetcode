@@ -62,10 +62,15 @@ FROM Person, Address
 WHERE Person.PersonId = Address.PersonId
 -- GROUP BY Person.FirstName
 
--- #1.2
+-- #1.2 inner join
 /*
 Output: {"headers": ["FirstName", "LastName", "City", "State"], "values": []}
+
+Success
+Runtime: 714 ms, faster than 8.04% of MySQL online submissions for Combine Two Tables.
+Memory Usage: 0B, less than 100.00% of MySQL online submissions for Combine Two Tables.
 */
 SELECT Person.FirstName, Person.LastName, Address.City, Address.State 
-FROM Person, Address 
-WHERE Person.PersonId = Address.PersonId
+FROM Person
+LEFT JOIN Address
+ON Person.PersonId = Address.PersonId;
