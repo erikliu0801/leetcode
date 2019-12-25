@@ -38,6 +38,20 @@ def majorityElement(nums):
 		if nums.count(num) > len(nums)//2:
 			return num
 
+#171
+def titleToNumber(s):	
+	def addSum(digits):
+		add_sum = 0
+		if digits > 0:
+			add_sum = 26**digits + addSum(digits-1)
+		return add_sum
+	digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+	add_sum = addSum(len(s)-1) + 1
+	for i in range(len(s)):
+		add_sum += digits.index(s[-1-i]) * 26 ** i
+	return add_sum    
+
+
 if __name__ == '__main__':
 	class ListNode:
 		def __init__(self, x):
@@ -91,7 +105,10 @@ if __name__ == '__main__':
 	# 		print(convertToTitle(input_int[i]))
 	# 	else:
 	# 		print("Right")
-	# print(convertToTitle(182789))
+	# print(convertToTitle())
 
 	#169
-	print(majorityElement([2,2,1,1,1,2,2]))
+	# print(majorityElement([2,2,1,1,1,2,2]))
+
+	#171
+	print(titleToNumber('BA'))

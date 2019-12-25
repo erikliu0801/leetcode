@@ -34,7 +34,7 @@ Output: 701
 """
 # Conditions & Concepts
 """
-
+trans P168
 """
 # Code
 ## submit part
@@ -49,7 +49,23 @@ def titleToNumber(s):
 	"""
 ## code here
 #1
-def titleToNumber(s):
+"""
+Success
+Runtime: 36 ms, faster than 55.89% of Python3 online submissions for Excel Sheet Column Number.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Excel Sheet Column Number.
+"""
+def titleToNumber(s):	
+	def addSum(digits):
+		add_sum = 0
+		if digits > 0:
+			add_sum = 26**digits + addSum(digits-1)
+		return add_sum
+	digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+	add_sum = addSum(len(s)-1) + 1
+	for i in range(len(s)):
+		add_sum += digits.index(s[-1-i]) * 26 ** i
+	return add_sum
+
 
 # Test
 ## Functional Test
