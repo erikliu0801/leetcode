@@ -35,7 +35,15 @@ def majorityElement(nums):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 168 ms, faster than 97.37% of Python3 online submissions for Majority Element.
+Memory Usage: 14.2 MB, less than 97.62% of Python3 online submissions for Majority Element.
+"""
 def majorityElement(nums):
+	for num in set(nums):
+		if nums.count(num) > len(nums)//2:
+			return num
 
 # Test
 ## Functional Test

@@ -32,6 +32,11 @@ def convertToTitle(n):
 				digits_level -= 1
 			return all_digits
 
+#169
+def majorityElement(nums):
+	for num in set(nums):
+		if nums.count(num) > len(nums)//2:
+			return num
 
 if __name__ == '__main__':
 	class ListNode:
@@ -86,4 +91,7 @@ if __name__ == '__main__':
 	# 		print(convertToTitle(input_int[i]))
 	# 	else:
 	# 		print("Right")
-	print(convertToTitle(182789))
+	# print(convertToTitle(182789))
+
+	#169
+	print(majorityElement([2,2,1,1,1,2,2]))
