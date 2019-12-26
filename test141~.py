@@ -72,6 +72,18 @@ def trailingZeroes(n):
 	else:
 		return add_num
 
+#203
+def removeElements(head, val):
+	if head.val == val:
+		if head.next == None:
+			head = None
+		else:
+			head = head.next
+	if head.next != None:
+		removeElements(head.next, val)
+	return head
+
+
 if __name__ == '__main__':
 	class ListNode:
 		def __init__(self, x):
@@ -136,4 +148,7 @@ if __name__ == '__main__':
 	#172
 	# for i in range(1,11):
 	# 	print(factorial(i))
-	print(trailingZeroes(124))
+	# print(trailingZeroes(124))
+
+	#203
+	print(removeElements(List2LinkedList([1,2,6,3,4,5,6]),6))
