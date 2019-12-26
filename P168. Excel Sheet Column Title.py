@@ -58,112 +58,112 @@ def convertToTitle(n):
 # 		return add_sum
 
 #1.1
-"""
-len(digits_num) = 1 => ok
+# """
+# len(digits_num) = 1 => ok
 
-"""
-def convertToTitle(n):	
-	if n <= 0:
-		return
-	else:
-		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-		digits_sum = 26
-		digits_num = [26]
-		while digits_sum < n:
-			digits_sum += digits_sum*26
-			digits_num.append(digits_sum)
-		digits_num.pop()
-		all_digits = ''
-		while len(digits_num) != 0:
-			all_digits = all_digits + digits[n % digits_num[-1]-1]
-			digits_num.pop()
-		return all_digits
+# """
+# def convertToTitle(n):	
+# 	if n <= 0:
+# 		return
+# 	else:
+# 		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+# 		digits_sum = 26
+# 		digits_num = [26]
+# 		while digits_sum < n:
+# 			digits_sum += digits_sum*26
+# 			digits_num.append(digits_sum)
+# 		digits_num.pop()
+# 		all_digits = ''
+# 		while len(digits_num) != 0:
+# 			all_digits = all_digits + digits[n % digits_num[-1]-1]
+# 			digits_num.pop()
+# 		return all_digits
 
-#1.2
-def convertToTitle(n):	
-	if n <= 0:
-		return
-	else:
-		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']	
-		digits_sum, digits_num, digits_level =0, 1, 1
-		while digits_num <= n and digits_sum != n:
-			digits_num *= 26
-			digits_level += 1
-			digits_sum += digits_num
-		digits_num //= 26
-		digits_level -= 1
-		all_digits = ''
-		while digits_level != 0:
-			all_digits = all_digits + digits[n//digits_num-1]
-			n %= 26
-			digits_num //= 26
-			digits_level -= 1
-		return all_digits
+# #1.2
+# def convertToTitle(n):	
+# 	if n <= 0:
+# 		return
+# 	else:
+# 		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']	
+# 		digits_sum, digits_num, digits_level =0, 1, 1
+# 		while digits_num <= n and digits_sum != n:
+# 			digits_num *= 26
+# 			digits_level += 1
+# 			digits_sum += digits_num
+# 		digits_num //= 26
+# 		digits_level -= 1
+# 		all_digits = ''
+# 		while digits_level != 0:
+# 			all_digits = all_digits + digits[n//digits_num-1]
+# 			n %= 26
+# 			digits_num //= 26
+# 			digits_level -= 1
+# 		return all_digits
 
-#1.3
-def convertToTitle(n):	
-	if n <= 0:
-		return
-	else:
-		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']	
-		digits_sum, digits_num, digits_level =0, 1, 1
-		while digits_num <= n:
-			digits_num *= 26
-			digits_level += 1
-			digits_sum += digits_num
-		digits_num //= 26
-		digits_level -= 1
-		all_digits = ''
-		while digits_level != 0:
-			all_digits = all_digits + digits[n//digits_num-1]
-			n %= 26
-			digits_num //= 26
-			digits_level -= 1
-		return all_digits
+# #1.3
+# def convertToTitle(n):	
+# 	if n <= 0:
+# 		return
+# 	else:
+# 		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']	
+# 		digits_sum, digits_num, digits_level =0, 1, 1
+# 		while digits_num <= n:
+# 			digits_num *= 26
+# 			digits_level += 1
+# 			digits_sum += digits_num
+# 		digits_num //= 26
+# 		digits_level -= 1
+# 		all_digits = ''
+# 		while digits_level != 0:
+# 			all_digits = all_digits + digits[n//digits_num-1]
+# 			n %= 26
+# 			digits_num //= 26
+# 			digits_level -= 1
+# 		return all_digits
 
-#1.4
-def convertToTitle(n):	
-	if n <= 0:
-		return
-	else:
-		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']	
-		digits_sum, digits_num, digits_level = 0, 1, 0
-		while digits_sum < n:
-			digits_num *= 26
-			digits_level += 1
-			digits_sum += digits_num		
-		if digits_sum == n:
-			return 'Z' * digits_level
-		else:
-			all_digits = ''
-			while  digits_level != 0:
-				all_digits = all_digits + digits[n//26**digits_level]
-				n -= 26**digits_level
-				digits_level -= 1
-			return all_digits
+# #1.4
+# def convertToTitle(n):	
+# 	if n <= 0:
+# 		return
+# 	else:
+# 		digits = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']	
+# 		digits_sum, digits_num, digits_level = 0, 1, 0
+# 		while digits_sum < n:
+# 			digits_num *= 26
+# 			digits_level += 1
+# 			digits_sum += digits_num		
+# 		if digits_sum == n:
+# 			return 'Z' * digits_level
+# 		else:
+# 			all_digits = ''
+# 			while  digits_level != 0:
+# 				all_digits = all_digits + digits[n//26**digits_level]
+# 				n -= 26**digits_level
+# 				digits_level -= 1
+# 			return all_digits
 
 
-#1.5
-def convertToTitle(n):	
-	if n <= 0:
-		return
-	else:
-		digits = ['Z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y']	
-		digits_sum, digits_num, digits_level = 0, 1, 0
-		while digits_sum < n:
-			digits_num *= 26
-			digits_level += 1
-			digits_sum += digits_num
-		if digits_sum == n:
-			return 'Z' * digits_level
-		else:
-			all_digits = ''
-			while n != -1:
-				all_digits = digits[n % 26] + all_digits
-				n = n//26
-				if n == 27:
-					n -= 1
-			return all_digits
+# #1.5
+# def convertToTitle(n):	
+# 	if n <= 0:
+# 		return
+# 	else:
+# 		digits = ['Z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y']	
+# 		digits_sum, digits_num, digits_level = 0, 1, 0
+# 		while digits_sum < n:
+# 			digits_num *= 26
+# 			digits_level += 1
+# 			digits_sum += digits_num
+# 		if digits_sum == n:
+# 			return 'Z' * digits_level
+# 		else:
+# 			all_digits = ''
+# 			while n != -1:
+# 				all_digits = digits[n % 26] + all_digits
+# 				n = n//26
+# 				if n == 27:
+# 					n -= 1
+# 			return all_digits
 
 #1.6
 """

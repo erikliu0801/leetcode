@@ -46,5 +46,34 @@ ORDER BY Salary DESC
 
 
 -- #1.1
-SELECT * FROM Employee ORDER BY Salary;
+/*
+Output: {"headers": ["SecondHighestSalary"], "values": [[300], [200]]}
 
+
+Input: {"headers": {"Employee": ["Id", "Salary"]}, "rows": {"Employee": [[1, 100]]}}
+Output: {"headers": ["SecondHighestSalary"], "values": []}
+Expected: {"headers":["SecondHighestSalary"],"values":[[null]]}
+*/
+SELECT Employee.Salary AS 'SecondHighestSalary'
+FROM Employee
+ORDER BY Salary DESC
+LIMIT 1,1
+
+-- #1.2
+/*
+Output: {"headers": ["SecondHighestSalary"], "values": [[300], [200]]}
+*/
+SELECT Employee.Salary AS 'SecondHighestSalary'
+FROM Employee
+ORDER BY Salary DESC
+-- WHERE ROWNUM = 2
+-- OFFSET 1 ROWS
+-- FETCH NEXT 1 ROWS ONLY
+
+-- #1.2
+INSERT INTO Employee.Salary (Id, Salary) VALUES ('0','null');
+INSERT INTO Employee.Salary (Id, Salary) VALUES ('0','null');
+SELECT Employee.Salary AS 'SecondHighestSalary'
+FROM Employee
+ORDER BY Salary DESC
+LIMIT 1,1

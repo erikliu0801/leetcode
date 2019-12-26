@@ -24,9 +24,8 @@ rotate 1 steps to the right: [99,-1,-100,3]
 rotate 2 steps to the right: [3,99,-1,-100]
 
 Note:
-
-    Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.
-    Could you do it in-place with O(1) extra space?
+Try to come up as many solutions as you can, there are at least 3 different ways to solve this problem.
+Could you do it in-place with O(1) extra space?
 
 
 """
@@ -51,7 +50,19 @@ def rotate(nums, k):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 124 ms, faster than 21.18% of Python3 online submissions for Rotate Array.
+Memory Usage: 14.2 MB, less than 5.09% of Python3 online submissions for Rotate Array.
+"""
 def rotate(nums, k):
+	if nums == [] or k == 0:
+		return 
+	else:
+		for _ in range(k):
+			nums.insert(0,nums[-1])
+			nums.pop()
+		return nums
 
 # Test
 ## Functional Test
