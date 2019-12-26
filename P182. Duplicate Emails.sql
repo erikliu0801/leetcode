@@ -37,8 +37,22 @@ For example, your query should return the following for the above table:
 -- ## code here
 -- #1
 /*
+Success
+Runtime: 752 ms, faster than 5.01% of MySQL online submissions for Duplicate Emails.
+Memory Usage: 0B, less than 100.00% of MySQL online submissions for Duplicate Emails.
 */
+SELECT P.Email
+FROM (
+	SELECT Id, Email, COUNT(Email) AS email_count
+	FROM Person
+	GROUP BY Email) P
+WHERE email_count > 1; 
+
 
 -- 1.1
 /*
+{"headers": ["Id", "Email", "email_count"], "values": [[1, "a@b.com", 2], [2, "c@d.com", 1]]}
 */
+SELECT Id, Email, COUNT(Email) AS email_count
+FROM Person
+GROUP BY Email
