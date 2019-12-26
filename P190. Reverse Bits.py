@@ -4,9 +4,7 @@
 190. Reverse Bits
 Easy
 
-Reverse bits of a given 32 bits unsigned integer.
-
- 
+Reverse bits of a given 32 bits unsigned integer. 
 
 Example 1:
 Input: 00000010100101000001111010011100
@@ -42,8 +40,19 @@ def reverseBits(n):
 	"""
 ## code here
 #1
-def reverseBits(n):
+"""
+n: 43261596
+Your input :00000010100101000001111010011100
+Output: 15065253 (00000000111001011110000010100101)
+Expected: 964176192 (00111001011110000010100101000000)
 
+Success
+Runtime: 16 ms, faster than 99.65% of Python3 online submissions for Reverse Bits.
+Memory Usage: 12.9 MB, less than 100.00% of Python3 online submissions for Reverse Bits.
+"""
+def reverseBits(n):
+	return int(str(bin(n))[2:][::-1]+'0'*(34-len(bin(n))), base=2)
+	
 # Test
 ## Functional Test
 """
