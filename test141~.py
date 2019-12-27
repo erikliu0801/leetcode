@@ -74,13 +74,20 @@ def trailingZeroes(n):
 
 #203
 def removeElements(head, val):
-	if head.val == val:
-		if head.next == None:
-			head = None
-		else:
+	if type(head) != ListNode:
+		return
+	while head.val == val:
+		if head.next != None:
 			head = head.next
-	if head.next != None:
-		removeElements(head.next, val)
+		else:
+			return
+	if head.next == None:
+		return head
+	l1 = removeElements(head.next, val)
+	if l1:
+		head.next = l1
+	else:
+		head.next = None
 	return head
 
 
@@ -151,4 +158,4 @@ if __name__ == '__main__':
 	# print(trailingZeroes(124))
 
 	#203
-	print(removeElements(List2LinkedList([1,2,6,3,4,5,6]),6))
+	# print(LinkedList2List(removeElements(List2LinkedList([6,6,3,4,5,6,6]),6)))
