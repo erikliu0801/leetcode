@@ -2,6 +2,18 @@
 def invertTree(root):
 	pass
 
+#231
+def isPowerOfTwo(n):
+	if n%2 == 1 and n != 1:
+		return False
+	else:
+		i = 0
+		while 2**i <= n:
+			if 2**i == n:
+				return True
+			i += 1
+		return False
+
 if __name__ == '__main__':
 	class TreeNode:
 		def __init__(self, x):
@@ -32,9 +44,12 @@ if __name__ == '__main__':
 				self.val = val
 
 	#226
-	input_nums = [[4, 2, 7, 1, 3, 6, 9]]
-	for nums in input_nums:
-		root = TreeNode(nums[0])
-		for i in nums[1:]:
-			root.insert(i)
-	invertTree(root)
+	# input_nums = [[4, 2, 7, 1, 3, 6, 9]]
+	# for nums in input_nums:
+	# 	root = TreeNode(nums[0])
+	# 	for i in nums[1:]:
+	# 		root.insert(i)
+	# invertTree(root)
+
+	#231
+	print(isPowerOfTwo(16))

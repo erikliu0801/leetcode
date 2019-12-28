@@ -1,24 +1,20 @@
 # ToDo:
 
 """
-231. Power of Two
+234. Palindrome Linked List
 Easy
-Given an integer, write a function to determine if it is a power of two.
+Given a singly linked list, determine if it is a palindrome.
 
 Example 1:
 
-Input: 1
-Output: true 
-Explanation: 2**0 = 1
+Input: 1->2
+Output: false
 Example 2:
 
-Input: 16
+Input: 1->2->2->1
 Output: true
-Explanation: 2**4 = 16
-Example 3:
-
-Input: 2**18
-Output: false
+Follow up:
+Could you do it in O(n) time and O(1) space?
 
 """
 # Conditions & Concepts
@@ -27,33 +23,24 @@ Output: false
 """
 # Code
 ## submit part
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
 class Solution:
-    def isPowerOfTwo(self, n: int) -> bool:
+    def isPalindrome(self, head: ListNode) -> bool:
         
 ## test part
-def isPowerOfTwo(n):
+def isPalindrome(head):
 	"""
-	n: int
+	head: ListNode
 	rtype: bool
 	"""
 ## code here
 #1
-"""
-Success
-Runtime: 32 ms, faster than 63.85% of Python3 online submissions for Power of Two.
-Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Power of Two.
-"""
-def isPowerOfTwo(n):
-	if n%2 == 1 and n != 1:
-		return False
-	else:
-		i = 0
-		while 2**i <= n:
-			if 2**i == n:
-				return True
-			i += 1
-		return False
-
+def isPalindrome(head):
 
 # Test
 ## Functional Test
