@@ -38,7 +38,13 @@ def containsDuplicate(nums):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 120 ms, faster than 97.06% of Python3 online submissions for Contains Duplicate.
+Memory Usage: 18.1 MB, less than 88.68% of Python3 online submissions for Contains Duplicate.
+"""
 def containsDuplicate(nums):
+	return len(set(nums)) != len(nums)
 
 # Test
 ## Functional Test
