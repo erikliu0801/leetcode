@@ -110,6 +110,31 @@ def countPrimes(n):
 		print(time.time() - now)
 		return len(primes)
 
+#205
+def isIsomorphic(s, t):
+	pass
+
+#206
+def reverseList(head):
+	if type(head) != ListNode:
+		return
+	elif head.next == None:
+		return head
+	else:
+		node = head.next #n2
+		head.next = None #n1->X
+		while node.next: #if n3 exist
+			new_head = node.next #n3
+			node.next = head #n2->n1
+			if new_head.next != None:
+				head = node # n1 = n2
+				node = new_head # n2 = n3
+			else:
+				new_head.next = node #n3->n2
+				return new_head
+		node.next = head
+		return node
+
 if __name__ == '__main__':
 	class ListNode:
 		def __init__(self, x):
@@ -180,4 +205,19 @@ if __name__ == '__main__':
 	# print(LinkedList2List(removeElements(List2LinkedList([6,6,3,4,5,6,6]),6)))
 
 	#204
-	print(countPrimes(1000000))
+	# print(countPrimes(1000000))
+
+	#205
+	# input_s = ['egg', 'foo', 'paper']
+	# input_t = ['add', 'bar', 'title']
+	# expected_output = [True, False, True]
+	# for i in range(len(input_s)):
+	# 	if isIsomorphic(input_s[i],input_t[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(isIsomorphic(input_s[i],input_t[i]))
+	# 	else:
+	# 		print("Right")
+	# print(isIsomorphic(input_s[-1],input_t[-1]))
+	
+	#206
+	print(LinkedList2List(reverseList(List2LinkedList([1,2]))))

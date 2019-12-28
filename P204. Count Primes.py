@@ -378,7 +378,6 @@ input: 10000 (0.005s) VV
 input: 100000 (0.42s) VV
 input: 100000 (1.73s) VV
 
-
 Success
 Runtime: 2428 ms, faster than 5.02% of Python3 online submissions for Count Primes.
 Memory Usage: 124.6 MB, less than 20.69% of Python3 online submissions for Count Primes.
