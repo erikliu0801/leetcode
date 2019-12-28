@@ -139,6 +139,9 @@ def reverseList(head):
 def containsDuplicate(nums):
 	return len(set(nums)) != len(nums)
 
+#219
+
+
 if __name__ == '__main__':
 	class ListNode:
 		def __init__(self, x):
@@ -227,4 +230,6 @@ if __name__ == '__main__':
 	# print(LinkedList2List(reverseList(List2LinkedList([1,2]))))
 
 	#217
-	print(containsDuplicate([1,2]))
+	# print(containsDuplicate([1,2]))
+
+	#219
