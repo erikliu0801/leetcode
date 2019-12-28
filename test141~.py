@@ -90,6 +90,25 @@ def removeElements(head, val):
 		head.next = None
 	return head
 
+#204
+def countPrimes(n):
+	import time
+	now = time.time()
+	if n <= 2:
+		return 0
+	else:
+		primes = set({2})
+		x = set(range(3,n,2))
+		while len(x) != 0:
+			prime = min(x)
+			primes.add(prime)
+			x.remove(prime)#
+			x -= x.intersection(set(range(prime**2,n,prime))) ##
+			if prime**2 >= n:
+				break
+		primes |= x
+		print(time.time() - now)
+		return len(primes)
 
 if __name__ == '__main__':
 	class ListNode:
@@ -159,3 +178,6 @@ if __name__ == '__main__':
 
 	#203
 	# print(LinkedList2List(removeElements(List2LinkedList([6,6,3,4,5,6,6]),6)))
+
+	#204
+	print(countPrimes(1000000))
