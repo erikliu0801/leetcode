@@ -40,7 +40,25 @@ def isPalindrome(head):
 	"""
 ## code here
 #1
+"""
+adjust from P206 reverseList(head) X => pointer issue
+
+Success
+Runtime: 68 ms, faster than 86.67% of Python3 online submissions for Palindrome Linked List.
+Memory Usage: 23 MB, less than 100.00% of Python3 online submissions for Palindrome Linked List.
+"""
 def isPalindrome(head):
+	def LinkedList2List(ListNode):
+		list1 = []
+		l0 = ListNode
+		while l0 != None:
+			list1.append(l0.val)
+			l0 = l0.next
+		return list1
+	nums = LinkedList2List(head)
+    reverse_nums = nums[::-1]
+	return nums == reverse_nums
+
 
 # Test
 ## Functional Test

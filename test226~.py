@@ -52,4 +52,4 @@ if __name__ == '__main__':
 	# invertTree(root)
 
 	#231
-	print(isPowerOfTwo(16))
+	# print(isPowerOfTwo(16))
