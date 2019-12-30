@@ -38,7 +38,18 @@ def addDigits(num):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 20 ms, faster than 99.45% of Python3 online submissions for Add Digits.
+Memory Usage: 12.6 MB, less than 100.00% of Python3 online submissions for Add Digits.
+"""
 def addDigits(num):
+	while num > 9:
+		temp = 0
+		for j in str(num):
+			temp += int(j)
+		num = temp
+	return num
 
 # Test
 ## Functional Test
