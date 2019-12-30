@@ -15,7 +15,8 @@ def isPowerOfTwo(n):
 		return False
 
 #235
-
+def lowestCommonAncestor(root, p, q):
+	pass
 
 if __name__ == '__main__':
 	class TreeNode:
