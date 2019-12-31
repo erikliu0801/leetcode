@@ -33,7 +33,21 @@ def missingNumber(nums):
 	"""
 ## code here
 #1
+"""
+Runtime Error
+Last executed input: [0]
+
+Success
+Runtime: 148 ms, faster than 64.16% of Python3 online submissions for Missing Number.
+Memory Usage: 14.8 MB, less than 6.45% of Python3 online submissions for Missing Number.
+"""
 def missingNumber(nums):
+	nums = set(nums)
+	complete_nums = set(range(0,max(nums)))
+	missing_nums = complete_nums - nums
+	if missing_nums == set():
+		return max(nums) +1
+	return missing_nums.pop()
 
 # Test
 ## Functional Test
