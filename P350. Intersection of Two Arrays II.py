@@ -43,7 +43,19 @@ def intersect(nums1, nums2):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 64 ms, faster than 24.35% of Python3 online submissions for Intersection of Two Arrays II.
+Memory Usage: 12.9 MB, less than 100.00% of Python3 online submissions for Intersection of Two Arrays II.
+"""
 def intersect(nums1, nums2):
+	instersect_nums = list()
+	for instersect_num in set(nums1)&set(nums2):
+		for _ in range(min(nums1.count(instersect_num),nums2.count(instersect_num))):
+			instersect_nums.append(instersect_num)
+	return instersect_nums
+
+
 
 # Test
 ## Functional Test
