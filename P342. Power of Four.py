@@ -33,7 +33,49 @@ def isPowerOfFour(num):
 	"""
 ## code here
 #1
+"""
+Input: 2
+Output: true
+Expected: false
+"""
+# def isPowerOfFour(num):
+# 	if num <= 0:
+# 		return False
+# 	import math
+# 	max_int = 2**31-1
+# 	max_power = int(math.log(max_int,4))
+# 	return 4**max_power % num == 0
+
+#1.1
+"""
+ajust from P231 isPowerOfTwo(n)
+def isPowerOfTwo(n):
+	if n%2 == 1 and n != 1:
+		return False
+	else:
+		i = 0
+		while 2**i <= n:
+			if 2**i == n:
+				return True
+			i += 1
+		return False
+
+Success
+Runtime: 24 ms, faster than 95.30% of Python3 online submissions for Power of Four.
+Memory Usage: 12.6 MB, less than 100.00% of Python3 online submissions for Power of Four.
+"""
 def isPowerOfFour(num):
+	if num <= 0:
+		return False
+	elif num%2 == 1 and num != 1:
+		return False
+	else:
+		i = 0
+		while 4**i <= num:
+			if 4**i == num:
+				return True
+			i += 1
+		return False
 
 # Test
 ## Functional Test
