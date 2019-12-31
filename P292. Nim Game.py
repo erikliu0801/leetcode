@@ -33,7 +33,13 @@ def canWinNim(n):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 24 ms, faster than 86.06% of Python3 online submissions for Nim Game.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Nim Game.
+"""
 def canWinNim(n):
+	return n % 4 != 0
 
 # Test
 ## Functional Test
