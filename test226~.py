@@ -36,7 +36,22 @@ def primeFactorization(num):
 			x -= x.intersection(set(range(prime**2,num+1,prime)))
 	return primes
 
-
+#290
+def wordPattern(patternstr, str):
+	nums_str = str.split(' ')
+	if len(patternstr) != len(nums_str):
+		return False
+	p_to_s = {}
+	have_ds = set()
+	for dp, ds in zip(patternstr, nums_str):
+		if dp not in p_to_s:
+			if ds in have_ds:
+				return False
+			p_to_s[dp] = ds
+			have_ds.add(ds)
+		if p_to_s[dp] != ds:
+			return False
+	return True
 
 
 def isUgly(num):
@@ -54,7 +69,7 @@ if __name__ == '__main__':
 			self.val = x
 			self.left = None
 			self.right = None
-   
+
 		def PrintTree(self):
 			if self.left:
 				self.left.PrintTree()
@@ -89,8 +104,20 @@ if __name__ == '__main__':
 	# print(isPowerOfTwo(16))
 
 	#263
-	import time
-	now = time.time()
-	for i in range(1, 2**31-1):
-		print(primeFactorization(i))
-	print(time.time() - now)
+	# import time
+	# now = time.time()
+	# for i in range(1, 2**31-1):
+	# 	print(primeFactorization(i))
+	# print(time.time() - now)
+
+	#290
+	input_patternstr = ["abba", "abba", "aaaa", "abba"]
+	input_str = ["dog cat cat dog", "dog cat cat fish", "dog cat cat dog", "dog dog dog dog"]
+	expected_output = [True, False, False, False]
+	for i in range(len(input_patternstr)):
+		if wordPattern(input_patternstr[i], input_str[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(wordPattern(input_patternstr[i], input_str[i]))
+		else:
+			print("Right")
+	print(wordPattern(input_patternstr[2], input_str[1]))

@@ -37,7 +37,7 @@ class Solution:
     def wordPattern(self, pattern: str, str: str) -> bool:
         
 ## test part
-def wordPattern(patternstr):
+def wordPattern(pattern, str):
 	"""
 	pattern: str
 	str: str
@@ -45,7 +45,26 @@ def wordPattern(patternstr):
 	"""
 ## code here
 #1
-def wordPattern(patternstr):
+"""
+Success
+Runtime: 28 ms, faster than 77.71% of Python3 online submissions for Word Pattern.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Word Pattern.
+"""
+def wordPattern(pattern, str):
+	nums_str = str.split(' ')
+	if len(pattern) != len(nums_str):
+		return False
+	p_to_s = {}
+	have_ds = set()
+	for dp, ds in zip(pattern, nums_str):
+		if dp not in p_to_s:
+			if ds in have_ds:
+				return False
+			p_to_s[dp] = ds
+			have_ds.add(ds)
+		if p_to_s[dp] != ds:
+			return False
+	return True
 
 # Test
 ## Functional Test
@@ -54,15 +73,16 @@ def wordPattern(patternstr):
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
-	for i in range(len(input1)):
-		if func(input1[i]) != expected_output[i]:
+	input_pattern = ["abba", "abba", "abba", "abba"]
+	input_str = ["dog cat cat dog", "dog cat cat fish", "dog cat cat dog", "dog dog dog dog"]
+	expected_output = [True, False, False, False]
+	for i in range(len(input_pattern)):
+		if wordPattern(input_pattern[i], input_str[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(func(input1[i]))
+			print(wordPattern(input_pattern[i], input_str[i]))
 		else:
 			print("Right")		
-	# print(func(input1[-1]))
+	# print(wordPattern(input_pattern[-1], input_str[-1]))
 	
 
 ## Performance Test
