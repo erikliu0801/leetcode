@@ -43,6 +43,35 @@ def moveZeroes(nums):
 	"""
 ## code here
 #1
+"""
+Time Limit Exceeded
+Last executed input: [0,0]
+
+Wrong Answer
+Input: [2,1]
+Output: [1,2]
+Expected: [2,1]
+
+Misunderstanding
+"""
+def moveZeroes(nums):
+	if len(nums) not in [0,1]:
+		nums.sort()
+		for _ in range(nums.count(0)):
+			nums.pop(0)
+			nums.append(0)
+
+#1.1
+"""
+Success
+Runtime: 96 ms, faster than 21.83% of Python3 online submissions for Move Zeroes.
+Memory Usage: 13.9 MB, less than 100.00% of Python3 online submissions for Move Zeroes.
+"""
+def moveZeroes(nums):
+	if len(nums) not in [0,1]:
+		for _ in range(nums.count(0)):
+			nums.remove(0)
+			nums.append(0)
 
 
 # Test
