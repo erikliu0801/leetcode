@@ -18,6 +18,35 @@ def isPowerOfTwo(n):
 def lowestCommonAncestor(root, p, q):
 	pass
 
+#263
+def primeFactorization(num):
+	prime = 2
+	checked_primes = set({2})
+	x = set(range(3,num+1,2))
+	primes = set()
+	while prime <= num:
+		if num % prime == 0:
+			primes.add(prime)
+			while num % prime == 0:
+				num = num // prime
+		if len(x) != 0:
+			prime = min(x)
+			checked_primes.add(prime)
+			x.remove(prime)
+			x -= x.intersection(set(range(prime**2,num+1,prime)))
+	return primes
+
+
+
+def isUgly(num):
+	def findPrimes(n):
+		pass
+	num = abs(num)
+	num_primes = findPrimes(num)
+	if num_primes - set({2,3,5}) == set({}):
+		return True
+	return False
+
 if __name__ == '__main__':
 	class TreeNode:
 		def __init__(self, x):
@@ -57,3 +86,10 @@ if __name__ == '__main__':
 
 	#231
 	# print(isPowerOfTwo(16))
+
+	#263
+	import time
+	now = time.time()
+	for i in range(1, 2**31-1):
+		print(primeFactorization(i))
+	print(time.time() - now)

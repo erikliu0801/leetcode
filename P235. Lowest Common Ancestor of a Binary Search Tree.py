@@ -74,19 +74,18 @@ def leafPath(root):
 	return leaf_s, leaf_s_val
 """
 def lowestCommonAncestor(root, p, q):
-	leafeaf_s, leaf_s_val = [], []
+	leafeaf_s = []
+	find = set([p,q]) #
 	if root:
-		leaf_s_left, leaf_s_val_left = leafPath(root.left)
-		leaf_s_right, leaf_s_val_right = leafPath(root.right)
-		leaf_s, leaf_s_val = leaf_s + leaf_s_left + leaf_s_right, leaf_s_val + leaf_s_val_left + leaf_s_val_right
+		leaf_s_left = leafPath(root.left)
+		leaf_s_right = leafPath(root.right)
+		leaf_s = leaf_s + leaf_s_left + leaf_s_right
 		if root.left == None and root.right == None:
 			leaf_s.append([root])
-			leaf_s_val.append([root.val])
 		for i, leaf in enumerate(leaf_s):
 			if root.left in leaf or root.right in leaf:
 				leaf_s[i].insert(0,root)
-				leaf_s_val[i].insert(0,root.val)
-	return leaf_s, leaf_s_val
+	return leaf_s
 
 
 # Test
