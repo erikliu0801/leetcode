@@ -41,7 +41,14 @@ def reverseString(s):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 208 ms, faster than 92.43% of Python3 online submissions for Reverse String.
+Memory Usage: 17.1 MB, less than 100.00% of Python3 online submissions for Reverse String.
+"""
 def reverseString(s):
+	# s = s[::-1]
+	s.reverse()
 
 # Test
 ## Functional Test
