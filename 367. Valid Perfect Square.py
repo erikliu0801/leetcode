@@ -24,8 +24,8 @@ Output: false
 # Code
 ## submit part
 class Solution:
-    def isPerfectSquare(self, num: int) -> bool:
-        
+	def isPerfectSquare(self, num: int) -> bool:
+		
 ## test part
 def isPerfectSquare(num):
 	"""
@@ -34,9 +34,14 @@ def isPerfectSquare(num):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 16 ms, faster than 99.75% of Python3 online submissions for Valid Perfect Square.
+Memory Usage: 12.5 MB, less than 100.00% of Python3 online submissions for Valid Perfect Square.
+"""
 def isPerfectSquare(num):
-	
-
+	import math
+	return math.sqrt(num)%1 == 0
 
 # Test
 ## Functional Test
@@ -68,4 +73,4 @@ class Test(unittest.TestCase):
 		pass
 
 if __name__ == '__main__':
-    unittest.main()
+	unittest.main()
