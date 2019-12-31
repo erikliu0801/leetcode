@@ -53,6 +53,30 @@ def wordPattern(patternstr, str):
 			return False
 	return True
 
+#299
+def getHint(secret, guess):
+	if guess == '':
+		return '0A0B'
+	elif secret == guess:
+		return str(len(secret)) + 'A0B'
+	bulls, cows = 0, 0
+	secret, guess = list(secret), list(guess)
+	s_g_nums = list()
+	for s_g in zip(secret,guess):
+		s_g_nums.append(s_g)
+	secret, guess = list(), list()
+	for s_num, g_num in s_g_nums.copy():
+		if s_num == g_num:
+			bulls +=1
+			s_g_nums.remove((s_num,g_num))
+		else:
+			secret.append(s_num)
+			guess.append(g_num)
+	for num in guess:
+		if num in secret:
+			cows += 1
+			secret.remove(num)
+	return str(bulls) + 'A' + str(cows) + 'B'
 
 def isUgly(num):
 	def findPrimes(n):
@@ -111,13 +135,25 @@ if __name__ == '__main__':
 	# print(time.time() - now)
 
 	#290
-	input_patternstr = ["abba", "abba", "aaaa", "abba"]
-	input_str = ["dog cat cat dog", "dog cat cat fish", "dog cat cat dog", "dog dog dog dog"]
-	expected_output = [True, False, False, False]
-	for i in range(len(input_patternstr)):
-		if wordPattern(input_patternstr[i], input_str[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(wordPattern(input_patternstr[i], input_str[i]))
-		else:
-			print("Right")
-	print(wordPattern(input_patternstr[2], input_str[1]))
+	# input_patternstr = ["abba", "abba", "aaaa", "abba"]
+	# input_str = ["dog cat cat dog", "dog cat cat fish", "dog cat cat dog", "dog dog dog dog"]
+	# expected_output = [True, False, False, False]
+	# for i in range(len(input_patternstr)):
+	# 	if wordPattern(input_patternstr[i], input_str[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(wordPattern(input_patternstr[i], input_str[i]))
+	# 	else:
+	# 		print("Right")
+	# print(wordPattern(input_patternstr[2], input_str[1]))
+
+	#299
+	# input_secret = ["1807", "1123", "11"]
+	# input_guess = ["7810", "0111", "11"]
+	# expected_output = ["1A3B", "1A1B", "2A0B"]
+	# for i in range(len(input_secret)):
+	# 	if getHint(input_secret[i], input_guess[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(getHint(input_secret[i], input_guess[i]))
+	# 	else:
+	# 		print("Right")
+	# print(getHint(input_secret[-1], input_guess[-1]))

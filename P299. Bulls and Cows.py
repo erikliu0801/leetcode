@@ -44,7 +44,95 @@ def getHint(secret, guess):
 	"""
 ## code here
 #1
+"""
+Runtime Error
+Last executed input
+"11"
+"11"
+
+len(secret) = len(guess)
+"""
+# def getHint(secret, guess):
+# 	if guess == '':
+# 		return '0A0B'
+# 	elif secret == guess:
+# 		return str(len(secret)) + 'A0B'
+# 	bulls, cows = 0, 0
+# 	bulls_position = list()
+# 	secret, guess = list(secret)[::-1], list(guess)[::-1]
+# 	for i, num in enumerate(secret):
+# 		if num == guess[i]:
+# 			bulls += 1
+# 			bulls_position.append(i)
+# 		if i+1 == len(guess):
+# 			break
+# 	for i in bulls_position: #
+# 		secret.pop(i)
+# 		guess.pop(i)
+# 	for num in guess:
+# 		if num in secret:
+# 			cows += 1
+# 			secret.remove(num)
+# 	return str(bulls) + 'A' + str(cows) + 'B'
+
+#1.1
+"""
+Wrong Answer
+Input: "9305"
+"9205"
+Output: "2A1B"
+Expected: "3A0B"
+"""
+# def getHint(secret, guess):
+# 	if guess == '':
+# 		return '0A0B'
+# 	elif secret == guess:
+# 		return str(len(secret)) + 'A0B'
+# 	bulls, cows = 0, 0
+# 	secret, guess = list(secret), list(guess)
+# 	for s_num, g_num in zip(secret,guess):
+# 		if s_num == g_num:
+# 			bulls += 1
+# 			secret.remove(s_num)
+# 			guess.remove(g_num)
+# 	for num in guess:
+# 		if num in secret:
+# 			cows += 1
+# 			secret.remove(num)
+# 	return str(bulls) + 'A' + str(cows) + 'B'
+
+#1.2
+"""
+Runtime Error
+ValueError: Expected object or value
+
+Success
+Runtime: 96 ms, faster than 5.00% of Python3 online submissions for Bulls and Cows.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Bulls and Cows.
+"""
 def getHint(secret, guess):
+	if guess == '':
+		return '0A0B'
+	elif secret == guess:
+		return str(len(secret)) + 'A0B'
+	bulls, cows = 0, 0
+	secret, guess = list(secret), list(guess)
+	s_g_nums = list()
+	for s_g in zip(secret,guess):
+		s_g_nums.append(s_g)
+	secret, guess = list(), list()
+	for s_num, g_num in s_g_nums.copy():
+		if s_num == g_num:
+			bulls +=1
+			s_g_nums.remove((s_num,g_num))
+		else:
+			secret.append(s_num)
+			guess.append(g_num)
+	for num in guess:
+		if num in secret:
+			cows += 1
+			secret.remove(num)
+	return str(bulls) + 'A' + str(cows) + 'B'
 
 # Test
 ## Functional Test
@@ -53,15 +141,16 @@ def getHint(secret, guess):
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
-	for i in range(len(input1)):
-		if func(input1[i]) != expected_output[i]:
+	input_secret = ["1807", "1123", "11"]
+	input_guess = ["7810", "0111", "11"]
+	expected_output = ["1A3B", "1A1B", "2A0B"]
+	for i in range(len(input_secret)):
+		if getHint(input_secret[i], input_guess[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(func(input1[i]))
+			print(getHint(input_secret[i], input_guess[i]))
 		else:
 			print("Right")		
-	# print(func(input1[-1]))
+	# print(getHint(input_secret[-1], input_guess[-1]))
 	
 
 ## Performance Test
