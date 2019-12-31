@@ -38,6 +38,7 @@ def primeFactorization(num):
 
 
 
+
 def isUgly(num):
 	def findPrimes(n):
 		pass

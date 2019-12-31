@@ -42,7 +42,67 @@ class Solution:
 def firstBadVersion(n):
 ## code here
 #1
+"""
+adjust from P69 mySqrt(x)
+def mySqrt(x):
+	if x < 0: #math.abs(x)
+		x = 0 -x
+	if x in [0,1]:
+		return x
+	else:
+		try_num = x//2
+		high_limit, low_limit = x, 0
+		answer = 0
+		while answer < 1:
+			if try_num**2 > x:
+				high_limit = try_num
+				if try_num == low_limit +1:
+					answer = low_limit
+					break
+				else:
+					try_num = (try_num + low_limit)//2						
+			elif try_num**2 < x:
+				low_limit = try_num
+				if try_num in [high_limit -1, high_limit] :
+					answer = try_num
+					break
+				else:
+					try_num = (try_num + high_limit)//2
+			else:
+				answer = try_num
+				break
+		return answer
+
+Time Limit Exceeded
+2, 1
+
+Wrong Answer
+4, 1
+
+Success
+Runtime: 28 ms, faster than 75.23% of Python3 online submissions for First Bad Version.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for First Bad Version.
+"""
 def firstBadVersion(n):
+	if n in [0,1] or isBadVersion(n) is False:
+		return n
+	elif isBadVersion(1) is True:
+		return 1
+	else:
+		try_num = n//2
+		high_limit, low_limit = n, 1
+		while try_num < n:
+			if isBadVersion(try_num) is True:
+				high_limit = try_num
+				try_num = (high_limit + low_limit) // 2
+				if high_limit - 1 == low_limit:
+					return high_limit
+			elif isBadVersion(try_num) is False:
+				low_limit = try_num
+				try_num = (high_limit + low_limit) // 2
+				if low_limit + 1 == high_limit:
+					return high_limit
+
 
 # Test
 ## Functional Test
