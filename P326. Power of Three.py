@@ -54,8 +54,23 @@ def isPowerOfTwo(n):
 				return True
 			i += 1
 		return False
+
+Success
+Runtime: 84 ms, faster than 60.14% of Python3 online submissions for Power of Three.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Power of Three.
 """
 def isPowerOfThree(n):
+	if n%3 != 0 and n != 1:
+		return False
+	else:
+		i = 0
+		while 3**i <= n:
+			if 3**i == n:
+				return True
+			i += 1
+		return False
+
+
 
 # Test
 ## Functional Test
