@@ -87,6 +87,20 @@ def isUgly(num):
 		return True
 	return False
 
+#409
+def longestPalindrome(s):
+	count_nums = list()
+	for alphabet in set(s):
+		count_nums.append(s.count(alphabet))
+	longest_palindrome = 0
+	for i, num in enumerate(count_nums):
+		if num//2 >= 1:
+			longest_palindrome += num - num%2
+			count_nums[i] = num%2
+	if 1 in count_nums:
+		longest_palindrome += 1
+	return longest_palindrome
+
 if __name__ == '__main__':
 	class TreeNode:
 		def __init__(self, x):
@@ -157,3 +171,6 @@ if __name__ == '__main__':
 	# 	else:
 	# 		print("Right")
 	# print(getHint(input_secret[-1], input_guess[-1]))
+
+	#409
+	print(longestPalindrome("abccccdd"))

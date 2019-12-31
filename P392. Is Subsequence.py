@@ -28,7 +28,7 @@ Special thanks to @pbrother for adding this problem and creating all test cases.
 """
 # Conditions & Concepts
 """
-
+len(t) >> len(s)
 """
 # Code
 ## submit part
@@ -44,7 +44,25 @@ def isSubsequence(s, t):
 	"""
 ## code here
 #1
+"""
+Wrong Answer
+Input:"acb"
+"ahbgdc"
+Output:true
+Expected:false
+
+Misunderstanding:
+A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters.
+"""
 def isSubsequence(s, t):
+	for alphabet in set(s):
+		if t.count(alphabet) < s.count(alphabet):
+			return False
+	return True
+
+#1.1
+
+
 
 # Test
 ## Functional Test
