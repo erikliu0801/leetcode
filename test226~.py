@@ -87,6 +87,16 @@ def isUgly(num):
 		return True
 	return False
 
+#392
+def isSubsequence(s, t):
+	i = 0
+	for alphabet in t:
+		if alphabet == s[i]:
+			i += 1
+		if i == len(s):
+			break
+	return i == len(s)
+
 #409
 def longestPalindrome(s):
 	count_nums = list()
@@ -172,5 +182,9 @@ if __name__ == '__main__':
 	# 		print("Right")
 	# print(getHint(input_secret[-1], input_guess[-1]))
 
+	#392
+	print(isSubsequence("acb", "ahbgdc"))
+
 	#409
-	print(longestPalindrome("abccccdd"))
+	# print(longestPalindrome("abccccdd"))
+

@@ -54,15 +54,33 @@ Expected:false
 Misunderstanding:
 A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters.
 """
-def isSubsequence(s, t):
-	for alphabet in set(s):
-		if t.count(alphabet) < s.count(alphabet):
-			return False
-	return True
+# def isSubsequence(s, t):
+# 	for alphabet in set(s):
+# 		if t.count(alphabet) < s.count(alphabet):
+# 			return False
+# 	return True
+
+
 
 #1.1
+"""
+""
+"ahbgdc"
 
-
+Success
+Runtime: 184 ms, faster than 50.28% of Python3 online submissions for Is Subsequence.
+Memory Usage: 17.2 MB, less than 26.67% of Python3 online submissions for Is Subsequence.
+"""
+def isSubsequence(s, t):
+	if len(s) == 0:
+		return True
+	i = 0
+	for alphabet in t:
+		if alphabet == s[i]:
+			i += 1
+		if i == len(s):
+			break
+	return i == len(s)
 
 # Test
 ## Functional Test
