@@ -33,7 +33,13 @@ def addStrings(num1, num2):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 28 ms, faster than 97.84% of Python3 online submissions for Add Strings.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Add Strings.
+"""
 def addStrings(num1, num2):
+	return str(int(num1)+int(num2))
 
 # Test
 ## Functional Test
