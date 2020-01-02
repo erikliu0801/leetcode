@@ -51,6 +51,30 @@ def thirdMax(nums):
 ## code here
 #1
 def thirdMax(nums):
+	x = set(nums)
+	for _ in range(2):
+		if len(x) >=1 :
+			x -= max(x)
+		else:
+			return max(nums)
+	if len(x) >= 1:
+		return max(x)
+
+#1.1
+"""
+Success
+Runtime: 52 ms, faster than 83.44% of Python3 online submissions for Third Maximum Number.
+Memory Usage: 14.2 MB, less than 23.08% of Python3 online submissions for Third Maximum Number.
+"""
+def thirdMax(nums):
+	x = set(nums)
+	i = 0
+	while len(x) >= 1 and i != 2:
+		x.remove(max(x))
+		i += 1
+	if len(x) >= 1:
+		return max(x)
+	return max(nums)
 
 # Test
 ## Functional Test
