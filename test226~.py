@@ -113,22 +113,33 @@ def longestPalindrome(s):
 
 #443
 def compress(chars):
-	alph = str()
+	alph = chars[0]
 	start = 0
-	chars_copy = chars.copy()
-	for i, j in enumerate(chars_copy):
-		if j != alph or i == len(chars_copy)-1:
-			if i != 0 and i - start not in [0,1]:
-				for m, count in enumerate(list(str(i-start))):
-					chars.insert(start+1+m, count)
-			if j == alph:
-				chars.remove(j)
-				break
+	alph_count_nums = list()
+	for i, j in enumerate(chars):
+		if i == len(chars)-1:
+			if j != alph:
+				alph_count_nums.append((alph, i-start))
+				alph_count_nums.append((j, 1))
+			else:
+				alph_count_nums.append((alph, i-start+1))
+		elif j != alph:
+			alph_count_nums.append((alph, i-start))
 			alph = j
 			start = i
-		else:
-			chars.remove(j)
-	return len(chars)
+	#
+	i = 0
+	for alph, count in alph_count_nums:
+		chars[i] = alph
+		i += 1
+		if count != 1:
+			for c in list(str(count)):
+				chars[i] = c
+				i += 1
+	for _ in range(len(chars)-i):
+		chars.pop()
+	#
+	return chars
 
 
 if __name__ == '__main__':
@@ -209,5 +220,5 @@ if __name__ == '__main__':
 	# print(longestPalindrome("abccccdd"))
 
 	#443
-	print(compress(["a","a","b","b","c","c","c"]))
+	print(compress(["a"]))
 

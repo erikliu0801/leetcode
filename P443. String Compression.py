@@ -68,6 +68,8 @@ Note:
 # Conditions & Concepts
 """
 
+if count > 1 then insert the count per digit after alph
+remove alph count-1 times
 """
 # Code
 ## submit part
@@ -117,6 +119,68 @@ def compress(chars):
 			chars.remove(j)
 	return len(chars)
 
+#1.2
+def compress(chars):
+	alph = chars[0]
+	start = 0
+	alph_count_nums = list()
+	for i, j in enumerate(chars):
+		if i == len(chars)-1:
+			if j != alph:
+				alph_count_nums.append((alph, i-start))
+				alph_count_nums.append((j, 1))
+			else:
+				alph_count_nums.append((alph, i-start+1))
+		elif j != alph:
+			alph_count_nums.append((alph, i-start))
+			alph = j
+			start = i
+	#
+	chars = list()
+	for alph, count in alph_count_nums:
+		chars.append(alph)
+		for c in list(str(count)):
+			chars.append(c)
+	#
+	return len(chars)
+
+#1.3
+"""
+Runtime Error
+["a"]
+
+Success
+Runtime: 60 ms, faster than 47.09% of Python3 online submissions for String Compression.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for String Compression.
+"""
+def compress(chars):
+	alph = chars[0]
+	start = 0
+	alph_count_nums = list()
+	for i, j in enumerate(chars):
+		if i == len(chars)-1:
+			if j != alph:
+				alph_count_nums.append((alph, i-start))
+				alph_count_nums.append((j, 1))
+			else:
+				alph_count_nums.append((alph, i-start+1))
+		elif j != alph:
+			alph_count_nums.append((alph, i-start))
+			alph = j
+			start = i
+	#
+	i = 0
+	for alph, count in alph_count_nums:
+		chars[i] = alph
+		i += 1
+		if count != 1:
+			for c in list(str(count)):
+				chars[i] = c
+				i += 1
+	for _ in range(len(chars)-i):
+		chars.pop()
+	#
+	return len(chars)
 
 # Test
 ## Functional Test
