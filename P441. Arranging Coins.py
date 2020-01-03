@@ -54,8 +54,7 @@ def arrangeCoins(n):
 #1
 """
 Wrong Answer
-Input:2
-Output:2
+Input:2Output:2
 Expected:1
 
 Success

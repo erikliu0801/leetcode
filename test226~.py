@@ -111,6 +111,26 @@ def longestPalindrome(s):
 		longest_palindrome += 1
 	return longest_palindrome
 
+#443
+def compress(chars):
+	alph = str()
+	start = 0
+	chars_copy = chars.copy()
+	for i, j in enumerate(chars_copy):
+		if j != alph or i == len(chars_copy)-1:
+			if i != 0 and i - start not in [0,1]:
+				for m, count in enumerate(list(str(i-start))):
+					chars.insert(start+1+m, count)
+			if j == alph:
+				chars.remove(j)
+				break
+			alph = j
+			start = i
+		else:
+			chars.remove(j)
+	return len(chars)
+
+
 if __name__ == '__main__':
 	class TreeNode:
 		def __init__(self, x):
@@ -183,8 +203,11 @@ if __name__ == '__main__':
 	# print(getHint(input_secret[-1], input_guess[-1]))
 
 	#392
-	print(isSubsequence("acb", "ahbgdc"))
+	# print(isSubsequence("acb", "ahbgdc"))
 
 	#409
 	# print(longestPalindrome("abccccdd"))
+
+	#443
+	print(compress(["a","a","b","b","c","c","c"]))
 

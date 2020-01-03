@@ -83,6 +83,40 @@ def compress(chars):
 ## code here
 #1
 def compress(chars):
+	alph = str()
+	position_nums = list()
+	for i, j in enumerate(chars):
+		if j != alph or i == len(chars)-1:
+			if i != 0:
+				position_nums.append((start, i))
+			if j == alph:
+				chars.pop(i)
+				break
+			alph = j
+			start = i
+		else:
+			chars.pop(i)
+
+	return len(chars)
+
+#1.1
+def compress(chars):
+	alph = str()
+	start = 0
+	for i, j in enumerate(chars.copy()):
+		if j != alph or i == len(chars.copy())-1:
+			if i != 0 and i - start not in [0,1]:
+				for m, count in enumerate(list(str(i-start))):
+					chars.insert(start+1+m, count)
+			if j == alph:
+				chars.remove(j)
+				break
+			alph = j
+			start = i
+		else:
+			chars.remove(j)
+	return len(chars)
+
 
 # Test
 ## Functional Test

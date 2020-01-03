@@ -49,18 +49,44 @@ def countSegments(s):
 	return len(s.split(' '))
 
 #1.1
+# def countSegments(s):
+# 	length = 0
+# 	alph = [chr(a) for a in range(65,91)] + [chr(a) for a in range(97,123)]
+# 	word = False
+# 	for p in s:
+# 		if word == False and p in alph:
+# 			word = True
+# 		elif word == True and p == ' ':
+# 			word = False
+# 			length += 1
+
+#1.2
 def countSegments(s):
+	s = s.strip()
+	if s == str():
+		return 0
 	length = 0
-	alph = [chr(a) for a in range(65,91)] + [chr(a) for a in range(97,123)]
-	word = False
-	for p in s:
-		if p in [',',';']:
+	s = s.split(' ')
+	for i, j in enumerate(s):
+		if j != ' ' and s[i-1] != ' ':
 			length += 1
-		elif word == False and p in alph:
-			word = True
-		elif word == True and p == ' ':
-			word = False
+	return length
+
+#1.3
+"""
+Success
+Runtime: 24 ms, faster than 83.84% of Python3 online submissions for Number of Segments in a String.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Number of Segments in a String.
+"""
+def countSegments(s):
+	s = s.strip()
+	if s == str():
+		return 0
+	length = 0
+	for p in s.split(' '):
+		if p != str():
 			length += 1
+	return length
 
 
 
