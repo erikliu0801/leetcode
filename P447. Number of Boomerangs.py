@@ -23,7 +23,7 @@ The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]]
 """
 # Conditions & Concepts
 """
-
+for i in ragne(min(len(A),len(B),len(C)))
 """
 # Code
 ## submit part
