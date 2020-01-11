@@ -1,22 +1,27 @@
 # ToDo:
 
 """
-453. Minimum Moves to Equal Array Elements
+459. Repeated Substring Pattern
 Easy
-Given a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.
+Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
 
-Example:
+ 
 
-Input:
-[1,2,3]
+Example 1:
 
-Output:
-3
+Input: "abab"
+Output: True
+Explanation: It's the substring "ab" twice.
+Example 2:
 
-Explanation:
-Only three moves are needed (remember each move increments two elements):
+Input: "aba"
+Output: False
+Example 3:
 
-[1,2,3]  =>  [2,3,3]  =>  [3,4,3]  =>  [4,4,4]
+Input: "abcabcabcabc"
+Output: True
+Explanation: It's the substring "abc" four times. (And the substring "abcabc" twice.)
+
 """
 # Conditions & Concepts
 """
@@ -24,18 +29,12 @@ Only three moves are needed (remember each move increments two elements):
 """
 # Code
 ## submit part
-class Solution:
-    def minMoves(self, nums: List[int]) -> int:
-        
+
 ## test part
-def minMoves(nums):
-	"""
-	nums: List[int]
-	rtype: int
-	"""
+
 ## code here
 #1
-def minMoves(nums):
+
 
 # Test
 ## Functional Test
