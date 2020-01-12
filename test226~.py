@@ -141,6 +141,33 @@ def compress(chars):
 	#
 	return chars
 
+#459
+def repeatedSubstringPattern(s):
+	substring_nums = list()
+	while s != str():
+		substring_nums.append(s[:s.index(s[-1])+1])
+		s = s[s.index(s[-1])+1:]
+	substring_i = substring_nums.index(substring_nums[-1]) +1
+	if substring_i == len(substring_nums) or len(substring_nums) % substring_i != 0:
+		return False
+
+	for i, substring in enumerate(substring_nums):
+		if substring != substring_nums[i % substring_i]:
+			return False
+
+	return True
+
+#476
+def findComplement(num):
+	num  = list(str(bin(num))[2:])
+	comlement = str()
+	for c in num:
+		if c == '1':
+			comlement = comlement + '0'
+		else:
+			comlement = comlement + '1'
+	return int(complement,2)
+
 
 if __name__ == '__main__':
 	class TreeNode:
@@ -220,5 +247,7 @@ if __name__ == '__main__':
 	# print(longestPalindrome("abccccdd"))
 
 	#443
-	print(compress(["a"]))
+	# print(compress(["a"]))
 
+	#459
+	print(repeatedSubstringPattern("ababababababaababababababaababababababa"))
