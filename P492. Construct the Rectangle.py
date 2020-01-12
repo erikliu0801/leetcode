@@ -9,7 +9,7 @@ For a web developer, it is very important to know how to design a web page's siz
 
 2. The width W should not be larger than the length L, which means L >= W.
 
-3. The difference between length L and width W should be as small as possible.
+!3. The difference between length L and width W should be as small as possible.
 You need to output the length L and the width W of the web page you designed in sequence.
 Example:
 Input: 4
@@ -39,6 +39,7 @@ def constructRectangle(area):
 ## code here
 #1
 def constructRectangle(area):
+	
 
 # Test
 ## Functional Test
