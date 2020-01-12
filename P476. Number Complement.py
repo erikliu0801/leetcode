@@ -52,7 +52,7 @@ Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Numbe
 def findComplement(num):
 	num  = list(str(bin(num))[2:])
 	complement = str()
-	for i, j in enumerate(num):
+	for j in num:
 		if j == '1':
 			complement = complement + '0'
 		else:

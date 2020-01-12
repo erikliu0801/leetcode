@@ -34,6 +34,26 @@ lowercase -> uppercase
 first group which could be shorter than K, but still must contain at least one character
 each group contains exactly K characters
 
+S.upper()
+S = S.split("-")
+S.reverse()
+
+i = 0
+loop:
+	if len(S[i]) != K:
+		S[i]
+
+S.upper()
+S = list(S)[::-1]
+key = str()
+key_part = str()
+for alph in S:
+	if len(key_part) < K:
+		key_part = alph + key_part
+	else:
+		key = key_part + '-' + key
+		key_part = str()
+return key_part + '-' + key[:-1]
 
 
 
@@ -52,8 +72,32 @@ def licenseKeyFormatting(S, K):
 	"""
 ## code here
 #1
-def licenseKeyFormatting(S, K):
+"""
+Input: "r", 1
+Output: "R-"
+Expected: "R"
 
+
+Success
+Runtime: 96 ms, faster than 23.60% of Python3 online submissions for License Key Formatting.
+Memory Usage: 13.5 MB, less than 61.54% of Python3 online submissions for License Key Formatting.
+"""
+def licenseKeyFormatting(S, K):
+	S = list(S.upper())[::-1]
+	key = str()
+	key_part = str()
+	for alph in S:
+		if alph != '-':
+			if len(key_part) < K:
+				key_part = alph + key_part
+			else:
+				key = key_part + '-' + key
+				key_part = alph
+	if key_part != str() and key != str():
+		return key_part + '-' + key[:-1]
+	elif key_part != str() and key == str():
+		return key_part
+	return key[:-1]
 
 # Test
 ## Functional Test

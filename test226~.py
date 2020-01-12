@@ -160,13 +160,31 @@ def repeatedSubstringPattern(s):
 #476
 def findComplement(num):
 	num  = list(str(bin(num))[2:])
-	comlement = str()
-	for c in num:
-		if c == '1':
-			comlement = comlement + '0'
+	complement = str()
+	for j in num:
+		if j == '1':
+			complement = complement + '0'
 		else:
-			comlement = comlement + '1'
+			complement = complement + '1'
 	return int(complement,2)
+
+#482
+def licenseKeyFormatting(S, K):
+	S = list(S.upper())[::-1]
+	key = str()
+	key_part = str()
+	for alph in S:
+		if alph != '-':
+			if len(key_part) < K:
+				key_part = alph + key_part
+			else:
+				key = key_part + '-' + key
+				key_part = alph
+	if key_part != str() and key != str():
+		return key_part + '-' + key[:-1]
+	elif key_part != str() and key == str():
+		return key_part
+	return key[:-1]
 
 
 if __name__ == '__main__':
@@ -250,4 +268,8 @@ if __name__ == '__main__':
 	# print(compress(["a"]))
 
 	#459
-	print(repeatedSubstringPattern("ababababababaababababababaababababababa"))
+	# print(repeatedSubstringPattern("ababababababaababababababaababababababa"))
+
+
+	#482
+	print(licenseKeyFormatting("",1))
