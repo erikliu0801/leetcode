@@ -186,6 +186,34 @@ def licenseKeyFormatting(S, K):
 		return key_part
 	return key[:-1]
 
+#496
+def nextGreaterElement(nums1, nums2):
+	for i, num in enumerate(nums1):
+		nums2_temp = nums2[nums2.index(num)+1:]
+		if nums2_temp == list():
+			nums1[i] = -1
+		else:
+			for num2 in nums2_temp:
+				if num2 > num:
+					nums1[i] = num2
+					break
+			if nums1[i] == num:
+				nums1[i] = -1
+	return nums1
+
+#500
+def findWords(words):
+	row1 = set(['q','w','e','r','t','y','u','i','o','p'])
+	row2 = set(['a','s','d','f','g','h','j','k','l'])
+	row3 = set(['z','x','c','v','b','n','m'])
+	for word in words.copy():
+		word_tmp = set(word.lower())
+		# if word_tmp not in row1 and word_tmp not in row2 and word_tmp not in row3:
+		if word_tmp.issubset(row1) or word_tmp.issubset(row2) or word_tmp.issubset(row3):
+			continue
+		else:
+			words.remove(word)
+	return words
 
 if __name__ == '__main__':
 	class TreeNode:
@@ -272,4 +300,19 @@ if __name__ == '__main__':
 
 
 	#482
-	print(licenseKeyFormatting("",1))
+	# print(licenseKeyFormatting("",1))
+
+	#496
+	# input_nums1 = [[4,1,2], [2,4], [1,3,5,2,4]]
+	# input_nums2 = [[1,3,4,2], [1,2,3,4], [6,5,4,3,2,1,7]]
+	# expected_output = [[-1,3,-1], [3,-1], [7,7,7,7,7]]
+	# for i in range(len(input_nums1)):
+	# 	if nextGreaterElement(input_nums1[i], input_nums2[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(nextGreaterElement(input_nums1[i], input_nums2[i]))
+	# 	else:
+	# 		print("Right")
+	# print(nextGreaterElement(input_nums1[-1], input_nums2[-1]))
+
+	#500
+	print(findWords(["Hello", "Alaska", "Dad", "Peace"]))
