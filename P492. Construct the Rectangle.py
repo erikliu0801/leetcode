@@ -23,7 +23,8 @@ The web page's width and length you designed must be positive integers.
 """
 # Conditions & Concepts
 """
-
+return [L, W]
+L >= W
 """
 # Code
 ## submit part
@@ -38,7 +39,23 @@ def constructRectangle(area):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 28 ms, faster than 74.92% of Python3 online submissions for Construct the Rectangle.
+Memory Usage: 12.6 MB, less than 100.00% of Python3 online submissions for Construct the Rectangle.
+"""
 def constructRectangle(area):
+	import math
+	L = int(math.sqrt(area))
+	if L == 1:
+		return [area, L]
+	while area % L != 0:
+		L -= 1
+	W = area // L
+	if W > L:
+		return [W,L]
+	return [L,W]
+
 	
 
 # Test
