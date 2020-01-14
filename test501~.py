@@ -21,6 +21,19 @@ def convertToBase7(num):
 		return '-' + sevenbasenum
 	return sevenbasenum
 
+#507
+def checkPerfectNumber(num):
+	divisors = set([1])
+	import math
+	divisor = int(math.sqrt(num))
+	while divisor != 1:
+		if num%divisor == 0:
+			divisors.add(divisor)
+			divisors.add(num//divisor)
+		divisor -= 1
+	divisors.discard(num)
+	return num == sum(divisors)
+
 if __name__ == "__main__":
 	class TreeNode:
 		def __init__(self, x):
@@ -29,4 +42,11 @@ if __name__ == "__main__":
 			self.right = None
 
 	#504
-	print(convertToBase7())
+	# print(convertToBase7())
+
+	#507
+	# print(checkPerfectNumber(28))
+
+	for i in range(1,1000000000):
+		if checkPerfectNumber(i):
+			print(i)
