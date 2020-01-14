@@ -34,6 +34,15 @@ def checkPerfectNumber(num):
 	divisors.discard(num)
 	return num == sum(divisors)
 
+#509
+def fib(N):
+	if N < 1:
+		return 0
+	elif N == 1:
+		return 1
+	else:
+		return fib(N-1) + fib(N-2)
+
 if __name__ == "__main__":
 	class TreeNode:
 		def __init__(self, x):
@@ -47,6 +56,10 @@ if __name__ == "__main__":
 	#507
 	# print(checkPerfectNumber(28))
 
-	for i in range(1,1000000000):
-		if checkPerfectNumber(i):
-			print(i)
+	# for i in range(1,1000000000):
+	# 	if checkPerfectNumber(i):
+	# 		print(i)
+
+	#509
+	for i in range(1,31):
+		print(fib(i))

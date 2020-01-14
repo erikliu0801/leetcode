@@ -49,7 +49,18 @@ def fib(N):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 992 ms, faster than 15.12% of Python3 online submissions for Fibonacci Number.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Fibonacci Number.
+"""
 def fib(N):
+	if N < 1:
+		return 0
+	elif N ==1:
+		return 1
+	else:
+		return fib(N-1) + fib(N-2)
 
 # Test
 ## Functional Test
