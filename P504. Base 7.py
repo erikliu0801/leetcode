@@ -36,7 +36,29 @@ def convertToBase7(num):
 	"""
 ## code here
 #1
-def convertToBase7(num):
+"""
+Success
+Runtime: 28 ms, faster than 60.77% of Python3 online submissions for Base 7.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Base 7.
+"""
+def convertToBase7(num):	
+	negative = False
+	if num < 0:
+		negative = True
+		num = abs(num)
+	elif  num == 0:
+		return '0'
+	import math
+	digits = int(math.log(num,7))
+	sevenbasenum = ''
+	while digits != -1:
+		sevenbasenum = sevenbasenum + str(num//(7**digits))
+		num = num % (7**digits)
+		digits -= 1
+	if negative:
+		return '-' + sevenbasenum
+	return sevenbasenum
+
 
 # Test
 ## Functional Test
