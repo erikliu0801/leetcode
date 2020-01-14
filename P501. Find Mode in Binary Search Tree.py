@@ -36,7 +36,6 @@ Follow up: Could you do that without using any extra space? (Assume that the imp
 node.right.val >= node.val
 node.left.val <= node.val
 
-
 """
 # Code
 ## submit part

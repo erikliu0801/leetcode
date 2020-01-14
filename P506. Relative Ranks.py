@@ -37,7 +37,26 @@ def findRelativeRanks(nums):
 	"""
 ## code here
 #1
+"""
+Success
+Runtime: 348 ms, faster than 22.22% of Python3 online submissions for Relative Ranks.
+Memory Usage: 13.6 MB, less than 100.00% of Python3 online submissions for Relative Ranks.
+"""
 def findRelativeRanks(nums):
+	sorted_nums = nums.copy()
+	sorted_nums.sort(reverse=True)
+	for i, score in enumerate(nums):
+		rank = sorted_nums.index(score) + 1
+		if rank == 1:
+			nums[i] = "Gold Medal"
+		elif rank == 2:
+			nums[i] = "Silver Medal"
+		elif rank == 3:
+			nums[i] = "Bronze Medal"
+		else:
+			nums[i] = str(rank)
+	return nums
+
 
 
 # Test
