@@ -1,21 +1,21 @@
-/* ToDo:
+// ToDo:
+/* */
+
+// Problem Description
 
 
-# Problem Description
+// Conditions & Concepts
+/* */
 
+// Code
+// submit part
 
-# Conditions & Concepts
+// test part */
+/* */
 
-
-/* Code */
-/* submit part */
-
-
-/* test part */
-
-
-/* code here */
-/* 1 */
+// code here
+// 1
+/* */
 package main
 
 import ""
