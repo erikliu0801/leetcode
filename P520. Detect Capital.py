@@ -19,9 +19,7 @@ Otherwise, we define that this word doesn't use capitals in a right way.
 Example 1:
 
 Input: "USA"
-Output: True
-
- 
+Output: True 
 
 Example 2:
 
@@ -51,7 +49,22 @@ def detectCapitalUse(word):
 	"""
 ## code here
 #1
+"""
+return not word.islower() #""
+
+return not word.isupper() #"Flag"
+
+Success
+Runtime: 28 ms, faster than 68.92% of Python3 online submissions for Detect Capital.
+Memory Usage: 12.9 MB, less than 100.00% of Python3 online submissions for Detect Capital.
+"""
 def detectCapitalUse(word):
+	if word.isupper() == True:
+		return True
+	word = word[1:]
+	return word == word.lower()
+
+
 
 
 # Test
