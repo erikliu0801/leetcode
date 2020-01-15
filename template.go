@@ -16,10 +16,22 @@
 // code here
 // 1
 /* */
-package main
+import (
+	""
+)
 
-import ""
-
-func main() {
+func () {
 
 } 
+
+
+// Test
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("Hello Word")
+}
