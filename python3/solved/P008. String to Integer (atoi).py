@@ -130,6 +130,7 @@ def myAtoi(str):
 
 #1.1
 """
+Success
 Runtime: 32 ms, faster than 88.29% of Python3 online submissions for String to Integer (atoi).
 Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for String to Integer (atoi).
 """

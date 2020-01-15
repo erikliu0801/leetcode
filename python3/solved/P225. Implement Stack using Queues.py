@@ -76,6 +76,7 @@ class MyStack:
 ## code here
 #1
 """
+Success
 Runtime: 28 ms, faster than 75.98% of Python3 online submissions for Implement Stack using Queues.
 Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Implement Stack using Queues.
 """
