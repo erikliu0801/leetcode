@@ -57,66 +57,23 @@ def findMedianSortedArrays(nums1, nums2):
 	else:
 		return (nums_combined[len(nums_combined)//2]+nums_combined[(len(nums_combined)//2)-1])/2.0
 
-#5
+#5 new
 def longestPalindrome(s):
-	palindrome_list = []
-	step1, step2 = False, True
-	if len(s)<5:
-		if len(s)<=1:
-			palindrome_list.append(s)
-		elif 1<len(s) and len(s)<4 and s[0]==s[-1]:
-			palindrome_list.append(s)
-		elif len(s)==4 and s[1]==s[-2] and s[0]==s[-1]:
-			palindrome_list.append(s)
-		else:
-			palindrome_list.append(s[0])
-	else:
-		step1 = True
-	if step1 == True:
-		j1 = s[0]
-		l = 0
-		for i, j in enumerate(s):
-			if j != j1:
-				j1 = j
-				if len(s[l:i]) > 1:
-					palindrome_list.append(s[l:i])
-				l = i
-			elif i+1 == len(s) and j1 == j:
-				palindrome_list.append(s[l:i+1])
-		for j in palindrome_list:
-			if len(j)>len(s)/2:			
-				step2 = False
-				break	
-	if step2 == True:
-		s1 = s
-		for i in range(len(s)):
-			s2 = s1
-			for l in range(len(s1)):
-				if s1[0] == s2[-1]:
-					count = 0
-					for m in range(len(s2)):
-						if s2[-1-m] == s1[m]:
-							count += 1
-						else:
-							break				
-					if count == len(s2):
-						palindrome_list.append(s2)
-						break
-					else:
-						s2 = s2[:-1]
-				else:				
-					s2 = s2[:-1]
-			s1 = s1[1:]
-	answer = ""
-	for i, j in enumerate(palindrome_list):
-		if len(j) > len(answer):
-			answer = j
-	if answer == "" and s != "":
-		return s[0]
-	elif s =="":
-		return s
-	else:
-		return answer
+	if type(s) != str:
+		return
+	if len(s) == 0:
+		return
+	reversed_s = s[::-1]
+	palindrome_list = list()
+	while len(reversed_s) > 1:
+		sub_reversed_s = reversed_s
+		while len(sub_reversed_s) > 1:
+			if sub_reversed_s in s:
+				palindrome_list.append(sub_reversed_s)
+				break
+			sub_reversed_s = sub_reversed_s[:-1]
+		reversed_s = reversed_s[1:]
+	return max(palindrome_list)
 	
 #6
 def convert(s, numRows):
@@ -306,7 +263,30 @@ def longestCommonPrefix(strs):
 
 #20
 def isValid(s):
-	pass
+	symbols_left = ["{","(","["]
+	symbols_right = ["}",")","]"]
+	s_symbols = str()
+	for c in s:
+		if c in symbols_left or c in symbols_right:
+			s_symbols += c
+	s_symbols_len = len(s_symbols)
+	if s_symbols_len == 0:
+		return True
+	if s_symbols_len % 2 != 0:
+		return False
+	new_len = int()
+	while len(s_symbols) != 0:
+		if len(s_symbols) == new_len:
+			return False
+		i = 0
+		while i < len(s_symbols) - 2:
+			if s_symbols[i] in symbols_left:
+				if s_symbols[i + 1] == symbols_right[symbols_left.index(s_symbols[i])]:
+					s_symbols = s_symbols[:i] + s_symbols[i + 2:]
+			else:
+				i += 1
+		new_len = len(s_symbols)
+	return True
 
 #21
 def mergeTwoLists(l1, l2):
@@ -410,23 +390,19 @@ if __name__ == "__main__":
     #     print("Right Answer! %s"%(findMedianSortedArrays(nums1,nums2)))
 
     #5
-    # P_substring_list = ["aba", "kfsgsfgfsgsfk"]
-	# substring_list = ["aba","abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","ca","bb","abcda","babad","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth","ibvjkmpyzsifuxcabqqpahjdeuzaybqsrsmbfplxycsafogotliyvhxjtkrbzqxlyfwujzhkdafhebvsdhkkdbhlhmaoxmbkqiwiusngkbdhlvxdyvnjrzvxmukvdfobzlmvnbnilnsyrgoygfdzjlymhprcpxsnxpcafctikxxybcusgjwmfklkffehbvlhvxfiddznwumxosomfbgxoruoqrhezgsgidgcfzbtdftjxeahriirqgxbhicoxavquhbkaomrroghdnfkknyigsluqebaqrtcwgmlnvmxoagisdmsokeznjsnwpxygjjptvyjjkbmkxvlivinmpnpxgmmorkasebngirckqcawgevljplkkgextudqaodwqmfljljhrujoerycoojwwgtklypicgkyaboqjfivbeqdlonxeidgxsyzugkntoevwfuxovazcyayvwbcqswzhytlmtmrtwpikgacnpkbwgfmpavzyjoxughwhvlsxsgttbcyrlkaarngeoaldsdtjncivhcfsaohmdhgbwkuemcembmlwbwquxfaiukoqvzmgoeppieztdacvwngbkcxknbytvztodbfnjhbtwpjlzuajnlzfmmujhcggpdcwdquutdiubgcvnxvgspmfumeqrofewynizvynavjzkbpkuxxvkjujectdyfwygnfsukvzflcuxxzvxzravzznpxttduajhbsyiywpqunnarabcroljwcbdydagachbobkcvudkoddldaucwruobfylfhyvjuynjrosxczgjwudpxaqwnboxgxybnngxxhibesiaxkicinikzzmonftqkcudlzfzutplbycejmkpxcygsafzkgudy"]
-	
-    # for i, j in enumerate(substring_list):
-    #     if IsPalindrome(substring_list[i]) == True:
-    #         print("Right")            
-    #     else:
-    #         print("Wrong!")
-    
-    # for i, j in enumerate(P_substring_list):
-    #     print(longestPalindrome(P_substring_list[i]))
+	# input_s = ["babcd", "cbbd"]
+	# expected_output = ["bab", "bb"]
 
-	# for i, j in enumerate(substring_list):
-	# 	print(longestPalindrome(substring_list[i]))
-	
-	# print(longestPalindrome(substring_list[-1]))
-	# print(longestPalindrome('abadd'))
+	# for i in range(len(input_s)):
+	# 	if longestPalindrome(input_s[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(longestPalindrome(input_s[i]))
+	# 	else:
+	# 		print("Right")
+	# print(longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"))
+	# print(longestPalindrome(input_s[-1]))
+
+
 
 	#6
 	# string = ["PAYPALISHIRING","PAYPALISHIRING"]
@@ -485,14 +461,14 @@ if __name__ == "__main__":
 	# print(longestCommonPrefix(input[-1]))
 
 	#20
-	# input = ["()", "()[]{}", "(]", "([)]", "{[]}", "[", "]","][]","[]{","(afadfadf)","(([]){})"]
-	# expected_output = [True, True, False, False, True, False, False, False, False, False, True]
-	# for i, j in enumerate(input):
-	# 	if isValid(input[i]) != expected_output[i]:
-	# 		print("Wrong!!! Output:", isValid(input[i]))
+	input_s = ["()", "()[]{}", "(]", "([)]", "{[]}", "[", "]","][]","[]{","(afadfadf)","(([]){})","((","[({(())}[()])]"]
+	expected_output = [True, True, False, False, True, False, False, False, False, True, True, False, True]
+	# for i in range(len(input_s)):
+	# 	if isValid(input_s[i]) != expected_output[i]:
+	# 		print("Wrong!!! Output:", isValid(input_s[i]))
 	# 	else:
-	# 		print("Right")		
-	# print(isValid(input[-1]))
+	# 		print("Right")
+	print(isValid(input_s[1]))
 
 	#21
 	# class ListNode:
@@ -573,13 +549,13 @@ if __name__ == "__main__":
 	# print(removeElement(input_nums[-1],input_val[-1]))
 
 	#28
-	input_haystack = ["hello", "aaaaa", "aaaaa","helloll","heLLoll","a"]
-	input_needle = ["ll", "bba", "","ll","ll","a"]
-	expected_output = [2, -1, 0, 2, 5, 0]
-	for i, j in enumerate(input_haystack):
-		if strStr(input_haystack[i], input_needle[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(strStr(input_haystack[i], input_needle[i]))
-		else:
-			print("Right")		
+	# input_haystack = ["hello", "aaaaa", "aaaaa","helloll","heLLoll","a"]
+	# input_needle = ["ll", "bba", "","ll","ll","a"]
+	# expected_output = [2, -1, 0, 2, 5, 0]
+	# for i, j in enumerate(input_haystack):
+	# 	if strStr(input_haystack[i], input_needle[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(strStr(input_haystack[i], input_needle[i]))
+	# 	else:
+	# 		print("Right")
 	# print(strStr(input_haystack[-1], input_needle[-1]))

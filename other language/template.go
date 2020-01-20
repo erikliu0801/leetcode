@@ -12,7 +12,7 @@
 // Code
 // submit part
 
-// test part */
+// test part
 /* */
 
 // code here

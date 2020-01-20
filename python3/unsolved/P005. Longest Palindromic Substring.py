@@ -678,7 +678,28 @@ def longestPalindrome(s):
 	else:
 		return answer
 
-#4
+#4(new after P575)
+"""
+Time Limit Exceeded
+"""
+def longestPalindrome(s):
+	if type(s) != str:
+		return
+	if len(s) == 0:
+		return
+	reversed_s = s[::-1]
+	palindrome_list = list()
+	while len(reversed_s) > 1:
+		sub_reversed_s = reversed_s
+		while len(sub_reversed_s) > 1:
+			if sub_reversed_s in s:
+				palindrome_list.append(sub_reversed_s)
+				break
+			sub_reversed_s = sub_reversed_s[:-1]
+		reversed_s = reversed_s[1:]
+	if len(palindrome_list) == 0:
+		return s[0]
+	return max(palindrome_list)
 
 
 # Test
@@ -689,31 +710,31 @@ Condition:
 """
 if __name__ == '__main__':
    # P_substring_list = ["aba", "kfsgsfgfsgsfk"]
-	substring_list = ["aba","abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","ca","bb","abcda","babad","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth",
-	"ibvjkmpyzsifuxcabqqpahjdeuzaybqsrsmbfplxycsafogotliyvhxjtkrbzqxlyfwujzhkdafhebvsdhkkdbhlhmaoxmbkqiwiusngkbdhlvxdyvnjrzvxmukvdfobzlmvnbnilnsyrgoygfdzjlymhprcpxsnxpcafctikxxybcusgjwmfklkffehbvlhvxfiddznwumxosomfbgxoruoqrhezgsgidgcfzbtdftjxeahriirqgxbhicoxavquhbkaomrroghdnfkknyigsluqebaqrtcwgmlnvmxoagisdmsokeznjsnwpxygjjptvyjjkbmkxvlivinmpnpxgmmorkasebngirckqcawgevljplkkgextudqaodwqmfljljhrujoerycoojwwgtklypicgkyaboqjfivbeqdlonxeidgxsyzugkntoevwfuxovazcyayvwbcqswzhytlmtmrtwpikgacnpkbwgfmpavzyjoxughwhvlsxsgttbcyrlkaarngeoaldsdtjncivhcfsaohmdhgbwkuemcembmlwbwquxfaiukoqvzmgoeppieztdacvwngbkcxknbytvztodbfnjhbtwpjlzuajnlzfmmujhcggpdcwdquutdiubgcvnxvgspmfumeqrofewynizvynavjzkbpkuxxvkjujectdyfwygnfsukvzflcuxxzvxzravzznpxttduajhbsyiywpqunnarabcroljwcbdydagachbobkcvudkoddldaucwruobfylfhyvjuynjrosxczgjwudpxaqwnboxgxybnngxxhibesiaxkicinikzzmonftqkcudlzfzutplbycejmkpxcygsafzkgudy"]
+	# substring_list = ["aba","abayghdfg","sfhsfkfsgsfgfsgsfkjgddjdhjh","a","","ca","bb","abcda","babad","civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth",
+	# "ibvjkmpyzsifuxcabqqpahjdeuzaybqsrsmbfplxycsafogotliyvhxjtkrbzqxlyfwujzhkdafhebvsdhkkdbhlhmaoxmbkqiwiusngkbdhlvxdyvnjrzvxmukvdfobzlmvnbnilnsyrgoygfdzjlymhprcpxsnxpcafctikxxybcusgjwmfklkffehbvlhvxfiddznwumxosomfbgxoruoqrhezgsgidgcfzbtdftjxeahriirqgxbhicoxavquhbkaomrroghdnfkknyigsluqebaqrtcwgmlnvmxoagisdmsokeznjsnwpxygjjptvyjjkbmkxvlivinmpnpxgmmorkasebngirckqcawgevljplkkgextudqaodwqmfljljhrujoerycoojwwgtklypicgkyaboqjfivbeqdlonxeidgxsyzugkntoevwfuxovazcyayvwbcqswzhytlmtmrtwpikgacnpkbwgfmpavzyjoxughwhvlsxsgttbcyrlkaarngeoaldsdtjncivhcfsaohmdhgbwkuemcembmlwbwquxfaiukoqvzmgoeppieztdacvwngbkcxknbytvztodbfnjhbtwpjlzuajnlzfmmujhcggpdcwdquutdiubgcvnxvgspmfumeqrofewynizvynavjzkbpkuxxvkjujectdyfwygnfsukvzflcuxxzvxzravzznpxttduajhbsyiywpqunnarabcroljwcbdydagachbobkcvudkoddldaucwruobfylfhyvjuynjrosxczgjwudpxaqwnboxgxybnngxxhibesiaxkicinikzzmonftqkcudlzfzutplbycejmkpxcygsafzkgudy"]
 	
-	substring_count_list = [
-			[2, 1, 2, 1, 2, 1, 1, 1, 2],
-			[6, 6, 3, 6, 6, 2, 6, 6, 4, 6, 6, 4, 6, 6, 4, 6, 6, 2, 3, 4, 3, 3, 3, 3, 3, 3, 3],
-			[1],
-			[],	
-			[1, 1],	
-			[2, 2],	
-			[2, 1, 1, 1, 2], 
-			[25, 53, 22, 53, 41, 23, 87, 67, 106, 142, 40, 106, 53, 61, 23, 23, 74, 142, 106, 74, 142, 67, 106, 74, 87, 106, 61, 87, 16, 106, 53, 78, 61, 78, 67, 87, 61, 8, 61, 87, 67, 106, 53, 78, 	61, 40, 78, 25, 78, 61, 25, 142, 53, 22, 142, 52, 87, 61, 52, 40, 78, 52, 142, 52, 53, 25, 87, 106, 142, 52, 25, 87, 61, 41, 78, 61, 23, 142, 61, 52, 17, 67, 142, 2, 142, 87, 67, 142, 1, 13, 142, 106, 78, 61, 87, 23, 67, 142, 87, 106, 11, 87, 106, 106, 41, 142, 26, 53, 142, 13, 41, 52, 78, 26, 106, 1, 74, 87, 106, 23, 87, 67, 2, 142, 74, 87, 22, 142, 25, 78, 13, 142, 106, 78, 52, 142, 52, 53, 25, 16, 87, 106, 142, 87, 16, 78, 67, 106, 53, 78, 61, 78, 26, 106, 74, 87, 106, 26, 53, 142, 41, 52, 87, 40, 87, 26, 53, 61, 87, 41, 67, 142, 40, 106, 53, 61, 23, 16, 41, 87, 25, 142, 26, 78, 67, 106, 74, 78, 40, 142, 23, 74, 78, 74, 142, 67, 42, 23, 87, 22, 142, 106, 74, 142, 53, 67, 41, 53, 22, 142, 40, 106, 74, 87, 106, 106, 74, 87, 106, 61, 87, 106, 53, 78, 61, 13, 53, 23, 74, 106, 41, 53, 22, 142, 3, 106, 53, 40, 87, 41, 106, 78, 23, 142, 106, 74, 142, 67, 26, 87, 61, 23, 87, 61, 52, 16, 67, 78, 16, 142, 67, 106, 74, 87, 	106, 23, 142, 40, 74, 78, 17, 41, 52, 52, 78, 106, 74, 53, 40, 1, 17, 106, 53, 61, 87, 41, 87, 67, 23, 142, 67, 40, 142, 61, 40, 142, 23, 142, 25, 87, 61, 61, 78, 106, 52, 142, 52, 53, 25, 87, 106, 142, 23, 142, 25, 87, 61, 61, 78, 106, 25, 78, 61, 40, 142, 25, 67, 87, 106, 142, 23, 142, 25, 87, 61, 61, 78, 106, 74, 87, 41, 41, 78, 23, 106, 74, 53, 40, 23, 67, 78, 17, 61, 52, 2, 74, 142, 11, 67, 87, 22, 142, 41, 13, 142, 61, 41, 53, 22, 53, 61, 23, 87, 61, 52,	52, 142, 87, 52, 23, 74, 78, 40, 106, 67, 17, 23, 23, 41, 142, 52, 74, 142, 67, 142, 74, 87, 22, 142, 25, 78, 61, 40, 142, 25, 67, 87, 106, 142, 52, 53, 106, 26, 87, 67, 87, 11, 78, 22, 142, 78, 17, 67, 16, 78, 78, 67, 16, 78, 61, 23, 142, 67, 106, 78, 87, 52, 52, 78, 67, 52, 142, 106, 67, 87, 25, 106, 2, 23, 74, 142, 23, 78, 67, 41, 52, 87, 52, 40, 23, 26, 53, 41, 41, 41, 53, 106, 106, 41, 142, 61, 78, 106, 41, 142, 61, 78, 67, 41, 78, 61, 23, 67, 142, 13, 142, 13, 11, 142, 67, 23, 74, 87, 106, 23, 142, 40, 87, 8, 74, 142, 67, 142, 11, 17, 106, 53, 106, 25, 87, 61, 61, 142, 22, 142, 67, 26, 78, 67, 23, 142, 106, 23, 74, 87, 106, 106, 74, 142, 8, 52, 53, 52, 74, 142, 67, 142, 3, 106, 53, 40, 26, 78, 67, 17, 40, 106, 74, 142, 41, 53, 22, 53, 61, 23, 67, 87, 106, 74, 142, 67, 106, 78, 11, 142, 52, 142, 52, 53, 25, 87, 106, 142, 52, 74, 142, 67, 142, 106, 78, 106, 74, 142, 17, 41, 61, 26, 53, 61, 53, 40, 74, 142, 52, 23, 78, 67, 3, 23, 74, 53, 25, 74, 106, 74, 142, 8, 23, 74, 78, 26, 78, 17, 23, 74, 106, 74, 142, 67, 142, 74, 87, 22, 142, 106, 74, 17, 40, 26, 87, 67, 40, 78, 61, 78, 11, 41, 8, 87, 52, 	22, 87, 61, 25, 142, 52, 3, 106, 53, 40, 67, 87, 106, 74, 142, 67, 26, 78, 67, 17, 40, 106, 78, 11, 142, 74, 142, 67, 142, 52, 142, 52, 53, 25, 87, 106, 142, 52, 106, 78, 106, 74, 142, 23, 67, 142, 87, 106, 106, 52, 87, 26, 40, 3, 67, 142, 13, 87, 53, 61, 53, 61, 23, 11, 142, 26, 78, 67, 142, 17, 40, 106, 74, 87, 106, 26, 67, 78, 13, 106, 74, 142, 40, 142, 74, 78, 61, 78, 67, 142, 52, 52, 142, 87, 52, 23, 142, 106, 87, 3, 142, 53, 61, 25, 67, 142, 87, 40, 142, 52, 52, 142, 22, 78, 106, 53, 78, 61, 106, 78, 106, 74, 87, 106, 25, 87, 17, 40, 142, 26, 78, 67, 23, 74, 53, 25, 74, 106, 74, 142, 8, 23, 87, 22, 142, 106, 74, 142, 41, 87, 40, 106, 16, 26, 17, 41, 41, 13, 142, 87, 40, 17, 67, 142, 78, 26, 52, 142, 22, 78, 106, 53, 78, 61, 106, 74, 87, 106, 23, 142, 74, 142, 67, 142, 74, 53, 23, 74, 41, 8, 67, 142, 40, 78, 41, 22, 142, 106, 74, 87, 106, 106, 74, 142, 40, 142, 52, 142, 87, 52, 40, 74, 87, 41, 41, 61, 78, 106, 74, 87, 22, 142, 52, 53, 142, 52, 53, 61, 22, 87, 53, 61, 106, 74, 87, 106, 106, 74, 53, 40, 61, 87, 106, 53, 78, 61, 17, 61, 40, 52, 142, 67, 1, 78, 52, 40, 74, 87, 41, 41, 74, 87, 22, 142, 87, 61, 142, 23, 11, 53, 67, 106, 74, 78, 26, 26, 67, 142, 142, 52, 78, 13, 87, 61, 52, 106, 74, 87, 106, 23, 78, 22, 142, 67, 61, 13, 142, 61, 106, 78, 26, 106, 74, 142, 16, 142, 78, 16, 41, 142, 11, 8, 106, 74, 142, 16, 142, 78, 16, 41, 142, 26, 78, 67, 106, 74, 142, 16, 142, 78, 16, 41, 142, 40, 74, 87, 41, 41, 61, 78, 106, 16, 142, 67, 53, 40, 74, 26, 67, 78, 13, 106, 74, 142, 142, 87, 67, 106, 74]
-		]
+	# substring_count_list = [
+	# 		[2, 1, 2, 1, 2, 1, 1, 1, 2],
+	# 		[6, 6, 3, 6, 6, 2, 6, 6, 4, 6, 6, 4, 6, 6, 4, 6, 6, 2, 3, 4, 3, 3, 3, 3, 3, 3, 3],
+	# 		[1],
+	# 		[],	
+	# 		[1, 1],	
+	# 		[2, 2],	
+	# 		[2, 1, 1, 1, 2], 
+	# 		[25, 53, 22, 53, 41, 23, 87, 67, 106, 142, 40, 106, 53, 61, 23, 23, 74, 142, 106, 74, 142, 67, 106, 74, 87, 106, 61, 87, 16, 106, 53, 78, 61, 78, 67, 87, 61, 8, 61, 87, 67, 106, 53, 78, 	61, 40, 78, 25, 78, 61, 25, 142, 53, 22, 142, 52, 87, 61, 52, 40, 78, 52, 142, 52, 53, 25, 87, 106, 142, 52, 25, 87, 61, 41, 78, 61, 23, 142, 61, 52, 17, 67, 142, 2, 142, 87, 67, 142, 1, 13, 142, 106, 78, 61, 87, 23, 67, 142, 87, 106, 11, 87, 106, 106, 41, 142, 26, 53, 142, 13, 41, 52, 78, 26, 106, 1, 74, 87, 106, 23, 87, 67, 2, 142, 74, 87, 22, 142, 25, 78, 13, 142, 106, 78, 52, 142, 52, 53, 25, 16, 87, 106, 142, 87, 16, 78, 67, 106, 53, 78, 61, 78, 26, 106, 74, 87, 106, 26, 53, 142, 41, 52, 87, 40, 87, 26, 53, 61, 87, 41, 67, 142, 40, 106, 53, 61, 23, 16, 41, 87, 25, 142, 26, 78, 67, 106, 74, 78, 40, 142, 23, 74, 78, 74, 142, 67, 42, 23, 87, 22, 142, 106, 74, 142, 53, 67, 41, 53, 22, 142, 40, 106, 74, 87, 106, 106, 74, 87, 106, 61, 87, 106, 53, 78, 61, 13, 53, 23, 74, 106, 41, 53, 22, 142, 3, 106, 53, 40, 87, 41, 106, 78, 23, 142, 106, 74, 142, 67, 26, 87, 61, 23, 87, 61, 52, 16, 67, 78, 16, 142, 67, 106, 74, 87, 	106, 23, 142, 40, 74, 78, 17, 41, 52, 52, 78, 106, 74, 53, 40, 1, 17, 106, 53, 61, 87, 41, 87, 67, 23, 142, 67, 40, 142, 61, 40, 142, 23, 142, 25, 87, 61, 61, 78, 106, 52, 142, 52, 53, 25, 87, 106, 142, 23, 142, 25, 87, 61, 61, 78, 106, 25, 78, 61, 40, 142, 25, 67, 87, 106, 142, 23, 142, 25, 87, 61, 61, 78, 106, 74, 87, 41, 41, 78, 23, 106, 74, 53, 40, 23, 67, 78, 17, 61, 52, 2, 74, 142, 11, 67, 87, 22, 142, 41, 13, 142, 61, 41, 53, 22, 53, 61, 23, 87, 61, 52,	52, 142, 87, 52, 23, 74, 78, 40, 106, 67, 17, 23, 23, 41, 142, 52, 74, 142, 67, 142, 74, 87, 22, 142, 25, 78, 61, 40, 142, 25, 67, 87, 106, 142, 52, 53, 106, 26, 87, 67, 87, 11, 78, 22, 142, 78, 17, 67, 16, 78, 78, 67, 16, 78, 61, 23, 142, 67, 106, 78, 87, 52, 52, 78, 67, 52, 142, 106, 67, 87, 25, 106, 2, 23, 74, 142, 23, 78, 67, 41, 52, 87, 52, 40, 23, 26, 53, 41, 41, 41, 53, 106, 106, 41, 142, 61, 78, 106, 41, 142, 61, 78, 67, 41, 78, 61, 23, 67, 142, 13, 142, 13, 11, 142, 67, 23, 74, 87, 106, 23, 142, 40, 87, 8, 74, 142, 67, 142, 11, 17, 106, 53, 106, 25, 87, 61, 61, 142, 22, 142, 67, 26, 78, 67, 23, 142, 106, 23, 74, 87, 106, 106, 74, 142, 8, 52, 53, 52, 74, 142, 67, 142, 3, 106, 53, 40, 26, 78, 67, 17, 40, 106, 74, 142, 41, 53, 22, 53, 61, 23, 67, 87, 106, 74, 142, 67, 106, 78, 11, 142, 52, 142, 52, 53, 25, 87, 106, 142, 52, 74, 142, 67, 142, 106, 78, 106, 74, 142, 17, 41, 61, 26, 53, 61, 53, 40, 74, 142, 52, 23, 78, 67, 3, 23, 74, 53, 25, 74, 106, 74, 142, 8, 23, 74, 78, 26, 78, 17, 23, 74, 106, 74, 142, 67, 142, 74, 87, 22, 142, 106, 74, 17, 40, 26, 87, 67, 40, 78, 61, 78, 11, 41, 8, 87, 52, 	22, 87, 61, 25, 142, 52, 3, 106, 53, 40, 67, 87, 106, 74, 142, 67, 26, 78, 67, 17, 40, 106, 78, 11, 142, 74, 142, 67, 142, 52, 142, 52, 53, 25, 87, 106, 142, 52, 106, 78, 106, 74, 142, 23, 67, 142, 87, 106, 106, 52, 87, 26, 40, 3, 67, 142, 13, 87, 53, 61, 53, 61, 23, 11, 142, 26, 78, 67, 142, 17, 40, 106, 74, 87, 106, 26, 67, 78, 13, 106, 74, 142, 40, 142, 74, 78, 61, 78, 67, 142, 52, 52, 142, 87, 52, 23, 142, 106, 87, 3, 142, 53, 61, 25, 67, 142, 87, 40, 142, 52, 52, 142, 22, 78, 106, 53, 78, 61, 106, 78, 106, 74, 87, 106, 25, 87, 17, 40, 142, 26, 78, 67, 23, 74, 53, 25, 74, 106, 74, 142, 8, 23, 87, 22, 142, 106, 74, 142, 41, 87, 40, 106, 16, 26, 17, 41, 41, 13, 142, 87, 40, 17, 67, 142, 78, 26, 52, 142, 22, 78, 106, 53, 78, 61, 106, 74, 87, 106, 23, 142, 74, 142, 67, 142, 74, 53, 23, 74, 41, 8, 67, 142, 40, 78, 41, 22, 142, 106, 74, 87, 106, 106, 74, 142, 40, 142, 52, 142, 87, 52, 40, 74, 87, 41, 41, 61, 78, 106, 74, 87, 22, 142, 52, 53, 142, 52, 53, 61, 22, 87, 53, 61, 106, 74, 87, 106, 106, 74, 53, 40, 61, 87, 106, 53, 78, 61, 17, 61, 40, 52, 142, 67, 1, 78, 52, 40, 74, 87, 41, 41, 74, 87, 22, 142, 87, 61, 142, 23, 11, 53, 67, 106, 74, 78, 26, 26, 67, 142, 142, 52, 78, 13, 87, 61, 52, 106, 74, 87, 106, 23, 78, 22, 142, 67, 61, 13, 142, 61, 106, 78, 26, 106, 74, 142, 16, 142, 78, 16, 41, 142, 11, 8, 106, 74, 142, 16, 142, 78, 16, 41, 142, 26, 78, 67, 106, 74, 142, 16, 142, 78, 16, 41, 142, 40, 74, 87, 41, 41, 61, 78, 106, 16, 142, 67, 53, 40, 74, 26, 67, 78, 13, 106, 74, 142, 142, 87, 67, 106, 74]
+	# 	]
 
-    # for i, j in enumerate(substring_list):
-    #     if IsPalindrome(substring_list[i]) == True:
-    #         print("Right")            
-    #     else:
-    #         print("Wrong!")
-    
-    # for i, j in enumerate(P_substring_list):
-    #     print(longestPalindrome(P_substring_list[i]))
 
-	for i, j in enumerate(substring_list):
-		print(longestPalindrome(substring_list[i]))
+	input_s = ["babcd", "cbbd"]
+	expected_output = ["bab", "bb"]
+
+	for i in range(len(input_s)):
+		if longestPalindrome(input_s[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(longestPalindrome(input_s[i]))
+		else:
+			print("Right")		
+	# print(longestPalindrome(input_s[-1]))
 
 ## Performance Test
 import cProfile
