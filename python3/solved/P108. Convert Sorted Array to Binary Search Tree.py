@@ -64,6 +64,23 @@ def sortedArrayToBST(nums):
 			tree_right[i + 1] = tree_right[i].right
 		return root
 
+#2
+"""
+Success
+Details
+Runtime: 72 ms, faster than 44.80% of Python3 online submissions for Convert Sorted Array to Binary Search Tree.
+Memory Usage: 14.9 MB, less than 100.00% of Python3 online submissions for Convert Sorted Array to Binary Search Tree.
+"""
+def sortedArrayToBST(nums):
+	if len(nums)==0:
+		return
+	middle = len(nums)//2
+	root = TreeNode(nums[middle])
+	root.left = sortedArrayToBST(nums[:middle])
+	root.right = sortedArrayToBST(nums[middle+1:])
+	return root
+
+
 # Test
 ## Functional Test
 """

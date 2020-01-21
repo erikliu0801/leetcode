@@ -178,21 +178,11 @@ def levelOrderBottom(root):
 def sortedArrayToBST(nums):
 	if len(nums)==0:
 		return
-	else:
-		medium = len(nums)//2
-		root = TreeNode(nums[medium])
-		tree_left = nums[:medium] #exclude root
-		tree_left.reverse() #tree_left = nums[:medium+1].reverse() will return None
-		tree_right = nums[medium+1:] #exclude root
-		tree_left.insert(0, root) #include root
-		tree_right.insert(0, root) #include root
-		for i in range(len(tree_left)-1):
-			tree_left[i].left = TreeNode(tree_left[i+1])
-			tree_left[i+1] = tree_left[i].left
-		for i in range(len(tree_right)-1):
-			tree_right[i].right = TreeNode(tree_right[i+1])
-			tree_right[i + 1] = tree_right[i].right
-		return root
+	middle = len(nums)//2
+	root = TreeNode(nums[middle])
+	root.left = sortedArrayToBST(nums[:middle])
+	root.right = sortedArrayToBST(nums[middle+1:])
+	return root
 
 #110
 def isBalanced(root):
@@ -460,7 +450,7 @@ if __name__ == '__main__':
 	# print(levelOrderBottom(List2TreeNode(input_nums[-1])))
 	
 	#108
-	# input_nums = [[-10, -3, 0, 5, 9]]
+	input_nums = [[-10, -3, 0, 5, 9], [0, 1, 2, 3, 4, 5]]
 	# expected_output = []
 	# for i in range(len(input_nums)):
 	# 	if sortedArrayToBST(input_nums[i]) != expected_output[i]:
@@ -468,7 +458,9 @@ if __name__ == '__main__':
 	# 		print(sortedArrayToBST(input_nums[i]))
 	# 	else:
 	# 		print("Right")
-	# print(sortedArrayToBST(input_nums[-1]))
+	print(sortedArrayToBST(input_nums[-1]))
+	x = sortedArrayToBST(input_nums[-1])
+	print(x)
 
 	#110
 
@@ -545,12 +537,12 @@ if __name__ == '__main__':
 	# print(maxProfit(input_prices[1]))
 
 	#136
-	input_nums = [[2,2,1], [4,1,2,1,2]]
-	expected_output = [1,4]
-	for i in range(len(input_nums)):
-		if singleNumber(input_nums[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(singleNumber(input_nums[i]))
-		else:
-			print("Right")
+	# input_nums = [[2,2,1], [4,1,2,1,2]]
+	# expected_output = [1,4]
+	# for i in range(len(input_nums)):
+	# 	if singleNumber(input_nums[i]) != expected_output[i]:
+	# 		print("Wrong!!!")
+	# 		print(singleNumber(input_nums[i]))
+	# 	else:
+	# 		print("Right")
 	# print(singleNumber(input_nums[-1]))
