@@ -71,9 +71,47 @@ def merge(nums1, m, nums2, n):
 			num2 = nums2[1:]
 	return nums1
 
+#3 new
+def merge(nums1, m, nums2, n):
+	i = 0
+	for j in range(n):
+		while nums2[j] > nums1[i] and i < m + j:
+			i += 1
+		nums1.insert(i, nums2[j])
+		nums1.pop()
+	return nums1
 
+#3.1
+"""
+Runtime Error
 
+[0],0
+[1],1
+"""
+def merge(nums1, m, nums2, n):
+	i = 0
+	for j in range(n):
+		if i+1 >= m + j:
+			nums1[i+1] = nums2[j]
+			i += 1
+			continue
+		while nums2[j] > nums1[i] and i < m + j:
+			i += 1
+		nums1.insert(i, nums2[j])
+		nums1.pop()
 
+#4
+"""
+Success
+Runtime: 24 ms, faster than 99.48% of Python3 online submissions for Merge Sorted Array.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Merge Sorted Array.
+"""
+def merge(nums1, m, nums2, n):
+	nums2 = nums1[:m] + nums2[:n]
+	nums2.sort()
+	for i in range(m+n):
+		nums1[i] = nums2[i]
+	return nums1
 
 # Test
 ## Functional Test
@@ -87,21 +125,25 @@ if __name__ == '__main__':
 	[[1,2,3,7,0,0], 3],
 	[[1,2,3,7,0,0], 2],
 	[[1,2,3,4,0,0,0],4],
-	[[1,2,3,0,0,0], 2]
+	[[1,2,3,0,0,0], 2],
+	[[0],0]
 	]
 	input_nums2 = [
 	[[2,5,6], 3],
 	[[2,5,6], 3],
 	[[2,5,6,8], 4],
 	[[2,5,6],2],
-	[[2,5,6], 3]
+	[[2,5,6], 3],
+	[[1],1]
 	]
 	expected_output = [
 	[1,2,2,3,5,6],
 	[1,2,2,3,5,6],
 	[1,2,2,5,6,8],
 	[1,2,2,3,4,5,0],
-	[1,2,2,5,6,0]]
+	[1,2,2,5,6,0],
+	[1]
+	]
 
 	# for i in range(len(input_nums1)):
 	# 	if merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]) != expected_output[i]:
@@ -109,7 +151,7 @@ if __name__ == '__main__':
 	# 		print(merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]))
 	# 	else:
 	# 		print("Right")		
-	print(merge(input_nums1[-1][0],input_nums1[-1][1],input_nums2[-1][0],input_nums1[-1][1]))
+	print(merge(input_nums1[-1][0],input_nums1[-1][1],input_nums2[-1][0],input_nums2[-1][1]))
 	
 
 ## Performance Test

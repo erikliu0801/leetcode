@@ -12,18 +12,10 @@ def deleteDuplicates(head):
 
 #88
 def merge(nums1, m, nums2, n):
-	nums2, i = nums2[:n], 0
-	temp_num = nums1[0]
-	for i in range(len(nums1)-m):
-		nums1[-1-i] = 0
-	while nums2 != []:
-		if nums1[i] >= nums2[0] or nums1[i] == 0:
-			nums1.insert(i, nums2[0])
-			nums1.pop(-1)
-			nums2.pop(0)
-		elif len(nums1) - 1 == i and nums1[i] < nums2[0]:
-			break
-		i +=1
+	nums2 = nums1[:m] + nums2[:n]
+	nums2.sort()
+	for i in range(m+n):
+		nums1[i] = nums2[i]
 	return nums1
 
 
@@ -79,33 +71,37 @@ if __name__ == '__main__':
 	# print(LinkedList2List(deleteDuplicates(List2LinkedList(input_list[-1]))))
 
 	#88
-	# input_nums1 = [
-	# [[1,2,3,0,0,0], 3],
-	# [[1,2,3,7,0,0], 3],
-	# [[1,2,3,7,0,0], 2],
-	# [[1,2,3,4,0,0,0],4],
-	# [[1,2,3,0,0,0], 2]
-	# ]
-	# input_nums2 = [
-	# [[2,5,6], 3],
-	# [[2,5,6], 3],
-	# [[2,5,6,8], 4],
-	# [[2,5,6],2],
-	# [[2,5,6], 3]
-	# ]
-	# expected_output = [
-	# [1,2,2,3,5,6],
-	# [1,2,2,3,5,6],
-	# [1,2,2,5,6,8],
-	# [1,2,2,3,4,5,0],
-	# [1,2,2,5,6,0]]
+	input_nums1 = [
+	[[1,2,3,0,0,0], 3],
+	[[1,2,3,7,0,0], 3],
+	[[1,2,3,7,0,0], 2],
+	[[1,2,3,4,0,0,0],4],
+	[[1,2,3,0,0,0], 2],
+	[[0],0]
+	]
+	input_nums2 = [
+	[[2,5,6], 3],
+	[[2,5,6], 3],
+	[[2,5,6,8], 4],
+	[[2,5,6],2],
+	[[2,5,6], 3],
+	[[1],1]
+	]
+	expected_output = [
+	[1,2,2,3,5,6],
+	[1,2,2,3,5,6],
+	[1,2,2,5,6,8],
+	[1,2,2,3,4,5,0],
+	[1,2,2,5,6,0],
+	[1]
+	]
 
-	# for i in range(len(input_nums1)):
-	# 	if merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]) != expected_output[i]:
-	# 		print("Wrong!!!")
-	# 		print(merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]))
-	# 	else:
-	# 		print("Right")
-	# print(merge(input_nums1[-1][0],input_nums1[-1][1],input_nums2[-1][0],input_nums1[-1][1]))
+	for i in range(len(input_nums1)):
+		if merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]) != expected_output[i]:
+			print("Wrong!!!")
+			print(merge(input_nums1[i][0],input_nums1[i][1],input_nums2[i][0],input_nums2[i][1]))
+		else:
+			print("Right")
+	# print(merge(input_nums1[-1][0],input_nums1[-1][1],input_nums2[-1][0],input_nums2[-1][1]))
 
 	
