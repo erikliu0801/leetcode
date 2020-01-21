@@ -42,13 +42,35 @@ func distributeCandies(candies []int) int {
 
 // code here
 // 1
-/* */
-import (
-	""
-)
+/* 
+Success
+Runtime: 528 ms, faster than 5.56% of Go online submissions for Distribute Candies.
+Memory Usage: 6.7 MB, less than 100.00% of Go online submissions for Distribute Candies.
+*/
+func seqsearch(nums []int, num int) int {
+	var i int
+	for i=0; i < len(nums) ; i++ {
+		if nums[i] == num {
+			return i
+		}
+	}
+	return -1
+}
 
 func distributeCandies(candies []int) int {
-    
+	if len(candies)%2 != 0 {
+		return 0
+	}
+	var sis []int
+	for _, candy := range candies {
+		switch {
+			case len(sis) >= len(candies)/2 :
+				return len(candies)/2
+			case seqsearch(sis, candy) == -1 :
+				sis = append(sis, candy)
+		}
+	}
+	return len(sis)
 }
 
 // Test
