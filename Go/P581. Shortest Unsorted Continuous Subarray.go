@@ -18,8 +18,8 @@ Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the wh
 
 Note:
 
-    Then length of the input array is in range [1, 10,000].
-    The input array may contain duplicates, so ascending order here means <=.
+	Then length of the input array is in range [1, 10,000].
+	The input array may contain duplicates, so ascending order here means <=.
 */
 
 // Conditions & Concepts
@@ -28,7 +28,7 @@ Note:
 // Code
 // submit part
 func findUnsortedSubarray(nums []int) int {
-    
+	
 }
 // test part
 /* */
@@ -40,9 +40,28 @@ import (
 	""
 )
 
-func () {
+func findUnsortedSubarray(nums []int) int {
+	var start_i, end_i int, int
+	start_c, end_c := nums[0], nums[-1]
+	for i, c := range nums {
+		if c < start_c {
+			start_i = i
+			break
+		} else {
+			star_c = c
+		}
+	}	
+	for i:= 1 ; ; i++ {
+		switch {
+			case i >= len(nums) - start_i:
+				return  nums[start_i:-1]
 
-} 
+			case nums[-i] < end_c:
+		}
+	}
+
+	return nums[start_i:end_i]
+}
 
 // Test
 package main
