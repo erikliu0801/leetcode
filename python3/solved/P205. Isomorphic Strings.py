@@ -58,12 +58,23 @@ def isIsomorphic(s, t):
 				return False
 		return True
 
-#1.1
+#2 new
+"""
+Success
+Runtime: 36 ms, faster than 76.87% of Python3 online submissions for Isomorphic Strings.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Isomorphic Strings.
+"""
 def isIsomorphic(s, t):
 	if len(s) != len(t) or len(set(s)) != len(set(t)):
 		return False
 	else:
-		
+		s_to_t = dict()
+		for i in range(len(s)):
+			if s[i] in s_to_t:
+				if s_to_t[s[i]] != t[i]:
+					return False
+			else:
+				s_to_t[s[i]] = t[i]
 		return True
 
 # Test
