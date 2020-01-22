@@ -35,7 +35,25 @@ def containsNearbyDuplicate(nums, k):
 	"""
 ## code here
 #1
+"""
+Misunderstanding
+"""
 def containsNearbyDuplicate(nums, k):
+	if len(nums) < 2 or len(set(nums)) == 1:
+		return k == 0
+	if nums[0] != nums[-1]:
+		return k == len(nums) -1
+	i, j = 0, len(nums)-1
+	while nums[i] == nums[0]:
+		i += 1
+	while nums[j] == nums[-1]:
+		j -= 1
+	return k == j-i+2
+
+#2
+def containsNearbyDuplicate(nums, k):
+	if len(set(nums)) == len(nums):
+		return False
 
 # Test
 ## Functional Test
@@ -44,15 +62,16 @@ def containsNearbyDuplicate(nums, k):
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
-	for i in range(len(input1)):
-		if func(input1[i]) != expected_output[i]:
+	input_nums = [[1,2,3,1], [1,0,1,1], [1,0,1,1], [1,0,1,1], [1,2,3,1,2,3], [1,2,3,1,2,3]]
+	input_k = [3, 1, 2, 3, 2, 3]
+	expected_output = [True, True, True, True, False, True]
+	for i in range(len(input_nums)):
+		if containsNearbyDuplicate(input_nums[i], input_k[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(func(input1[i]))
+			print(containsNearbyDuplicate(input_nums[i], input_k[i]))
 		else:
 			print("Right")		
-	# print(func(input1[-1]))
+	# print(containsNearbyDuplicate(input_nums[-1], input_k[-1]))
 	
 
 ## Performance Test
