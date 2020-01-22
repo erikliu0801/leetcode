@@ -34,8 +34,6 @@ Constraints:
 
     The height of the n-ary tree is less than or equal to 1000
     The total number of nodes is between [0, 10^4]
-
-
 */
 
 // Conditions & Concepts
@@ -43,7 +41,7 @@ Constraints:
 
 // Code
 // submit part
-/*
+
 // Definition for a Node.
 class Node {
 public:
@@ -61,7 +59,7 @@ public:
         children = _children;
     }
 };
-*/
+
 class Solution {
 public:
     vector<int> preorder(Node* root) {

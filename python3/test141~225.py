@@ -72,6 +72,24 @@ def trailingZeroes(n):
 	else:
 		return add_num
 
+#202
+def isHappy(n):
+	if n < 1:
+		return False
+	pre = list()
+	while n != 1:
+		if n in pre:
+			return False
+		pre.append(n)
+		cache = 0
+		for c in str(n):
+			cache += int(c)**2
+		n = cache
+	return True
+
+def main():
+	print(isHappy(200))
+
 #203
 def removeElements(head, val):
 	if type(head) != ListNode:
@@ -143,6 +161,7 @@ def containsDuplicate(nums):
 
 
 if __name__ == '__main__':
+	main()
 	class ListNode:
 		def __init__(self, x):
 			self.val = x

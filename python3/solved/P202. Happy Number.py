@@ -13,10 +13,10 @@ Example:
 Input: 19
 Output: true
 Explanation: 
-12 + 92 = 82
-82 + 22 = 68
-62 + 82 = 100
-12 + 02 + 02 = 1
+1**2 + 9**2 = 82
+8**2 + 2**2 = 68
+6**2 + 8**2 = 100
+1**2 + 0**2 + 0**2 = 1
 """
 # Conditions & Concepts
 """
@@ -34,8 +34,27 @@ def isHappy(n):
 	rtype: bool
 	"""
 ## code here
-#1
+#1 new
+"""
+Success
+Runtime: 60 ms, faster than 5.78% of Python3 online submissions for Happy Number.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Happy Number.
+"""
 def isHappy(n):
+	if n < 1:
+		return False
+	pre = list()
+	while n != 1:
+		if n in pre:
+			return False
+		pre.append(n)
+		cache = 0
+		for c in str(n):
+			cache += int(c)**2
+		n = cache
+	return True
+
+
 
 # Test
 ## Functional Test

@@ -79,7 +79,9 @@ def getIntersectionNode(headA, headB):
 			headB = headB.next
 	return 
 
-#1.1
+#2 new
+def getIntersectionNode(headA, headB):
+	
 
 
 # Test
