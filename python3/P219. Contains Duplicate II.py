@@ -51,9 +51,29 @@ def containsNearbyDuplicate(nums, k):
 	return k == j-i+2
 
 #2
+"""
+Input: [99,99] 2
+Output: false
+Expected: true
+"""
 def containsNearbyDuplicate(nums, k):
 	if len(set(nums)) == len(nums):
 		return False
+	c = list()
+	c_i_j = list()
+	for m, num in enumerate(nums):
+		if num in c:
+			c_i_j[c.index(num)].append(m)
+		else:
+			c.append(num)
+			c_i_j.append([m])
+	k_s = set()
+	for m in c_i_j:
+		for n, i in enumerate(m):
+			for j in m[n+1:]:
+				k_s.add(abs(j-i))
+	return k in k_s
+
 
 # Test
 ## Functional Test
@@ -62,9 +82,9 @@ def containsNearbyDuplicate(nums, k):
 
 """
 if __name__ == '__main__':
-	input_nums = [[1,2,3,1], [1,0,1,1], [1,0,1,1], [1,0,1,1], [1,2,3,1,2,3], [1,2,3,1,2,3]]
-	input_k = [3, 1, 2, 3, 2, 3]
-	expected_output = [True, True, True, True, False, True]
+	input_nums = [[1,2,3,1], [1,0,1,1], [1,0,1,1], [1,0,1,1], [1,2,3,1,2,3], [1,2,3,1,2,3], [99,99]]
+	input_k = [3, 1, 2, 3, 2, 3, 2]
+	expected_output = [True, True, True, True, False, True, False]
 	for i in range(len(input_nums)):
 		if containsNearbyDuplicate(input_nums[i], input_k[i]) != expected_output[i]:
 			print("Wrong!!!")
