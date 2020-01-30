@@ -114,16 +114,16 @@ def toHex(num):
 		power -= 1
 	return hex_num
 
-def main():
-	input_num = [16, 26, 0, -1, -2, -16]
-	expected_output = ["10", "1a", "0", "ffffffff", "fffffffe", "fffffff0"]
-	for i in range(len(input_num)):
-		if toHex(input_num[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(toHex(input_num[i]))
-		else:
-			print("Right")
-	# print(toHex(input_num[3]))
+# def main():
+# 	input_num = [16, 26, 0, -1, -2, -16]
+# 	expected_output = ["10", "1a", "0", "ffffffff", "fffffffe", "fffffff0"]
+# 	for i in range(len(input_num)):
+# 		if toHex(input_num[i]) != expected_output[i]:
+# 			print("Wrong!!!")
+# 			print(toHex(input_num[i]))
+# 		else:
+# 			print("Right")
+# 	# print(toHex(input_num[3]))
 
 #409
 def longestPalindrome(s):
@@ -171,19 +171,40 @@ def compress(chars):
 
 #459
 def repeatedSubstringPattern(s):
-	substring_nums = list()
-	while s != str():
-		substring_nums.append(s[:s.index(s[-1])+1])
-		s = s[s.index(s[-1])+1:]
-	substring_i = substring_nums.index(substring_nums[-1]) +1
-	if substring_i == len(substring_nums) or len(substring_nums) % substring_i != 0:
+	if len(s) == 0:
 		return False
+	if len(set(s)) == 1:
+		return True
+	prime_number = [False, False] + [True for _ in range(len(s)-2)]
+	len_s = len(s)
+	while len(set(prime_number)) != 1:
+		prime = prime_number.index(True)
+		if len_s % prime == 0:
+			s0 = s[:len(s)//prime]
+			slice_num = 2
+			while slice_num <= prime: #
+				left = len_s*(slice_num-1)//prime
+				right = len_s*slice_num//prime
+				s1 = s[left:right]
+				if s0 != s1:
+					break
+				slice_num += 1
+			if slice_num > prime:
+				return True
+		prime_number[prime::prime] = [False] * (len(prime_number[prime::prime]))
+	return False
 
-	for i, substring in enumerate(substring_nums):
-		if substring != substring_nums[i % substring_i]:
-			return False
+def main():
+	input_s = ["abab", "aba", "abcabcabcabc", "ababababababaababababababaababababababa","abaabaaba","abac","abaabbabc", "ababab", "ababababab"]
+	expected_output = [True, False, True, True, True, False, False, True, True]
+	print(repeatedSubstringPattern(input_s[2]))
+	for i in range(len(input_s)):
+		if repeatedSubstringPattern(input_s[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(repeatedSubstringPattern(input_s[i]))
+		else:
+			print("Right")
 
-	return True
 
 #476
 def findComplement(num):

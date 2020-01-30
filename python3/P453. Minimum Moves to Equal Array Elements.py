@@ -37,6 +37,7 @@ def minMoves(nums):
 #1
 def minMoves(nums):
 
+
 # Test
 ## Functional Test
 """
@@ -44,8 +45,8 @@ def minMoves(nums):
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
+	input_nums = [[0,2,3],[1,2,3],[2,2,3],[3,2,3],[0,5,3]]
+	expected_output = [5,3,1,2,8]
 	for i in range(len(input1)):
 		if func(input1[i]) != expected_output[i]:
 			print("Wrong!!!")
