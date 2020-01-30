@@ -97,6 +97,34 @@ def isSubsequence(s, t):
 			break
 	return i == len(s)
 
+#405
+def toHex(num):
+	if num == 0:
+		return "0"
+	if num < 0:
+		num += 4294967296
+	import math
+	hex_list = [str(x) for x in range(10)]
+	hex_list.extend([chr(x) for x in range(97,103)])
+	power = int(math.log(num,16))
+	hex_num = ""
+	while power >= 0:
+		hex_num += hex_list[num // (16 ** power)]
+		num %= (16 ** power)
+		power -= 1
+	return hex_num
+
+def main():
+	input_num = [16, 26, 0, -1, -2, -16]
+	expected_output = ["10", "1a", "0", "ffffffff", "fffffffe", "fffffff0"]
+	for i in range(len(input_num)):
+		if toHex(input_num[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(toHex(input_num[i]))
+		else:
+			print("Right")
+	# print(toHex(input_num[3]))
+
 #409
 def longestPalindrome(s):
 	count_nums = list()
@@ -216,6 +244,7 @@ def findWords(words):
 	return words
 
 if __name__ == '__main__':
+	main()
 	class TreeNode:
 		def __init__(self, x):
 			self.val = x
@@ -315,4 +344,4 @@ if __name__ == '__main__':
 	# print(nextGreaterElement(input_nums1[-1], input_nums2[-1]))
 
 	#500
-	print(findWords(["Hello", "Alaska", "Dad", "Peace"]))
+	# print(findWords(["Hello", "Alaska", "Dad", "Peace"]))
