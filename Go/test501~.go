@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -64,3 +66,34 @@ func findUnsortedSubarray(nums []int) []int {
 //func main() {
 //	fmt.Println(findUnsortedSubarray([]int{2,3,3,2,4}))
 //}
+
+
+//594
+func findLHS(nums []int) int {
+	m := make(map[string]int)
+	for _, num := range nums {
+		if _, ok := m[strconv.Itoa(num)]; ok{
+			m[strconv.Itoa(num)] += 1
+		} else {
+			m[strconv.Itoa(num)] = 1
+		}
+	}
+	max_count := 0
+	for i, c := range m {
+		if (count, ok := m[strconv.Itoa(strconv.Atoi(i)+1)]; ok || count, ok := m[strconv.Itoa(strconv.Atoi(i)-1)]; ok) {
+			if (count %2 != 0 && c %2 != 0) {
+				sum := c + count - 1
+			} else {
+				sum := c + count
+			}
+			if max_count < sum {
+				max_count = sum
+			}
+		}
+	}
+	return max_count
+}
+
+func main(){
+	fmt.Println(findLHS([]int{1,3,2,2,5,2,3,7}))
+}
