@@ -171,6 +171,10 @@ def repeatedSubstringPattern(s):
 	return False
 
 
+#1.4
+def repeatedSubstringPattern(s):
+	return s in s[1:]+s[::-1]
+
 # Test
 ## Functional Test
 """
