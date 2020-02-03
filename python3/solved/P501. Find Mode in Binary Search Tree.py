@@ -90,6 +90,55 @@ def findMode(root):
 			mode.extend([int(k)])
 	return mode
 
+#1.1
+"""
+key of dict can be int
+
+"""
+def findMode(root):
+	def helper(root):
+		val_count = dict()
+		if root:
+			_, val_count = helper(root.left)
+			_, val_count1 = helper(root.right)
+			#for k in val_count.keys() & val_count1.keys():
+			#	val_count[k] += val_count1[k]
+			#for k in val_count1.keys() - val_count.keys():
+			#	val_count[k] = val_count1[k]
+			val_count.update({k:val_count[k]+val_count1[k] for k in val_count1.keys() & val_count.keys()})
+			val_count.update({k:val_count1[k] for k in val_count1.keys() - val_count.keys()})
+			index = root.val
+			if index in val_count:
+				val_count[index] += 1
+			else:
+				#val_count.setdefault(index, default = 1)
+				val_count[index] = 1
+		return root, val_count
+	_, val_count = helper(root)
+	mode = list()
+	max_count = max(val_count.values())
+	while max_count == max(val_count.values()): #ValueError: max() arg is an empty sequence
+		_, val = max(zip(val_count.values(),val_count.keys()))
+		mode.append(val)
+		val_count.pop(val)
+	return mode
+
+#2
+def findMode(root):
+	def postOrder(node):
+		res = list()
+		if node:
+			res = postOrder(node.left)
+			res = postOrder(node.right)
+			res.append(node.val)
+		return res
+
+	from collections import Counter
+	values = postOrder(root)
+	val_count = Counter(values)
+	
+
+
 
 # Test
 ## Functional Test
