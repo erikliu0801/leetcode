@@ -8,11 +8,9 @@ Given a binary search tree (BST) with duplicates, find all the mode(s) (the most
 
 Assume a BST is defined as follows:
 
-	The left subtree of a node contains only nodes with keys less than or equal to the node's key.
-	The right subtree of a node contains only nodes with keys greater than or equal to the node's key.
-	Both the left and right subtrees must also be binary search trees.
-
- 
+The left subtree of a node contains only nodes with keys less than or equal to the node's key.
+The right subtree of a node contains only nodes with keys greater than or equal to the node's key.
+Both the left and right subtrees must also be binary search trees.
 
 For example:
 Given BST [1,null,2,2],
@@ -35,6 +33,9 @@ Follow up: Could you do that without using any extra space? (Assume that the imp
 node.right.val >= node.val
 node.left.val <= node.val
 
+recursive solution
+val_count: {str(val):count} #type:dict
+
 """
 # Code
 ## submit part
@@ -56,8 +57,22 @@ def findMode(root):
 	"""
 ## code here
 #1
+def helper(root, val_count):
+	val_count = dict()
+	if root:
+		helper(root.left)
+		helper(root.right)
+		index = str(root.val)
+		if index in val_count:
+			val_count[index] += 1
+		else:
+			val_count[index] = 1
+
 def findMode(root):
-	pass
+	_, val_count = helper(root)
+	if val_count.count(max(val_count)) == 1:
+		
+
 
 # Test
 ## Functional Test
