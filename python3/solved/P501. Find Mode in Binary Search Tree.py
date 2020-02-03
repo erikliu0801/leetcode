@@ -15,7 +15,7 @@ Both the left and right subtrees must also be binary search trees.
 For example:
 Given BST [1,null,2,2],
 
-   1
+	1
 	\
 	 2
 	/
@@ -57,21 +57,38 @@ def findMode(root):
 	"""
 ## code here
 #1
-def helper(root, val_count):
-	val_count = dict()
-	if root:
-		helper(root.left)
-		helper(root.right)
-		index = str(root.val)
-		if index in val_count:
-			val_count[index] += 1
-		else:
-			val_count[index] = 1
-
+"""
+Success
+Runtime: 80 ms, faster than 10.10% of Python3 online submissions for Find Mode in Binary Search Tree.
+Memory Usage: 16.9 MB, less than 100.00% of Python3 online submissions for Find Mode in Binary Search Tree.
+"""
 def findMode(root):
+	def helper(root):
+		val_count = dict()
+		if root:
+			_, val_count = helper(root.left)
+			_, val_count1 = helper(root.right)
+			for k in val_count:
+				if k in val_count1:
+					val_count[k] += val_count1[k]
+					val_count1.pop(k)
+			val_count.update(val_count1)
+			index = str(root.val)
+			if index in val_count:
+				val_count[index] += 1
+			else:
+				val_count[index] = 1
+		return root, val_count
 	_, val_count = helper(root)
-	if val_count.count(max(val_count)) == 1:
-		
+	max_count = 0
+	mode = list()
+	for k, v in val_count.items():
+		if v > max_count:
+			mode = [int(k)]
+			max_count = v
+		elif v == max_count:
+			mode.extend([int(k)])
+	return mode
 
 
 # Test
@@ -80,6 +97,36 @@ def findMode(root):
 # Conditions & Concepts
 
 """
+
+
+def main():
+class TreeNode:
+	def __init__(self, x):
+		self.val = x
+		self.left = None
+		self.right = None
+
+	def insert(self, val):
+		if self.val:
+			if data < self.val:
+				if self.left is None:
+					self.left = TreeNode(val)
+				else:
+					self.left.insert(val)
+			elif data > self.val:
+				if self.rifgt is None:
+					self.right = TreeNode(val)
+				else:
+					self.right.insert(val)
+		else:
+			self.val = data
+	root = 
+
+	print()
+
+
+
+
 if __name__ == '__main__':
 	input1 = []
 	expected_output = []
