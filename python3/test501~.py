@@ -1,31 +1,6 @@
 #501
 def findMode(root):
-	def helper(root):
-		val_count = dict()
-		if root:
-			_, val_count = helper(root.left)
-			_, val_count1 = helper(root.right)
-			for k in val_count:
-				if k in val_count1:
-					val_count[k] += val_count1[k]
-					val_count1.pop(k)
-			val_count.update(val_count1)
-			index = str(root.val)
-			if index in val_count:
-				val_count[index] += 1
-			else:
-				val_count[index] = 1
-		return root, val_count
-	_, val_count = helper(root)
-	max_count = 0
-	mode = list()
-	for k, v in val_count.items():
-		if v > max_count:
-			mode = [int(k)]
-			max_count = v
-		elif v == max_count:
-			mode.extend([int(k)])
-	return mode
+	pass
 
 #504
 def convertToBase7(num):
@@ -68,7 +43,38 @@ def fib(N):
 	else:
 		return fib(N-1) + fib(N-2)
 
+# def main():
+# 	for i in range(1,31):
+# 		print(fib(i))
+
+
+#680
+def validPalindrome(s):
+	if s == s[::-1]: return True
+	i = 0
+	while i <= len(s)//2:
+		if s[i] != s[-1-i]:
+			s1 = s[:i] + s[i+1:]
+			s2 = s[:-1-i] + s[len(s)-i:]
+			return s1 == s1[::-1] or s2 == s2[::-1]
+		i += 1
+
+def main():
+	input_s = ["abccba","dabccba","abccbad","dabcdfcba"]
+	expected_output = [True, True, True, False]
+	for i in range(len(input_s)):
+		if validPalindrome(input_s[i]) != expected_output[i]:
+			print("Wrong!!! Output:", validPalindrome(input_s[i]))
+		else:
+			print("Right")
+	print(validPalindrome(input_s[2]))
+
 if __name__ == "__main__":
+	import time
+	t_start = time.time()
+	main()
+	print(time.time()-t_start)
+
 	class TreeNode:
 		def __init__(self, x):
 			self.val = x
@@ -84,7 +90,3 @@ if __name__ == "__main__":
 	# for i in range(1,1000000000):
 	# 	if checkPerfectNumber(i):
 	# 		print(i)
-
-	#509
-	for i in range(1,31):
-		print(fib(i))

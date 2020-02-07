@@ -46,17 +46,26 @@ Time Limit Exceeded
 def validPalindrome(s):
 	if s == s[::-1]: return True
 	for i in range(len(s)):
+		#if s[i] == s[-1-i]: continue
 		s1 = s[:i] + s[i+1:]
 		if s1 == s1[::-1]: return True
 	return False
 
-#1.1
+#1.2
+"""
+Success
+Runtime: 80 ms, faster than 91.35% of Python3 online submissions for Valid Palindrome II.
+Memory Usage: 13.3 MB, less than 56.25% of Python3 online submissions for Valid Palindrome II.
+"""
 def validPalindrome(s):
 	if s == s[::-1]: return True
-	middle = len(s)//2
-	left = s[:middle]
-	right = s[middle:]
-
+	i = 0
+	while i <= len(s)//2:
+		if s[i] != s[-1-i]:
+			s1 = s[:i] + s[i+1:]
+			s2 = s[:-1-i] + s[len(s)-i:]
+			return s1 == s1[::-1] or s2 == s2[::-1]
+		i += 1
 
 # Test
 ## Functional Test
@@ -65,15 +74,15 @@ def validPalindrome(s):
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
-	for i in range(len(input1)):
-		if func(input1[i]) != expected_output[i]:
+	input_s = ["abccba","dabccba","abccbad","dabcdfcba"]
+	expected_output = [True, True, True, False]
+	for i in range(len(input_s)):
+		if validPalindrome(input_s[i]) != expected_output[i]:
 			print("Wrong!!!")
-			print(func(input1[i]))
+			print(validPalindrome(input_s[i]))
 		else:
-			print("Right")		
-	# print(func(input1[-1]))
+			print("Right")
+	# print(validPalindrome(input_s[-1]))
 	
 
 ## Performance Test
