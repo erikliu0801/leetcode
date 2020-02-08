@@ -54,25 +54,26 @@ Expected: 247
 hundred_digit e.g. 200,201,...,299
 
 """
-def rotatedDigits(N):
-	nums = [None, None, True, False, False, True, True, False, None, True]
-	g_nums = [    2,5,6,   9]
-	u_nums = [0,1,       8]
-	count = 0 
-	import math
-	while N > 10:
-		digit = int(math.log10(N))
-		n = N // (10 ** digit)
+# def rotatedDigits(N):
+# 	nums = [None, None, True, False, False, True, True, False, None, True]
+# 	# nums = [0, 0, 1, -1, -1, 1, 1, -1, 0, 1]
 
+# 	g_nums = [    2,5,6,   9]
+# 	u_nums = [0,1,       8]
+# 	count = 0 
+# 	import math
+# 	while N > 10:
+# 		digit = int(math.log10(N))
+# 		n = N // (10 ** digit)
+# 		n_nums = nums[:n+1]
+# 		m = (n_nums.count(True) * 7) + (n_nums.count.count(None) * 4)
+# 		count = m *   
 
-
-	return count + len([x for x in good_nums if x <= N])
+# 	return count + len([x for x in good_nums if x <= N])
 
 #1.1
 def rotatedDigits(N):
-	#nums = [None, None, True, False, False, True, True, False, None, True]
-	nums = [0, 0, 1, -1, -1, 1, 1, -1, 0, 1]
-
+	
 
 
 # Test
