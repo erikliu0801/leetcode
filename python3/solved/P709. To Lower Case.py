@@ -47,7 +47,42 @@ Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for To Lo
 def toLowerCase(str):
 	return str.lower()
 
-#2 hash table
+#2 mapping
+"""
+Success
+Runtime: 28 ms, faster than 55.40% of Python3 online submissions for To Lower Case.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for To Lower Case.
+"""
+def toLowerCase(str):
+	up = [chr(x) for x in range(65,91)]
+	low = [chr(x) for x in range(97,123)]
+	s = ''
+	for alph in str:
+		if alph in up:
+			s += low[up.index(alph)]
+		else:
+			s += alph
+	return s
+
+#3 hash table
+"""
+Success
+Runtime: 28 ms, faster than 55.40% of Python3 online submissions for To Lower Case.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for To Lower Case.
+"""
+def toLowerCase(str):
+	up = [chr(x) for x in range(65,91)]
+	low = [chr(x) for x in range(97,123)]
+	up_low = {up[i]:low[i] for i in range(26)}
+	s = ''
+	for alph in str:
+		if alph in up_low:
+			s += up_low[alph]
+		else:
+			s += alph
+	return s
+
+
 
 # Test
 ## Functional Test
