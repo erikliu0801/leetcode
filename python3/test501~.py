@@ -115,18 +115,52 @@ def mostCommonWord(paragraph, banned):
 		frequence.pop(frequentest)
 	return ''
 
-def main():
-	input_paragraph = ["Bob hit a ball, the hit BALL flew far after it was hit.", "Bob"]
-	input_banned = [["hit"], []]
-	expected_output = ["ball", "bob"]
-	for i in range(len(input_paragraph)):
-		if mostCommonWord(input_paragraph[i], input_banned[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(mostCommonWord(input_paragraph[i], input_banned[i]))
-		else:
-			print("Right")
-	print(mostCommonWord(input_paragraph[-1], input_banned[-1]))
+# def main():
+# 	input_paragraph = ["Bob hit a ball, the hit BALL flew far after it was hit.", "Bob"]
+# 	input_banned = [["hit"], []]
+# 	expected_output = ["ball", "bob"]
+# 	for i in range(len(input_paragraph)):
+# 		if mostCommonWord(input_paragraph[i], input_banned[i]) != expected_output[i]:
+# 			print("Wrong!!!")
+# 			print(mostCommonWord(input_paragraph[i], input_banned[i]))
+# 		else:
+# 			print("Right")
+# 	print(mostCommonWord(input_paragraph[-1], input_banned[-1]))
 
+#824
+def toGoatLatin(S):
+	word = ''
+	w_end = ''
+	transed_S = ''
+	index = 1
+	vowel = set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])
+	up = set([chr(x) for x in range(65,91)])
+	low = set([chr(x) for x in range(97,123)])
+	for c in (S+' '):
+		if word == '' and w_end == '':
+			if c in vowel:
+				word = c
+			if c in ((up | low) - vowel):
+				w_end = c
+		elif c in (up | low):
+			word += c
+		else:
+			if word != '' or w_end != '':
+				transed_S += word + w_end + 'ma' + ('a' * index)
+				index += 1
+				word, w_end = '', ''
+			transed_S += c
+	return transed_S[:-1]
+
+# def main():
+# 	input_S = ["I speak Goat Latin", "The quick brown fox jumped over the lazy dog", "HZ sg L"]
+# 	expected_output = ["Imaa peaksmaaa oatGmaaaa atinLmaaaaa", "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa", "ZHmaa gsmaaa Lmaaaa"]
+# 	for i in range(len(input_S)):
+# 		if toGoatLatin(input_S[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', toGoatLatin(input_S[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+	# print(toGoatLatin(input_S[-1]))
 
 if __name__ == "__main__":
 	import time

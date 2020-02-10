@@ -28,8 +28,7 @@ if __name__ == '__main__':
 	expected_output = []
 	for i in range(len(input1)):
 		if func(input1[i]) != expected_output[i]:
-			print("Wrong!!!")
-			print(func(input1[i]))
+			print("Wrong!!!", ' Output:', func(input1[i]), '; Expected Output:', expected_output[i])
 		else:
 			print("Right")
 	# print(func(input1[-1]))
