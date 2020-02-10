@@ -184,16 +184,78 @@ def buddyStrings(A, B):
 	else:
 		return False
 
-def main():
-	input_A = ["ab", "ab", "aa", "aaaaaaabc", ""]
-	input_B = ["ba", "ab", 'aa', "aaaaaaacb", "aa"]
-	expected_output = [True, False, True, True, False]
-	for i in range(len(input_A)):
-		if buddyStrings(input_A[i], input_B[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', buddyStrings(input_A[i], input_B[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
+# def main():
+# 	input_A = ["ab", "ab", "aa", "aaaaaaabc", ""]
+# 	input_B = ["ba", "ab", 'aa', "aaaaaaacb", "aa"]
+# 	expected_output = [True, False, True, True, False]
+# 	for i in range(len(input_A)):
+# 		if buddyStrings(input_A[i], input_B[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', buddyStrings(input_A[i], input_B[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
 	# print(buddyStrings(input_A[-1], input_B[-1]))
+
+#917
+def reverseOnlyLetters(S):
+	i_c = {}
+	up = set([chr(x) for x in range(65,91)])
+	low = set([chr(x) for x in range(97,123)])
+	reversed_nums = list()
+	for i, c in enumerate(S):
+		if c in (up | low):
+			reversed_nums.append(c)
+		else:
+			i_c[i] = c
+	reversed_nums.reverse()
+	for i in i_c:
+		reversed_nums.insert(i, i_c[i])
+	reversed_S = ''
+	for c in reversed_nums : reversed_S += c
+	return reversed_S
+
+# def main():
+# 	input_S = ["ab-cd", "a-bC-dEf-ghIj", "Test1ng-Leet=code-Q!"]
+# 	expected_output = ["dc-ba", "j-Ih-gfE-dCba", "Qedo1ct-eeLg=ntse-T!"]
+# 	for i in range(len(input_S)):
+# 		if reverseOnlyLetters(input_S[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', reverseOnlyLetters(input_S[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+	# print(reverseOnlyLetters(input_S[-1]))
+
+#925
+def isLongPressedName(name, typed):
+	if name == typed: return True
+	if set(name) != set(typed): return False
+	last = ''
+	j = 0
+	for i, nc in enumerate(name):
+		while j < len(typed):
+			if typed[j] == nc:
+				j += 1
+				break
+			elif typed[j] == last:
+				j += 1
+			else : return False
+		if i < len(name) and j == len(typed) and typed[j-1] != nc: return False #
+		last = nc
+	rest = set(typed[j:])
+	if rest:
+		if len(rest) > 1 : return False
+		return True if last in rest else False
+	return True
+
+# def main():
+# 	input_name = ["alex", "saeed", "leelee", "laiden", "kikcxmvzi", "izi"]
+# 	input_typed = ["aaleex", "ssaaedd", "lleeelee", "laiden", "kiikcxxmmvvzz", "izz"]
+# 	expected_output = [True, False, True, True, False, False]
+# 	for i in range(len(input_name)):
+# 		if isLongPressedName(input_name[i], input_typed[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', isLongPressedName(input_name[i], input_typed[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+# 	print(isLongPressedName(input_name[-1], input_typed[-1]))
+
 
 if __name__ == "__main__":
 	import time
