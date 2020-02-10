@@ -59,15 +59,40 @@ def validPalindrome(s):
 			return s1 == s1[::-1] or s2 == s2[::-1]
 		i += 1
 
-def main():
-	input_s = ["abccba","dabccba","abccbad","dabcdfcba"]
-	expected_output = [True, True, True, False]
-	for i in range(len(input_s)):
-		if validPalindrome(input_s[i]) != expected_output[i]:
-			print("Wrong!!! Output:", validPalindrome(input_s[i]))
-		else:
-			print("Right")
-	print(validPalindrome(input_s[2]))
+# def main():
+# 	input_s = ["abccba","dabccba","abccbad","dabcdfcba"]
+# 	expected_output = [True, True, True, False]
+# 	for i in range(len(input_s)):
+# 		if validPalindrome(input_s[i]) != expected_output[i]:
+# 			print("Wrong!!! Output:", validPalindrome(input_s[i]))
+# 		else:
+# 			print("Right")
+# 	print(validPalindrome(input_s[2]))
+
+#804
+def uniqueMorseRepresentations(words):
+	morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+	alph = [chr(x) for x in range(97,123)]
+	m_a = {alph[i]:morse[i] for i in range(26)}
+	morse_strs = []
+	for word in words:
+		morse_str = ''
+		for w in word.lower():
+			morse_str += m_a[w]
+		morse_strs.append(morse_str)
+	return len(set(morse_strs))
+
+# def main():
+# 	input_words = [["gin", "zen", "gig", "msg"]]
+# 	expected_output = [2]
+# 	for i in range(len(input_words)):
+# 		if uniqueMorseRepresentations(input_words[i]) != expected_output[i]:
+# 			print("Wrong!!!")
+# 			print(uniqueMorseRepresentations(input_words[i]))
+# 		else:
+# 			print("Right")
+	# print(uniqueMorseRepresentations(input_words[-1]))
+
 
 if __name__ == "__main__":
 	import time
