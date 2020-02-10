@@ -256,6 +256,35 @@ def isLongPressedName(name, typed):
 # 			print("Right")
 # 	print(isLongPressedName(input_name[-1], input_typed[-1]))
 
+#929
+def numUniqueEmails(emails):
+	local_name = ''
+	uniqe_emails = set()
+	for email in emails:
+		for i, c in enumerate(email):
+			if c == '.':
+				continue
+			elif c == '+':
+				uniqe_emails.add(local_name + email[email.index('@'):])
+				local_name = ''
+				break
+			elif c == '@':
+				uniqe_emails.add(local_name + email[i:])
+				local_name = ''
+				break
+			else:
+				local_name += c
+	return len(uniqe_emails)
+
+# def main():
+# 	input_emails = [["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]]
+# 	expected_output = [2]
+# 	for i in range(len(input_emails)):
+# 		if numUniqueEmails(input_emails[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', numUniqueEmails(input_emails[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+	# print(numUniqueEmails(input_emails[-1]))
 
 if __name__ == "__main__":
 	import time
