@@ -31,7 +31,7 @@ if __name__ == '__main__':
 			print("Wrong!!!")
 			print(func(input1[i]))
 		else:
-			print("Right")		
+			print("Right")
 	# print(func(input1[-1]))
 	
 

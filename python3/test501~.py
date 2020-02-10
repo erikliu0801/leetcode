@@ -93,6 +93,40 @@ def uniqueMorseRepresentations(words):
 # 			print("Right")
 	# print(uniqueMorseRepresentations(input_words[-1]))
 
+#819
+def mostCommonWord(paragraph, banned):
+	from collections import Counter
+	alph = [chr(x) for x in range(97, 123)]
+	words = []
+	word = ''
+	for w in paragraph:
+		if w.lower() in alph:
+			word += w.lower()
+		elif word != '':
+			words.append(word)
+			word = ''
+	if word != '':
+		words.append(word)
+	frequence = Counter(words)
+	while frequence:
+		frequentest, _ = frequence.most_common(1)[0]
+		if frequentest not in banned:
+			return frequentest
+		frequence.pop(frequentest)
+	return ''
+
+def main():
+	input_paragraph = ["Bob hit a ball, the hit BALL flew far after it was hit.", "Bob"]
+	input_banned = [["hit"], []]
+	expected_output = ["ball", "bob"]
+	for i in range(len(input_paragraph)):
+		if mostCommonWord(input_paragraph[i], input_banned[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(mostCommonWord(input_paragraph[i], input_banned[i]))
+		else:
+			print("Right")
+	print(mostCommonWord(input_paragraph[-1], input_banned[-1]))
+
 
 if __name__ == "__main__":
 	import time
