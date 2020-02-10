@@ -162,6 +162,39 @@ def toGoatLatin(S):
 # 			print("Right")
 	# print(toGoatLatin(input_S[-1]))
 
+#859
+def buddyStrings(A, B):
+	if set(A) != set(B) or len(A) < 2 or len(B) < 2:
+		return False
+	if A == B :
+		from collections import Counter
+		a = Counter(A)
+		if a.most_common(1)[0][1] >=2:
+			return True
+		return False
+	a_b = None
+	for a, b in zip(A, B):
+		if a != b:
+			if a_b:
+				if a != a_b[1] or b != a_b[0]:
+					return False
+			a_b = (a,b)
+	if a_b:
+		return True
+	else:
+		return False
+
+def main():
+	input_A = ["ab", "ab", "aa", "aaaaaaabc", ""]
+	input_B = ["ba", "ab", 'aa', "aaaaaaacb", "aa"]
+	expected_output = [True, False, True, True, False]
+	for i in range(len(input_A)):
+		if buddyStrings(input_A[i], input_B[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', buddyStrings(input_A[i], input_B[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	# print(buddyStrings(input_A[-1], input_B[-1]))
+
 if __name__ == "__main__":
 	import time
 	t_start = time.time()
