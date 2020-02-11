@@ -91,17 +91,40 @@ def findMaxAverage(nums, k):
 		max_sum = max(max_sum, mean)
 	return max_sum
 
-
-def main():
-	input_nums = [[1,12,-5,-6,50,3]]
-	input_k = [4]
-	expected_output = [12.75]
-	for i in range(len(input_nums)):
-		if findMaxAverage(input_nums[i], input_k[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', findMaxAverage(input_nums[i], input_k[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
+# def main():
+# 	input_nums = [[1,12,-5,-6,50,3]]
+# 	input_k = [4]
+# 	expected_output = [12.75]
+# 	for i in range(len(input_nums)):
+# 		if findMaxAverage(input_nums[i], input_k[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', findMaxAverage(input_nums[i], input_k[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
 	# print(findMaxAverage(input_nums[-1], input_k[-1]))
+
+#665
+def checkPossibility(nums):
+	nums0 = nums.copy()
+	for i in range(1,len(nums)):
+		if nums[i] < nums[i-1]:
+			nums[i-1] = nums[i]
+			new_nums_sorted = nums.copy()
+			new_nums_sorted.sort()
+			nums0[i] = nums0[i-1]
+			new_nums0_sorted = nums0.copy()
+			new_nums0_sorted.sort()
+			return nums == new_nums_sorted or nums0 == new_nums0_sorted
+	return True
+
+# def main():
+# 	input_nums = [[1,2,3],[4,2,3],[4,2,1],[3,4,2,3],[2,3,3,2,4]]
+# 	expected_output = [True, True, False, False, True]
+# 	for i in range(len(input_nums)):
+# 		if checkPossibility(input_nums[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', checkPossibility(input_nums[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+# 	print(checkPossibility(input_nums[-1]))
 
 #680
 def validPalindrome(s):
