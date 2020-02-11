@@ -48,6 +48,39 @@ def fib(N):
 # 		print(fib(i))
 
 
+#605
+def canPlaceFlowers(flowerbed, n):
+	rest_place = []
+	max_added_flowers = 0
+	existed_flowers = flowerbed.count(1)
+	while flowerbed:
+		if flowerbed[0] == 1:
+			flowerbed = flowerbed[2:]
+			existed_flowers -= 1
+			continue
+		if existed_flowers > 0:
+			rest_place.append(flowerbed[:flowerbed.index(1)-1])
+			flowerbed = flowerbed[flowerbed.index(1)+2:]
+			existed_flowers -= 1
+		else:
+			rest_place.append(flowerbed)
+			break
+	for place in rest_place:
+		max_added_flowers += (len(place)+1) // 2
+	return n <= max_added_flowers
+
+def main():
+	input_flowerbed = [[1,0,0,0,1], [1,0,0,0,1], [1,0,1,0,1,0,1], [1,0,1,0,1,0,0,1], [1,0,1,0,1,0,0,0,1], [1,0,0,0,1,0,0]]
+	input_n = [1, 2, 1, 1, 1, 2]
+	expected_output = [True, False, False, False, True, True]
+	for i in range(len(input_flowerbed)):
+		if canPlaceFlowers(input_flowerbed[i], input_n[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', canPlaceFlowers(input_flowerbed[i], input_n[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(canPlaceFlowers(input_flowerbed[-1], input_n[-1]))
+
+
 #680
 def validPalindrome(s):
 	if s == s[::-1]: return True
