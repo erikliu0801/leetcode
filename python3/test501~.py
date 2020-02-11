@@ -69,17 +69,39 @@ def canPlaceFlowers(flowerbed, n):
 		max_added_flowers += (len(place)+1) // 2
 	return n <= max_added_flowers
 
+# def main():
+# 	input_flowerbed = [[1,0,0,0,1], [1,0,0,0,1], [1,0,1,0,1,0,1], [1,0,1,0,1,0,0,1], [1,0,1,0,1,0,0,0,1], [1,0,0,0,1,0,0]]
+# 	input_n = [1, 2, 1, 1, 1, 2]
+# 	expected_output = [True, False, False, False, True, True]
+# 	for i in range(len(input_flowerbed)):
+# 		if canPlaceFlowers(input_flowerbed[i], input_n[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', canPlaceFlowers(input_flowerbed[i], input_n[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+# 	print(canPlaceFlowers(input_flowerbed[-1], input_n[-1]))
+
+#643
+def findMaxAverage(nums, k):
+	if k == 1: return max(nums)
+	max_sum = sum(nums[:k])/k
+	rest_prob = len(nums) - k
+	mean = max_sum
+	for i in range(rest_prob):
+		mean += (nums[k+i] - nums[i]) / k
+		max_sum = max(max_sum, mean)
+	return max_sum
+
+
 def main():
-	input_flowerbed = [[1,0,0,0,1], [1,0,0,0,1], [1,0,1,0,1,0,1], [1,0,1,0,1,0,0,1], [1,0,1,0,1,0,0,0,1], [1,0,0,0,1,0,0]]
-	input_n = [1, 2, 1, 1, 1, 2]
-	expected_output = [True, False, False, False, True, True]
-	for i in range(len(input_flowerbed)):
-		if canPlaceFlowers(input_flowerbed[i], input_n[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', canPlaceFlowers(input_flowerbed[i], input_n[i]), '; Expected Output:', expected_output[i])
+	input_nums = [[1,12,-5,-6,50,3]]
+	input_k = [4]
+	expected_output = [12.75]
+	for i in range(len(input_nums)):
+		if findMaxAverage(input_nums[i], input_k[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', findMaxAverage(input_nums[i], input_k[i]), '; Expected Output:', expected_output[i])
 		else:
 			print("Right")
-	print(canPlaceFlowers(input_flowerbed[-1], input_n[-1]))
-
+	# print(findMaxAverage(input_nums[-1], input_k[-1]))
 
 #680
 def validPalindrome(s):
