@@ -201,15 +201,32 @@ def pivotIndex(nums):
 		if sum(nums[:i]) == sum(nums[i+1:]): return i
 	return -1
 
+# def main():
+# 	input_nums = [[1, 7, 3, 6, 5, 6], [1, 2, 3], [1,2,-2]]
+# 	expected_output = [3, -1, 0]
+# 	for i in range(len(input_nums)):
+# 		if pivotIndex(input_nums[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', pivotIndex(input_nums[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+	# print(pivotIndex(input_nums[-1]))
+
+#747
+def dominantIndex(nums):
+	a = max(nums)
+	i = nums.index(a)
+	nums.remove(a)
+	return i if a >= (max(nums)*2) else -1
+
 def main():
-	input_nums = [[1, 7, 3, 6, 5, 6], [1, 2, 3], [1,2,-2]]
-	expected_output = [3, -1, 0]
+	input_nums = [[3, 6, 1, 0], [1, 2, 3, 4], [0,0,0,1]]
+	expected_output = [1, -1, 3]
 	for i in range(len(input_nums)):
-		if pivotIndex(input_nums[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', pivotIndex(input_nums[i]), '; Expected Output:', expected_output[i])
+		if dominantIndex(input_nums[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', dominantIndex(input_nums[i]), '; Expected Output:', expected_output[i])
 		else:
 			print("Right")
-	# print(pivotIndex(input_nums[-1]))
+	# print(dominantIndex(input_nums[0]))
 
 
 #804
