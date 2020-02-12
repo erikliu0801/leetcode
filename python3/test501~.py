@@ -126,6 +126,33 @@ def checkPossibility(nums):
 # 			print("Right")
 # 	print(checkPossibility(input_nums[-1]))
 
+#674
+def findLengthOfLCIS(nums):
+	if len(nums) < 2:
+		return len(nums)
+	count = 1
+	nums_count = []
+	for i in range(1,len(nums)):
+		if nums[i] > nums[i-1]:
+			count += 1
+			if i == len(nums) -1:
+				nums_count.append(count)
+		else:
+			nums_count.append(count)
+			count = 1
+	return max(nums_count)
+
+# def main():
+# 	input_nums = [[1,3,5,4,7], [2,2,2,2,2], [1,3,5,7]]
+# 	expected_output = [3, 1, 4]
+# 	for i in range(len(input_nums)):
+# 		if findLengthOfLCIS(input_nums[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', findLengthOfLCIS(input_nums[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+	# print(findLengthOfLCIS(input_nums[-1]))
+
+
 #680
 def validPalindrome(s):
 	if s == s[::-1]: return True
