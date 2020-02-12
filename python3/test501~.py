@@ -185,15 +185,31 @@ def isOneBitCharacter(bits):
 			cd = True
 	return not cd
 
+# def main():
+# 	input_bits = [[1, 0, 0], [1, 1, 1, 0], [0], [1, 0], [0, 0]]
+# 	expected_output = [True, False, True, False, True]
+# 	for i in range(len(input_bits)):
+# 		if isOneBitCharacter(input_bits[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', isOneBitCharacter(input_bits[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+# 	print(isOneBitCharacter(input_bits[1]))
+
+#724
+def pivotIndex(nums):
+	for i in range(len(nums)):
+		if sum(nums[:i]) == sum(nums[i+1:]): return i
+	return -1
+
 def main():
-	input_bits = [[1, 0, 0], [1, 1, 1, 0], [0], [1, 0], [0, 0]]
-	expected_output = [True, False, True, False, True]
-	for i in range(len(input_bits)):
-		if isOneBitCharacter(input_bits[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', isOneBitCharacter(input_bits[i]), '; Expected Output:', expected_output[i])
+	input_nums = [[1, 7, 3, 6, 5, 6], [1, 2, 3], [1,2,-2]]
+	expected_output = [3, -1, 0]
+	for i in range(len(input_nums)):
+		if pivotIndex(input_nums[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', pivotIndex(input_nums[i]), '; Expected Output:', expected_output[i])
 		else:
 			print("Right")
-	print(isOneBitCharacter(input_bits[1]))
+	# print(pivotIndex(input_nums[-1]))
 
 
 #804
