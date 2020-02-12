@@ -174,6 +174,28 @@ def validPalindrome(s):
 # 			print("Right")
 # 	print(validPalindrome(input_s[2]))
 
+#717
+def isOneBitCharacter(bits):
+	cd = False
+	for bit in bits[:-1]:
+		if cd :
+			cd = False
+			continue
+		if bit == 1:
+			cd = True
+	return not cd
+
+def main():
+	input_bits = [[1, 0, 0], [1, 1, 1, 0], [0], [1, 0], [0, 0]]
+	expected_output = [True, False, True, False, True]
+	for i in range(len(input_bits)):
+		if isOneBitCharacter(input_bits[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', isOneBitCharacter(input_bits[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(isOneBitCharacter(input_bits[1]))
+
+
 #804
 def uniqueMorseRepresentations(words):
 	morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
