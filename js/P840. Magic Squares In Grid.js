@@ -10,7 +10,6 @@ A 3 x 3 magic square is a 3 x 3 grid filled with distinct numbers from 1 to 9 su
 
 Given an grid of integers, how many 3 x 3 "magic square" subgrids are there?  (Each subgrid is contiguous).
 
- 
 
 Example 1:
 
@@ -36,8 +35,6 @@ Note:
     1 <= grid.length <= 10
     1 <= grid[0].length <= 10
     0 <= grid[i][j] <= 15
-
-
 */
 
 // Conditions & Concepts
@@ -49,12 +46,17 @@ Note:
  * @param {number[][]} grid
  * @return {number}
  */
- 
+
 // code here
 // 1
 /* */
 var numMagicSquaresInside = function(grid) {
-    
+    for (var row =0, rows=grid.length; row < rows; row++) {
+    	for (var col = 0, cols=row.length; col < cols; col++) {
+    		
+
+    	}
+    }
 };
 
 // Test
