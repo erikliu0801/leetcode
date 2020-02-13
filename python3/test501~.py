@@ -218,16 +218,44 @@ def dominantIndex(nums):
 	nums.remove(a)
 	return i if a >= (max(nums)*2) else -1
 
-def main():
-	input_nums = [[3, 6, 1, 0], [1, 2, 3, 4], [0,0,0,1]]
-	expected_output = [1, -1, 3]
-	for i in range(len(input_nums)):
-		if dominantIndex(input_nums[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', dominantIndex(input_nums[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
+# def main():
+# 	input_nums = [[3, 6, 1, 0], [1, 2, 3, 4], [0,0,0,1]]
+# 	expected_output = [1, -1, 3]
+# 	for i in range(len(input_nums)):
+# 		if dominantIndex(input_nums[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', dominantIndex(input_nums[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
 	# print(dominantIndex(input_nums[0]))
 
+#766
+def isToeplitzMatrix(matrix):
+	array = []
+	for i, arr in enumerate(matrix):
+		if i == 0:
+			array = arr
+			continue
+		for j, val in enumerate(arr):
+			if j == 0:
+				array.insert(0,val)
+				continue
+			if array[j] != val: return False
+	return True
+
+def main():
+	input_matrix = [
+		[[1, 2, 3, 4],
+		 [5, 1, 2, 3],
+		 [9, 5, 1, 2]],
+		[[1, 2],
+		 [2, 2]]]
+	expected_output = [True, False]
+	for i in range(len(input_matrix)):
+		if isToeplitzMatrix(input_matrix[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', isToeplitzMatrix(input_matrix[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	# print(isToeplitzMatrix(input_matrix[-1]))
 
 #804
 def uniqueMorseRepresentations(words):
