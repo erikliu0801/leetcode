@@ -242,19 +242,19 @@ def isToeplitzMatrix(matrix):
 			if array[j] != val: return False
 	return True
 
-def main():
-	input_matrix = [
-		[[1, 2, 3, 4],
-		 [5, 1, 2, 3],
-		 [9, 5, 1, 2]],
-		[[1, 2],
-		 [2, 2]]]
-	expected_output = [True, False]
-	for i in range(len(input_matrix)):
-		if isToeplitzMatrix(input_matrix[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', isToeplitzMatrix(input_matrix[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
+# def main():
+# 	input_matrix = [
+# 		[[1, 2, 3, 4],
+# 		 [5, 1, 2, 3],
+# 		 [9, 5, 1, 2]],
+# 		[[1, 2],
+# 		 [2, 2]]]
+# 	expected_output = [True, False]
+# 	for i in range(len(input_matrix)):
+# 		if isToeplitzMatrix(input_matrix[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', isToeplitzMatrix(input_matrix[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
 	# print(isToeplitzMatrix(input_matrix[-1]))
 
 #804
@@ -349,6 +349,34 @@ def toGoatLatin(S):
 # 		else:
 # 			print("Right")
 	# print(toGoatLatin(input_S[-1]))
+
+#830
+def largeGroupPositions(S):
+	now = ''
+	first_p = 0
+	count = 0
+	position_nums = []
+	for i, c in enumerate(S):
+		if c != now:
+			#record
+			if count >= 3: position_nums.append([first_p,i-1])
+			#reset
+			now = c
+			count = 1
+			first_p = i
+		else: count += 1
+	if count >= 3: position_nums.append([first_p,i])
+	return position_nums
+
+def main():
+	input_S = ["abbxxxxzzy", "abc", "abcdddeeeeaabbbcd", "aaa"]
+	expected_output = [[[3,6]], [], [[3,5],[6,9],[12,14]], [[0,2]]]
+	for i in range(len(input_S)):
+		if largeGroupPositions(input_S[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', largeGroupPositions(input_S[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(largeGroupPositions(input_S[-1]))
 
 #859
 def buddyStrings(A, B):
