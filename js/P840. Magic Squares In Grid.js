@@ -38,7 +38,10 @@ Note:
 */
 
 // Conditions & Concepts
-/* */
+/*
+
+
+*/
 
 // Code
 // submit part
@@ -51,9 +54,15 @@ Note:
 // 1
 /* */
 var numMagicSquaresInside = function(grid) {
-    for (var row =0, rows=grid.length; row < rows; row++) {
-    	for (var col = 0, cols=row.length; col < cols; col++) {
-    		
+    var rows = grid.length;
+    var cols = grid[0].length;
+    if (rows < 3 | cols < 3) {
+    	return 0
+    };
+    var p = 0;
+    var diagonals = [grid[0][0], grid[0][-1]]
+    for (var row =0; row < rows; row++) {
+    	for (var col = 0; col < cols; col++) {
 
     	}
     }
