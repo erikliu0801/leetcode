@@ -368,15 +368,15 @@ def largeGroupPositions(S):
 	if count >= 3: position_nums.append([first_p,i])
 	return position_nums
 
-def main():
-	input_S = ["abbxxxxzzy", "abc", "abcdddeeeeaabbbcd", "aaa"]
-	expected_output = [[[3,6]], [], [[3,5],[6,9],[12,14]], [[0,2]]]
-	for i in range(len(input_S)):
-		if largeGroupPositions(input_S[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', largeGroupPositions(input_S[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
-	print(largeGroupPositions(input_S[-1]))
+# def main():
+# 	input_S = ["abbxxxxzzy", "abc", "abcdddeeeeaabbbcd", "aaa"]
+# 	expected_output = [[[3,6]], [], [[3,5],[6,9],[12,14]], [[0,2]]]
+# 	for i in range(len(input_S)):
+# 		if largeGroupPositions(input_S[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', largeGroupPositions(input_S[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+# 	print(largeGroupPositions(input_S[-1]))
 
 #859
 def buddyStrings(A, B):
@@ -438,6 +438,28 @@ def reverseOnlyLetters(S):
 # 		else:
 # 			print("Right")
 	# print(reverseOnlyLetters(input_S[-1]))
+
+#922
+def sortArrayByParityII(A):
+	odd = []
+	even = []
+	for i ,c in enumerate(A):
+		if (i % 2 == 0) and (c % 2 != 0) :
+			A[i] = True #even
+			odd.append(c)
+		elif (i % 2 == 1) and (c % 2 != 1) :
+			A[i] = False #odd
+			even.append(c)
+	for i ,c in enumerate(A):
+		if c is False:
+			A[i] = odd.pop()
+		elif c is True:
+			A[i] = even.pop()
+	return A
+
+def main():
+	print(sortArrayByParityII([4,2,5,7]))
+
 
 #925
 def isLongPressedName(name, typed):
