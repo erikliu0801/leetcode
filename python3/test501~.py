@@ -457,8 +457,8 @@ def sortArrayByParityII(A):
 			A[i] = even.pop()
 	return A
 
-def main():
-	print(sortArrayByParityII([4,2,5,7]))
+# def main():
+# 	print(sortArrayByParityII([4,2,5,7]))
 
 
 #925
@@ -523,6 +523,25 @@ def numUniqueEmails(emails):
 # 		else:
 # 			print("Right")
 	# print(numUniqueEmails(input_emails[-1]))
+
+#976
+def largestPerimeter(A):
+	A.sort(reverse=True)
+	for i in range(len(A)-2):
+		if A[i] < A[i+1] + A[i+2]:
+			return sum(A[i:i+3])
+	return 0
+
+def main():
+	input_A = [[2,1,2], [1,2,1], [3,2,3,4], [3,6,2,3]]
+	expected_output = [5, 0, 10, 8]
+	for i in range(len(input_A)):
+		if largestPerimeter(input_A[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', largestPerimeter(input_A[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	# print(largestPerimeter(input_A[-1]))
+
 
 if __name__ == "__main__":
 	import time
