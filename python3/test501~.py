@@ -432,6 +432,32 @@ def main830():
 			print("Right")
 # 	print(largeGroupPositions(input_S[-1]))
 
+#844
+def backspaceCompare(S, T):
+	def helper(M):
+		res = ''
+		cd = 0
+		for c in M[::-1]:
+			if c == '#':
+				cd += 1
+			elif cd > 0:
+				cd -= 1
+			else:
+				res = c + res
+		return res
+	return helper(S) == helper(T)
+
+def main844():
+	input_S = ["ab#c", "ab##", "a##c", "a#c"]
+	input_T = ["ad#c", "c#d#", "#a#c", "b"]
+	expected_output = [True, True, True, False]
+	for i in range(len(input_S)):
+		if backspaceCompare(input_S[i], input_T[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', backspaceCompare(input_S[i], input_T[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(backspaceCompare(input_S[1], input_T[1]))
+
 #859
 def buddyStrings(A, B):
 	if set(A) != set(B) or len(A) < 2 or len(B) < 2:
@@ -687,7 +713,8 @@ def main1351():
 if __name__ == "__main__":
 	import time
 	t_start = time.time()
-	main532()
+	# main532()
+	main844()
 	# main1337()
 	# main1351()
 	print(time.time()-t_start)
