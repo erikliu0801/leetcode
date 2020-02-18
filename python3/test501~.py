@@ -622,6 +622,36 @@ def main976():
 			print("Right")
 	# print(largestPerimeter(input_A[-1]))
 
+#1025
+def divisorGame(N):
+	def helper(M):
+		if M == 1: return 1
+		devisors = set()
+		import math
+		for i in range(1, int(math.sqrt(M))+1):
+			if (i<M) and (M//i != 0) and (M % i == 0):
+				devisors.add(i)
+				if M//i < M:
+					devisors.add(M//i)
+		return M - max(devisors)
+	chalkboard = [N]
+	while N > 1:
+		N = helper(N)
+		chalkboard.append(N)
+	if chalkboard.index(1) %2 == 1:
+		return False
+	return True
+
+def main1025():
+	input1 = [1, 2, 3, 4, 5]
+	expected_output = [False, True, False, True, False]
+	for i in range(len(input1)):
+		if divisorGame(input1[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', divisorGame(input1[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(divisorGame(input1[1]))
+
 #1122
 def relativeSortArray(arr1, arr2):
 	arr_front = []
@@ -714,7 +744,8 @@ if __name__ == "__main__":
 	import time
 	t_start = time.time()
 	# main532()
-	main844()
+	# main844()
+	main1025()
 	# main1337()
 	# main1351()
 	print(time.time()-t_start)
