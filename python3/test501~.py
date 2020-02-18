@@ -43,9 +43,9 @@ def fib(N):
 	else:
 		return fib(N-1) + fib(N-2)
 
-# def main():
-# 	for i in range(1,31):
-# 		print(fib(i))
+def main509():
+	for i in range(1,31):
+		print(fib(i))
 
 
 #605
@@ -69,15 +69,15 @@ def canPlaceFlowers(flowerbed, n):
 		max_added_flowers += (len(place)+1) // 2
 	return n <= max_added_flowers
 
-# def main():
-# 	input_flowerbed = [[1,0,0,0,1], [1,0,0,0,1], [1,0,1,0,1,0,1], [1,0,1,0,1,0,0,1], [1,0,1,0,1,0,0,0,1], [1,0,0,0,1,0,0]]
-# 	input_n = [1, 2, 1, 1, 1, 2]
-# 	expected_output = [True, False, False, False, True, True]
-# 	for i in range(len(input_flowerbed)):
-# 		if canPlaceFlowers(input_flowerbed[i], input_n[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', canPlaceFlowers(input_flowerbed[i], input_n[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main605():
+	input_flowerbed = [[1,0,0,0,1], [1,0,0,0,1], [1,0,1,0,1,0,1], [1,0,1,0,1,0,0,1], [1,0,1,0,1,0,0,0,1], [1,0,0,0,1,0,0]]
+	input_n = [1, 2, 1, 1, 1, 2]
+	expected_output = [True, False, False, False, True, True]
+	for i in range(len(input_flowerbed)):
+		if canPlaceFlowers(input_flowerbed[i], input_n[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', canPlaceFlowers(input_flowerbed[i], input_n[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 # 	print(canPlaceFlowers(input_flowerbed[-1], input_n[-1]))
 
 #643
@@ -91,15 +91,15 @@ def findMaxAverage(nums, k):
 		max_sum = max(max_sum, mean)
 	return max_sum
 
-# def main():
-# 	input_nums = [[1,12,-5,-6,50,3]]
-# 	input_k = [4]
-# 	expected_output = [12.75]
-# 	for i in range(len(input_nums)):
-# 		if findMaxAverage(input_nums[i], input_k[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', findMaxAverage(input_nums[i], input_k[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main643():
+	input_nums = [[1,12,-5,-6,50,3]]
+	input_k = [4]
+	expected_output = [12.75]
+	for i in range(len(input_nums)):
+		if findMaxAverage(input_nums[i], input_k[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', findMaxAverage(input_nums[i], input_k[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(findMaxAverage(input_nums[-1], input_k[-1]))
 
 #665
@@ -116,14 +116,14 @@ def checkPossibility(nums):
 			return nums == new_nums_sorted or nums0 == new_nums0_sorted
 	return True
 
-# def main():
-# 	input_nums = [[1,2,3],[4,2,3],[4,2,1],[3,4,2,3],[2,3,3,2,4]]
-# 	expected_output = [True, True, False, False, True]
-# 	for i in range(len(input_nums)):
-# 		if checkPossibility(input_nums[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', checkPossibility(input_nums[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main665():
+	input_nums = [[1,2,3],[4,2,3],[4,2,1],[3,4,2,3],[2,3,3,2,4]]
+	expected_output = [True, True, False, False, True]
+	for i in range(len(input_nums)):
+		if checkPossibility(input_nums[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', checkPossibility(input_nums[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 # 	print(checkPossibility(input_nums[-1]))
 
 #674
@@ -142,14 +142,14 @@ def findLengthOfLCIS(nums):
 			count = 1
 	return max(nums_count)
 
-# def main():
-# 	input_nums = [[1,3,5,4,7], [2,2,2,2,2], [1,3,5,7]]
-# 	expected_output = [3, 1, 4]
-# 	for i in range(len(input_nums)):
-# 		if findLengthOfLCIS(input_nums[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', findLengthOfLCIS(input_nums[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main674():
+	input_nums = [[1,3,5,4,7], [2,2,2,2,2], [1,3,5,7]]
+	expected_output = [3, 1, 4]
+	for i in range(len(input_nums)):
+		if findLengthOfLCIS(input_nums[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', findLengthOfLCIS(input_nums[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(findLengthOfLCIS(input_nums[-1]))
 
 
@@ -164,14 +164,14 @@ def validPalindrome(s):
 			return s1 == s1[::-1] or s2 == s2[::-1]
 		i += 1
 
-# def main():
-# 	input_s = ["abccba","dabccba","abccbad","dabcdfcba"]
-# 	expected_output = [True, True, True, False]
-# 	for i in range(len(input_s)):
-# 		if validPalindrome(input_s[i]) != expected_output[i]:
-# 			print("Wrong!!! Output:", validPalindrome(input_s[i]))
-# 		else:
-# 			print("Right")
+def main680():
+	input_s = ["abccba","dabccba","abccbad","dabcdfcba"]
+	expected_output = [True, True, True, False]
+	for i in range(len(input_s)):
+		if validPalindrome(input_s[i]) != expected_output[i]:
+			print("Wrong!!! Output:", validPalindrome(input_s[i]))
+		else:
+			print("Right")
 # 	print(validPalindrome(input_s[2]))
 
 #717
@@ -185,14 +185,14 @@ def isOneBitCharacter(bits):
 			cd = True
 	return not cd
 
-# def main():
-# 	input_bits = [[1, 0, 0], [1, 1, 1, 0], [0], [1, 0], [0, 0]]
-# 	expected_output = [True, False, True, False, True]
-# 	for i in range(len(input_bits)):
-# 		if isOneBitCharacter(input_bits[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', isOneBitCharacter(input_bits[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main717():
+	input_bits = [[1, 0, 0], [1, 1, 1, 0], [0], [1, 0], [0, 0]]
+	expected_output = [True, False, True, False, True]
+	for i in range(len(input_bits)):
+		if isOneBitCharacter(input_bits[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', isOneBitCharacter(input_bits[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 # 	print(isOneBitCharacter(input_bits[1]))
 
 #724
@@ -201,14 +201,14 @@ def pivotIndex(nums):
 		if sum(nums[:i]) == sum(nums[i+1:]): return i
 	return -1
 
-# def main():
-# 	input_nums = [[1, 7, 3, 6, 5, 6], [1, 2, 3], [1,2,-2]]
-# 	expected_output = [3, -1, 0]
-# 	for i in range(len(input_nums)):
-# 		if pivotIndex(input_nums[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', pivotIndex(input_nums[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main724():
+	input_nums = [[1, 7, 3, 6, 5, 6], [1, 2, 3], [1,2,-2]]
+	expected_output = [3, -1, 0]
+	for i in range(len(input_nums)):
+		if pivotIndex(input_nums[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', pivotIndex(input_nums[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(pivotIndex(input_nums[-1]))
 
 #744
@@ -226,7 +226,7 @@ def nextGreatestLetter(letters, target):
 		return chr(close_num)
 	return chr(smallest_num)
 
-def main():
+def main744():
 	input_letters = [["c", "f", "j"],["c", "f", "j"],["c", "f", "j"],["c", "f", "j"],["c", "f", "j"],["c", "f", "j"]]
 	inpurt_target = ["a", "c", "d", "g", "j", "k"]
 	expected_output = ["c", "f", "f", "j", "c", "c"]
@@ -246,14 +246,14 @@ def dominantIndex(nums):
 	nums.remove(a)
 	return i if a >= (max(nums)*2) else -1
 
-# def main():
-# 	input_nums = [[3, 6, 1, 0], [1, 2, 3, 4], [0,0,0,1]]
-# 	expected_output = [1, -1, 3]
-# 	for i in range(len(input_nums)):
-# 		if dominantIndex(input_nums[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', dominantIndex(input_nums[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main747():
+	input_nums = [[3, 6, 1, 0], [1, 2, 3, 4], [0,0,0,1]]
+	expected_output = [1, -1, 3]
+	for i in range(len(input_nums)):
+		if dominantIndex(input_nums[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', dominantIndex(input_nums[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(dominantIndex(input_nums[0]))
 
 #766
@@ -270,19 +270,19 @@ def isToeplitzMatrix(matrix):
 			if array[j] != val: return False
 	return True
 
-# def main():
-# 	input_matrix = [
-# 		[[1, 2, 3, 4],
-# 		 [5, 1, 2, 3],
-# 		 [9, 5, 1, 2]],
-# 		[[1, 2],
-# 		 [2, 2]]]
-# 	expected_output = [True, False]
-# 	for i in range(len(input_matrix)):
-# 		if isToeplitzMatrix(input_matrix[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', isToeplitzMatrix(input_matrix[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main766():
+	input_matrix = [
+		[[1, 2, 3, 4],
+		 [5, 1, 2, 3],
+		 [9, 5, 1, 2]],
+		[[1, 2],
+		 [2, 2]]]
+	expected_output = [True, False]
+	for i in range(len(input_matrix)):
+		if isToeplitzMatrix(input_matrix[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', isToeplitzMatrix(input_matrix[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(isToeplitzMatrix(input_matrix[-1]))
 
 #804
@@ -298,15 +298,15 @@ def uniqueMorseRepresentations(words):
 		morse_strs.append(morse_str)
 	return len(set(morse_strs))
 
-# def main():
-# 	input_words = [["gin", "zen", "gig", "msg"]]
-# 	expected_output = [2]
-# 	for i in range(len(input_words)):
-# 		if uniqueMorseRepresentations(input_words[i]) != expected_output[i]:
-# 			print("Wrong!!!")
-# 			print(uniqueMorseRepresentations(input_words[i]))
-# 		else:
-# 			print("Right")
+def main804():
+	input_words = [["gin", "zen", "gig", "msg"]]
+	expected_output = [2]
+	for i in range(len(input_words)):
+		if uniqueMorseRepresentations(input_words[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(uniqueMorseRepresentations(input_words[i]))
+		else:
+			print("Right")
 	# print(uniqueMorseRepresentations(input_words[-1]))
 
 #819
@@ -331,16 +331,16 @@ def mostCommonWord(paragraph, banned):
 		frequence.pop(frequentest)
 	return ''
 
-# def main():
-# 	input_paragraph = ["Bob hit a ball, the hit BALL flew far after it was hit.", "Bob"]
-# 	input_banned = [["hit"], []]
-# 	expected_output = ["ball", "bob"]
-# 	for i in range(len(input_paragraph)):
-# 		if mostCommonWord(input_paragraph[i], input_banned[i]) != expected_output[i]:
-# 			print("Wrong!!!")
-# 			print(mostCommonWord(input_paragraph[i], input_banned[i]))
-# 		else:
-# 			print("Right")
+def main819():
+	input_paragraph = ["Bob hit a ball, the hit BALL flew far after it was hit.", "Bob"]
+	input_banned = [["hit"], []]
+	expected_output = ["ball", "bob"]
+	for i in range(len(input_paragraph)):
+		if mostCommonWord(input_paragraph[i], input_banned[i]) != expected_output[i]:
+			print("Wrong!!!")
+			print(mostCommonWord(input_paragraph[i], input_banned[i]))
+		else:
+			print("Right")
 # 	print(mostCommonWord(input_paragraph[-1], input_banned[-1]))
 
 #824
@@ -368,14 +368,14 @@ def toGoatLatin(S):
 			transed_S += c
 	return transed_S[:-1]
 
-# def main():
-# 	input_S = ["I speak Goat Latin", "The quick brown fox jumped over the lazy dog", "HZ sg L"]
-# 	expected_output = ["Imaa peaksmaaa oatGmaaaa atinLmaaaaa", "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa", "ZHmaa gsmaaa Lmaaaa"]
-# 	for i in range(len(input_S)):
-# 		if toGoatLatin(input_S[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', toGoatLatin(input_S[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main824():
+	input_S = ["I speak Goat Latin", "The quick brown fox jumped over the lazy dog", "HZ sg L"]
+	expected_output = ["Imaa peaksmaaa oatGmaaaa atinLmaaaaa", "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa", "ZHmaa gsmaaa Lmaaaa"]
+	for i in range(len(input_S)):
+		if toGoatLatin(input_S[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', toGoatLatin(input_S[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(toGoatLatin(input_S[-1]))
 
 #830
@@ -396,14 +396,14 @@ def largeGroupPositions(S):
 	if count >= 3: position_nums.append([first_p,i])
 	return position_nums
 
-# def main():
-# 	input_S = ["abbxxxxzzy", "abc", "abcdddeeeeaabbbcd", "aaa"]
-# 	expected_output = [[[3,6]], [], [[3,5],[6,9],[12,14]], [[0,2]]]
-# 	for i in range(len(input_S)):
-# 		if largeGroupPositions(input_S[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', largeGroupPositions(input_S[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main830():
+	input_S = ["abbxxxxzzy", "abc", "abcdddeeeeaabbbcd", "aaa"]
+	expected_output = [[[3,6]], [], [[3,5],[6,9],[12,14]], [[0,2]]]
+	for i in range(len(input_S)):
+		if largeGroupPositions(input_S[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', largeGroupPositions(input_S[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 # 	print(largeGroupPositions(input_S[-1]))
 
 #859
@@ -428,15 +428,15 @@ def buddyStrings(A, B):
 	else:
 		return False
 
-# def main():
-# 	input_A = ["ab", "ab", "aa", "aaaaaaabc", ""]
-# 	input_B = ["ba", "ab", 'aa', "aaaaaaacb", "aa"]
-# 	expected_output = [True, False, True, True, False]
-# 	for i in range(len(input_A)):
-# 		if buddyStrings(input_A[i], input_B[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', buddyStrings(input_A[i], input_B[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main859():
+	input_A = ["ab", "ab", "aa", "aaaaaaabc", ""]
+	input_B = ["ba", "ab", 'aa', "aaaaaaacb", "aa"]
+	expected_output = [True, False, True, True, False]
+	for i in range(len(input_A)):
+		if buddyStrings(input_A[i], input_B[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', buddyStrings(input_A[i], input_B[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(buddyStrings(input_A[-1], input_B[-1]))
 
 #917
@@ -457,14 +457,14 @@ def reverseOnlyLetters(S):
 	for c in reversed_nums : reversed_S += c
 	return reversed_S
 
-# def main():
-# 	input_S = ["ab-cd", "a-bC-dEf-ghIj", "Test1ng-Leet=code-Q!"]
-# 	expected_output = ["dc-ba", "j-Ih-gfE-dCba", "Qedo1ct-eeLg=ntse-T!"]
-# 	for i in range(len(input_S)):
-# 		if reverseOnlyLetters(input_S[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', reverseOnlyLetters(input_S[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main917():
+	input_S = ["ab-cd", "a-bC-dEf-ghIj", "Test1ng-Leet=code-Q!"]
+	expected_output = ["dc-ba", "j-Ih-gfE-dCba", "Qedo1ct-eeLg=ntse-T!"]
+	for i in range(len(input_S)):
+		if reverseOnlyLetters(input_S[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', reverseOnlyLetters(input_S[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(reverseOnlyLetters(input_S[-1]))
 
 #922
@@ -485,8 +485,8 @@ def sortArrayByParityII(A):
 			A[i] = even.pop()
 	return A
 
-# def main():
-# 	print(sortArrayByParityII([4,2,5,7]))
+def main922():
+	print(sortArrayByParityII([4,2,5,7]))
 
 
 #925
@@ -511,15 +511,15 @@ def isLongPressedName(name, typed):
 		return True if last in rest else False
 	return True
 
-# def main():
-# 	input_name = ["alex", "saeed", "leelee", "laiden", "kikcxmvzi", "izi"]
-# 	input_typed = ["aaleex", "ssaaedd", "lleeelee", "laiden", "kiikcxxmmvvzz", "izz"]
-# 	expected_output = [True, False, True, True, False, False]
-# 	for i in range(len(input_name)):
-# 		if isLongPressedName(input_name[i], input_typed[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', isLongPressedName(input_name[i], input_typed[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main925():
+	input_name = ["alex", "saeed", "leelee", "laiden", "kikcxmvzi", "izi"]
+	input_typed = ["aaleex", "ssaaedd", "lleeelee", "laiden", "kiikcxxmmvvzz", "izz"]
+	expected_output = [True, False, True, True, False, False]
+	for i in range(len(input_name)):
+		if isLongPressedName(input_name[i], input_typed[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', isLongPressedName(input_name[i], input_typed[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 # 	print(isLongPressedName(input_name[-1], input_typed[-1]))
 
 #929
@@ -542,14 +542,14 @@ def numUniqueEmails(emails):
 				local_name += c
 	return len(uniqe_emails)
 
-# def main():
-# 	input_emails = [["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]]
-# 	expected_output = [2]
-# 	for i in range(len(input_emails)):
-# 		if numUniqueEmails(input_emails[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', numUniqueEmails(input_emails[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main929():
+	input_emails = [["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]]
+	expected_output = [2]
+	for i in range(len(input_emails)):
+		if numUniqueEmails(input_emails[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', numUniqueEmails(input_emails[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(numUniqueEmails(input_emails[-1]))
 
 #976
@@ -560,14 +560,14 @@ def largestPerimeter(A):
 			return sum(A[i:i+3])
 	return 0
 
-# def main():
-# 	input_A = [[2,1,2], [1,2,1], [3,2,3,4], [3,6,2,3]]
-# 	expected_output = [5, 0, 10, 8]
-# 	for i in range(len(input_A)):
-# 		if largestPerimeter(input_A[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', largestPerimeter(input_A[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main976():
+	input_A = [[2,1,2], [1,2,1], [3,2,3,4], [3,6,2,3]]
+	expected_output = [5, 0, 10, 8]
+	for i in range(len(input_A)):
+		if largestPerimeter(input_A[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', largestPerimeter(input_A[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(largestPerimeter(input_A[-1]))
 
 #1122
@@ -584,22 +584,58 @@ def relativeSortArray(arr1, arr2):
 	arr_end.sort()
 	return arr_front+arr_end
 
-# def main():
-# 	input_arr1 = [[2,3,1,3,2,4,6,7,9,2,19]]
-# 	input_arr2 = [[2,1,4,3,9,6]]
-# 	expected_output = [[2,2,2,1,4,3,3,9,6,7,19]]
-# 	for i in range(len(input_arr1)):
-# 		if relativeSortArray(input_arr1[i], input_arr2[i]) != expected_output[i]:
-# 			print("Wrong!!!", ' Output:', relativeSortArray(input_arr1[i], input_arr2[i]), '; Expected Output:', expected_output[i])
-# 		else:
-# 			print("Right")
+def main1122():
+	input_arr1 = [[2,3,1,3,2,4,6,7,9,2,19]]
+	input_arr2 = [[2,1,4,3,9,6]]
+	expected_output = [[2,2,2,1,4,3,3,9,6,7,19]]
+	for i in range(len(input_arr1)):
+		if relativeSortArray(input_arr1[i], input_arr2[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', relativeSortArray(input_arr1[i], input_arr2[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
 	# print(relativeSortArray(input_arr1[-1], input_arr2[-1]))
 
+#1337
+def kWeakestRows(mat, k):
+	row_nums = []
+	for row in mat:
+		row_nums.append(sum(row))
+	row_nums_sort = row_nums.copy()
+	row_nums_sort.sort()
+	del mat, row
+	for i, num in enumerate(row_nums_sort):
+		j = row_nums.index(num)
+		row_nums_sort[i] = j
+		#row_nums[j] = True #####!!!!????
+		row_nums[j] = -1
+	del i, j, num, row_nums, row_nums_sort[k:]
+	return row_nums_sort
+
+def main1337():
+	input_mat = [[[1, 1, 0, 0, 0],
+				  [1, 1, 1, 1, 0],
+				  [1, 0, 0, 0, 0],
+				  [1, 1, 0, 0, 0],
+				  [1, 1, 1, 1, 1]],
+				 [[1, 0, 0, 0],
+				  [1, 1, 1, 1],
+				  [1, 0, 0, 0],
+				  [1, 0, 0, 0]]
+				 ]
+	input_k = [3, 2]
+	expected_output = [[2, 0, 3], [0, 2]]
+	for i in range(len(input_mat)):
+		if kWeakestRows(input_mat[i], input_k[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', kWeakestRows(input_mat[i], input_k[i]), '; Expected Output:',
+				  expected_output[i])
+		else:
+			print("Right")
+	print(kWeakestRows(input_mat[-1], input_k[-1]))
 
 if __name__ == "__main__":
 	import time
 	t_start = time.time()
-	main()
+	main1337()
 	print(time.time()-t_start)
 
 	class TreeNode:
