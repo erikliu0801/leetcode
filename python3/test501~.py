@@ -632,10 +632,37 @@ def main1337():
 			print("Right")
 	print(kWeakestRows(input_mat[-1], input_k[-1]))
 
+#1351
+def countNegatives(grid):
+	count = 0
+	row = len(grid[0])
+	for col in grid:
+		for i, e in enumerate(col):
+			if e < 0:
+				count += row-i
+				break
+	return count
+
+def main1351():
+	input_grid = [
+		[[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]],
+		[[3,2],[1,0]],
+		[[1,-1],[-1,-1]],
+		[[-1]]
+	]
+	expected_output = [8, 0, 3, 1]
+	for i in range(len(input_grid)):
+		if countNegatives(input_grid[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', countNegatives(input_grid[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	# print(countNegatives(input_grid[-1]))
+
 if __name__ == "__main__":
 	import time
 	t_start = time.time()
-	main1337()
+	# main1337()
+	main1351()
 	print(time.time()-t_start)
 
 	class TreeNode:
