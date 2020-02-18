@@ -48,6 +48,32 @@ def main509():
 		print(fib(i))
 
 
+#532
+def findPairs(nums, k):
+	s = set(nums)
+	count = 0
+	if k > 0:
+		for e in s:
+			if e + k in s:
+				count += 1
+	elif k == 0:
+		for e in s:
+			if nums.count(e) > 1:
+				count += 1
+	return count
+
+def main532():
+	input_nums = [[3, 1, 4, 1, 5], [1, 2, 3, 4, 5], [1, 3, 1, 5, 4], [1, 3, 1, 5, 4, 1, 1]]
+	input_k = [2, 1, 0, 0]
+	expected_output = [2, 4, 1, 1]
+	for i in range(len(input_nums)):
+		if findPairs(input_nums[i], input_k[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', findPairs(input_nums[i], input_k[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	# print(findPairs(input_nums[-1], input_k[-1]))
+
+
 #605
 def canPlaceFlowers(flowerbed, n):
 	rest_place = []
@@ -661,8 +687,9 @@ def main1351():
 if __name__ == "__main__":
 	import time
 	t_start = time.time()
+	main532()
 	# main1337()
-	main1351()
+	# main1351()
 	print(time.time()-t_start)
 
 	class TreeNode:
