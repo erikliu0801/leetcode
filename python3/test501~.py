@@ -211,6 +211,34 @@ def pivotIndex(nums):
 # 			print("Right")
 	# print(pivotIndex(input_nums[-1]))
 
+#744
+def nextGreatestLetter(letters, target):
+	t_num = ord(target)
+	close_num = float('inf')
+	smallest_num = float('inf')
+	for c in letters:
+		c_num = ord(c)
+		if c_num > t_num and c_num < close_num:
+			close_num = c_num
+		if c_num < smallest_num:
+			smallest_num = c_num
+	if close_num != float('inf'):
+		return chr(close_num)
+	return chr(smallest_num)
+
+def main():
+	input_letters = [["c", "f", "j"],["c", "f", "j"],["c", "f", "j"],["c", "f", "j"],["c", "f", "j"],["c", "f", "j"]]
+	inpurt_target = ["a", "c", "d", "g", "j", "k"]
+	expected_output = ["c", "f", "f", "j", "c", "c"]
+	for i in range(len(input_letters)):
+		if nextGreatestLetter(input_letters[i], inpurt_target[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', nextGreatestLetter(input_letters[i], inpurt_target[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	# print(nextGreatestLetter(input_letters[-1], inpurt_target[-1]))
+
+
+
 #747
 def dominantIndex(nums):
 	a = max(nums)
