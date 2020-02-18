@@ -532,15 +532,40 @@ def largestPerimeter(A):
 			return sum(A[i:i+3])
 	return 0
 
-def main():
-	input_A = [[2,1,2], [1,2,1], [3,2,3,4], [3,6,2,3]]
-	expected_output = [5, 0, 10, 8]
-	for i in range(len(input_A)):
-		if largestPerimeter(input_A[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', largestPerimeter(input_A[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
+# def main():
+# 	input_A = [[2,1,2], [1,2,1], [3,2,3,4], [3,6,2,3]]
+# 	expected_output = [5, 0, 10, 8]
+# 	for i in range(len(input_A)):
+# 		if largestPerimeter(input_A[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', largestPerimeter(input_A[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
 	# print(largestPerimeter(input_A[-1]))
+
+#1122
+def relativeSortArray(arr1, arr2):
+	arr_front = []
+	s1 = set(arr1)
+	for c in arr2:
+		# if c in arr1:
+			arr_front.extend([c] * arr1.count(c))
+			s1.remove(c)
+	arr_end = []
+	for c in s1:
+		arr_end.extend([c] * arr1.count(c))
+	arr_end.sort()
+	return arr_front+arr_end
+
+# def main():
+# 	input_arr1 = [[2,3,1,3,2,4,6,7,9,2,19]]
+# 	input_arr2 = [[2,1,4,3,9,6]]
+# 	expected_output = [[2,2,2,1,4,3,3,9,6,7,19]]
+# 	for i in range(len(input_arr1)):
+# 		if relativeSortArray(input_arr1[i], input_arr2[i]) != expected_output[i]:
+# 			print("Wrong!!!", ' Output:', relativeSortArray(input_arr1[i], input_arr2[i]), '; Expected Output:', expected_output[i])
+# 		else:
+# 			print("Right")
+	# print(relativeSortArray(input_arr1[-1], input_arr2[-1]))
 
 
 if __name__ == "__main__":
