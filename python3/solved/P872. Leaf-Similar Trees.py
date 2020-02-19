@@ -34,15 +34,40 @@ class Solution:
 ## test part
 class Solution:
     def leafSimilar(self, root1, root2):
-    	"""
-    	root1: TreeNode
-    	root2: TreeNode
-    	rtype: bool
-    	"""
+        """
+        root1: TreeNode
+        root2: TreeNode
+        rtype: bool
+        """
 ## code here
 #1
+"""
+Wrong Answer
+Your input:
+[3,5,1,6,2,9,8,null,null,8,4]
+[3,5,1,6,7,4,2,null,null,null,null,null,null,9,8]
+Output: true
+Expected: false
+
+Success
+Runtime: 20 ms, faster than 99.52% of Python3 online submissions for Leaf-Similar Trees.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Leaf-Similar Trees.
+"""
 class Solution:
     def leafSimilar(self, root1, root2):
+
+        def inorder(root):
+            leaf = []
+            if root:
+                if root.left is None and root.right is None:
+                    leaf.append(root.val)
+                leaf += inorder(root.left)
+                leaf += inorder(root.right)
+            return leaf
+
+        return inorder(root1) == inorder(root2)
+
+
 
 
 # Test
@@ -52,15 +77,15 @@ class Solution:
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
-	for i in range(len(input1)):
-		if func(input1[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', func(input1[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
-	# print(func(input1[-1]))
-	
+    input1 = []
+    expected_output = []
+    for i in range(len(input1)):
+        if func(input1[i]) != expected_output[i]:
+            print("Wrong!!!", ' Output:', func(input1[i]), '; Expected Output:', expected_output[i])
+        else:
+            print("Right")
+    # print(func(input1[-1]))
+    
 
 ## Performance Test
 import cProfile
@@ -70,8 +95,8 @@ cProfile.run('')
 ## Unit Test
 import unittest
 class Test(unittest.TestCase):
-	def test(self):
-		pass
+    def test(self):
+        pass
 
 if __name__ == '__main__':
 unittest.main()
