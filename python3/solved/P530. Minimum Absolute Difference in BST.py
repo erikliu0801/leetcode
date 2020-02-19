@@ -64,10 +64,32 @@ def getMinimumDifference(root):
 			res = res + preOrderTraversal(node.right)
 		return res
 	val_s = preOrderTraversal(root)
+	
 	d = float('inf')
 	for i in range(len(val_s)-1):
 		for y in val_s[i+1:]:
 			d = min(d, abs(val_s[i]-y))
+	return d
+
+#1.2
+"""
+Success
+Runtime: 64 ms, faster than 24.33% of Python3 online submissions for Minimum Absolute Difference in BST.
+Memory Usage: 14.9 MB, less than 100.00% of Python3 online submissions for Minimum Absolute Difference in BST.
+"""
+def getMinimumDifference(root):
+	def preOrderTraversal(node):
+		res = []
+		if node:
+			res.append(node.val)
+			res = res + preOrderTraversal(node.left)
+			res = res + preOrderTraversal(node.right)
+		return res
+	val_s = preOrderTraversal(root)
+	val_s.sort()
+	d = float('inf')
+	for i in range(len(val_s)-1):
+		d = min(d, abs(val_s[i]-val_s[i+1]))
 	return d
 
 
