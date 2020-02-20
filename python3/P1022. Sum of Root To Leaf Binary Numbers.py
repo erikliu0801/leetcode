@@ -49,63 +49,64 @@ class Solution:
 class Solution:
     def sumRootToLeaf(self, root):
 
-    	def findLeaf(root): #recursive
-			leaf = []
-    		if root:
-    			if root.left is None and root.right is None:
-    				leaf += [root.val]
-				else:
-					findLeaf(root.left)
-					findLeaf(root.right)
-			return leaf
+        def findLeaf(root): #recursive
+            leaf = []
+            if root:
+                if root.left is None and root.right is None:
+                    leaf += [root.val]
+                else:
+                    findLeaf(root.left)
+                    findLeaf(root.right)
+            return leaf
 
-		def findLeaf(root): #iterative
-			leaf = []
-			nodes = [root]
-			visited = 0
-			while visited != len(nodes):
-				node = nodes[visited] 
-				if node:
-					if node.left is None and node.right is None:
-						leaf.append(node.val)
-					else:
-						nodes.append(node.left)
-						nodes.append(node.right)
-				visited += 1
-			return leaf
+        def findLeaf(root): #iterative
+            leaf = []
+            nodes = [root]
+            visited = 0
+            while visited != len(nodes):
+                node = nodes[visited] 
+                if node:
+                    if node.left is None and node.right is None:
+                        leaf.append(node.val)
+                    else:
+                        nodes.append(node.left)
+                        nodes.append(node.right)
+                visited += 1
+            return leaf
 
-		def rootToLeaf(root):
-			root_leaf_s = []
-			root_leaf = []
+def rootToLeaf(root):
+    root_leaf_s = []
+    root_leaf = []
 
-			if root:				
-				root_leaf_s_l, root_leaf_l = rootToLeaf(root.left)
-				root_leaf_s_r, root_leaf_r = rootToLeaf(root.left)
-				root_leaf_s = root_leaf_s_l + root_leaf_s_r
-				root_leaf = [root] + root_leaf_l + root_leaf_r
-				if root.left is None and root.right is None:
-					root_leaf_s += [root_leaf]
-					
-			return root_leaf_s, root_leaf
+    if root:
+        root_leaf_s_l, root_leaf_l = rootToLeaf(root.left)
+        root_leaf_s_r, root_leaf_r = rootToLeaf(root.right)
+        root_leaf_s = root_leaf_s_l + root_leaf_s_r
+        root_leaf = [root] + root_leaf_l + root_leaf_r
+        if root.left is None and root.right is None:
+            root_leaf_s += [root_leaf]
+            
+    return root_leaf_s, root_leaf
 
 #1.1
 
 class Solution:
     def sumRootToLeaf(self, root):
 
-    	def rootToLeaf(root):
-			root_leaf_s = []
-			root_leaf = []
+            
+    return root_leaf_s, root_leaf
 
-			if root:				
-				root_leaf_s_l, root_leaf_l = rootToLeaf(root.left)
-				root_leaf_s_r, root_leaf_r = rootToLeaf(root.left)
-				root_leaf_s = root_leaf_s_l + root_leaf_s_r
-				root_leaf = [root] + root_leaf_l + root_leaf_r
-				if root.left is None and root.right is None:
-					root_leaf_s += [root_leaf]
-					
-			return root_leaf_s, root_leaf
+        count = 0
+        root_leaf_nodes = rootToLeaf(root)
+        for root_leaf in root_leaf_nodes:
+            bi = ''
+            for nodes in root_leaf:
+                bi += str(nodes.val)
+            count += int(bi, base = 2)
+
+        return count
+
+
 
 
 
