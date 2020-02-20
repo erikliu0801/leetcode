@@ -44,17 +44,15 @@ class Solution:
         """
 
 ## code here
-#1
+#1 Same Generation
 """
 Wrong Answer
 Input: [1,2,3,null,4], 2, 3 #brothers
 Output: true
 Expected: false
 """
-class Solution:
-    def isCousins(self, root, x, y):
         def levelorder(root):
-            if not root: return [], []
+            if not root: return []
             
             #
             node_list = [[root]]
@@ -65,7 +63,7 @@ class Solution:
                     if node:                        
                         if node.left: level += [node.left]
                         if node.right: level += [node.right]
-                if level: node_list += [level]
+                	if level: node_list += [level]
                 checked += 1
             
             #
@@ -84,6 +82,26 @@ class Solution:
                 if x in level and y in level: return True
                 else: return False
         return False
+
+#1.1
+class Solution:
+    def isCousins(self, root, x, y):
+
+        def levelorder(root): #by level, by node
+			nodes = [[root]]
+			visited = 0 #level
+			while visited != len(nodes):
+				by_level = []
+				for l in nodes:
+					by_node = []
+					for node in l:
+						if node:
+							by_node.append(node.left)
+							by_node.append(node.right)
+					by_level.append(by_node)
+				nodes.append(by_level)
+				visited += 1
+			return nodes
 
 
 # Test
