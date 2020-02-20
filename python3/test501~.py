@@ -73,6 +73,32 @@ def main532():
 			print("Right")
 	# print(findPairs(input_nums[-1], input_k[-1]))
 
+#599
+def findRestaurant(list1, list2):
+	res = []
+	common = set(list1) & set(list2)
+	common_priority = {}
+	for r in common:
+		common_priority[r] = list1.index(r) + list2.index(r)
+	first = min(common_priority.values())
+	for r, p in common_priority.items():
+		if p == first: res.append(r)
+	return res
+
+def main599():
+	input_list1 = [["Shogun", "Tapioca Express", "Burger King", "KFC"],
+				   ["Shogun", "Tapioca Express", "Burger King", "KFC"],
+				   ["Shogun", "Tapioca Express", "Burger King", "KFC"]]
+	input_list2 = [["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"],
+				   ["KFC", "Shogun", "Burger King"], ["KFC", "Burger King", "Tapioca Express", "Shogun"]]
+	expected_output = [["Shogun"], ["Shogun"], ["KFC", "Burger King", "Tapioca Express", "Shogun"]]
+	for i in range(len(input_list1)):
+		if findRestaurant(input_list1[i], input_list2[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', findRestaurant(input_list1[i], input_list2[i]), '; Expected Output:',
+				  expected_output[i])
+		else:
+			print("Right")
+	print(findRestaurant(input_list1[-1], input_list2[-1]))
 
 #605
 def canPlaceFlowers(flowerbed, n):
@@ -744,8 +770,9 @@ if __name__ == "__main__":
 	import time
 	t_start = time.time()
 	# main532()
+	main599()
 	# main844()
-	main1025()
+	# main1025()
 	# main1337()
 	# main1351()
 	print(time.time()-t_start)

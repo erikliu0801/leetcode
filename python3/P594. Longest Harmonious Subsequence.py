@@ -61,6 +61,24 @@ class Solution:
 
         return max_lhs_len
 
+#1.1
+"""
+Success
+Runtime: 332 ms, faster than 77.15% of Python3 online submissions for Longest Harmonious Subsequence.
+Memory Usage: 14.4 MB, less than 69.23% of Python3 online submissions for Longest Harmonious Subsequence.
+"""
+class Solution:
+    def findLHS(self, nums):
+        from collections import Counter
+        n = Counter(nums)
+        max_len = 0
+        for k in n:
+            if k+1 in n or k-1 in n:
+                if k+1 in n:
+                    max_len = max(max_len, n[k]+n[k+1])
+                else:
+                    max_len = max(max_len, n[k]+n[k-1])
+        return max_len
 
 
 
