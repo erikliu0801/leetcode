@@ -154,6 +154,35 @@ def main643():
 			print("Right")
 	# print(findMaxAverage(input_nums[-1], input_k[-1]))
 
+#645
+def findErrorNums(nums):
+	repetition = []
+	missing = []
+	nums.sort()
+	pre = 0
+	for c in nums:
+		if c != pre +1:
+			if c == pre:
+				if c not in repetition:
+					repetition.append(c)
+				continue
+			else:
+				while pre + 1 != c:
+					pre += 1
+					missing.append(pre)
+		pre = c
+	return repetition + missing
+
+def main645():
+	input1 = [[1, 2, 2, 4], [1, 2, 2, 2, 4], [1, 2, 2, 2, 5]]
+	expected_output = [[2, 3], [2, 3], [2, 3, 4]]
+	for i in range(len(input1)):
+		if findErrorNums(input1[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', findErrorNums(input1[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(findErrorNums(input1[-1]))
+
 #665
 def checkPossibility(nums):
 	nums0 = nums.copy()
@@ -770,7 +799,8 @@ if __name__ == "__main__":
 	import time
 	t_start = time.time()
 	# main532()
-	main599()
+	# main599()
+	# main645()
 	# main844()
 	# main1025()
 	# main1337()
