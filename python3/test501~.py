@@ -805,6 +805,31 @@ def main1025():
 			print("Right")
 	print(divisorGame(input1[1]))
 
+#1078
+def findOcurrences(text, first, second):
+    res = []
+
+    t_re = text.split(' ')[::-1]
+    if len(t_re) < 3: return res
+    for i, w in enumerate(t_re[:-2]):
+        if t_re[i+1] == second and t_re[i+2] == first:
+            res = [w] + res
+
+    return res
+
+def main1078():
+	input1 = ["we will we will rock you"]
+	input2 = ["we"]
+	input3 = ["will"]
+	expected_output = [["we", "rock"]]
+	for i in range(len(input1)):
+		if findOcurrences(input1[i], input2[i], input3[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', findOcurrences(input1[i], input2[i], input3[i]), '; Expected Output:',
+				  expected_output[i])
+		else:
+			print("Right")
+	# print(findOcurrences(input1[-1], input2[-1], input3[-1]))
+
 #1122
 def relativeSortArray(arr1, arr2):
 	arr_front = []
@@ -901,9 +926,10 @@ if __name__ == "__main__":
 	# main645()
 	# main720()
 	# main748()
-	main811()
+	# main811()
 	# main844()
 	# main1025()
+	main1078()
 	# main1337()
 	# main1351()
 	print(time.time()-t_start)
