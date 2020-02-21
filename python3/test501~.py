@@ -357,8 +357,6 @@ def main744():
 			print("Right")
 	# print(nextGreatestLetter(input_letters[-1], inpurt_target[-1]))
 
-
-
 #747
 def dominantIndex(nums):
 	a = max(nums)
@@ -375,6 +373,38 @@ def main747():
 		else:
 			print("Right")
 	# print(dominantIndex(input_nums[0]))
+
+#748
+def shortestCompletingWord(licensePlate, words):
+    licensePlate = licensePlate.lower()
+    alph = set([chr(x) for x in range(97,123)])
+    truely = ''
+    for c in licensePlate:
+        if c in alph:
+            truely += c
+
+    res = []
+    shortest = float('inf')
+    from collections import Counter
+    t = Counter(truely)
+    for w in words:
+        if not (t-Counter(w.lower())) and shortest > len(w):
+            res.append(w)
+            shortest = len(w)
+    for w in res:
+    	if len(w) == shortest: return w
+
+def main748():
+	input1 = ["1s3 PSt", "1s3 456"]
+	input2 = [["step", "steps", "stripe", "stepple"], ["looks", "pest", "stew", "show"]]
+	expected_output = ["steps", "pest"]
+	for i in range(len(input1)):
+		if shortestCompletingWord(input1[i], input2[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', shortestCompletingWord(input1[i], input2[i]), '; Expected Output:',
+				  expected_output[i])
+		else:
+			print("Right")
+	# print(shortestCompletingWord(input1[-1], input2[-1]))
 
 #766
 def isToeplitzMatrix(matrix):
@@ -840,7 +870,8 @@ if __name__ == "__main__":
 	# main532()
 	# main599()
 	# main645()
-	main720()
+	# main720()
+	# main748()
 	# main844()
 	# main1025()
 	# main1337()
