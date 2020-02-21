@@ -276,6 +276,45 @@ def main717():
 			print("Right")
 # 	print(isOneBitCharacter(input_bits[1]))
 
+#720
+def longestWord(words):
+	words.sort(reverse=True)
+	res = []
+	alph = []
+	longest = 0
+	for w in words:
+		if len(w) == 1:
+			alph.append(w)
+		if longest > len(w):
+			continue
+		for j in range(1, len(w)):
+			if w[:j] not in words:
+				break
+			if j == len(w) - 1:
+				res.append(w)
+				longest = len(w)
+	if res:
+		return res[-1]
+	elif alph:
+		return alph[-1]
+	else:
+		return ''
+
+def main720():
+	input1 = [["w", "wo", "wor", "worl", "world"],
+			  ["a", "banana", "app", "appl", "ap", "apply", "apple"],
+			  ["b", "br", "bre", "brea", "break", "breakf", "breakfa", "breakfas", "breakfast", "l", "lu", "lun",
+			   "lunc", "lunch", "d", "di", "din", "dinn", "dinne", "dinner"],
+			  ["ts", "e", "x", "pbhj", "opto", "xhigy", "erikz", "pbh", "opt", "erikzb", "eri", "erik", "xlye", "xhig",
+			   "optoj", "optoje", "xly", "pb", "xhi", "x", "o"]]
+	expected_output = ["world", "apple", "breakfast", "e"]
+	for i in range(len(input1)):
+		if longestWord(input1[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', longestWord(input1[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(longestWord(input1[-1]))
+
 #724
 def pivotIndex(nums):
 	for i in range(len(nums)):
@@ -801,6 +840,7 @@ if __name__ == "__main__":
 	# main532()
 	# main599()
 	# main645()
+	main720()
 	# main844()
 	# main1025()
 	# main1337()
