@@ -459,6 +459,35 @@ def main804():
 			print("Right")
 	# print(uniqueMorseRepresentations(input_words[-1]))
 
+#811
+def subdomainVisits(cpdomains):
+    subdomains_cp = {}
+    for cp_domain in cpdomains:
+        cp, domain = cp_domain.split(' ')
+        cp = int(cp)
+        sub = domain.split('.')
+        for i in range(len(sub)):
+            subdomain = '.'.join(sub[i:])
+            if subdomain not in subdomains_cp:
+                subdomains_cp[subdomain] = cp
+            else: subdomains_cp[subdomain] += cp
+    res = []
+    for subdomain, cp in subdomains_cp.items():
+        res.append(''.join([str(cp), ' ', subdomain]))
+    return res
+
+def main811():
+	input1 = [["9001 discuss.leetcode.com"], ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]]
+	expected_output = [["9001 discuss.leetcode.com", "9001 leetcode.com", "9001 com"],
+					   ["901 mail.com", "50 yahoo.com", "900 google.mail.com", "5 wiki.org", "5 org",
+						"1 intel.mail.com", "951 com"]]
+	for i in range(len(input1)):
+		if subdomainVisits(input1[i]) != expected_output[i]:
+			print("Wrong!!!", ' Output:', subdomainVisits(input1[i]), '; Expected Output:', expected_output[i])
+		else:
+			print("Right")
+	print(subdomainVisits(input1[-1]))
+
 #819
 def mostCommonWord(paragraph, banned):
 	from collections import Counter
@@ -872,6 +901,7 @@ if __name__ == "__main__":
 	# main645()
 	# main720()
 	# main748()
+	main811()
 	# main844()
 	# main1025()
 	# main1337()
