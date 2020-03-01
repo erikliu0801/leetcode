@@ -63,8 +63,18 @@ class Solution:
         
 ## code here
 #1
+"""
+Success
+Runtime: 68 ms, faster than 78.95% of Python3 online submissions for Range Addition II.
+Memory Usage: 14.6 MB, less than 33.33% of Python3 online submissions for Range Addition II.
+"""
 class Solution:
     def maxCount(self, m, n, ops):
+        for op in ops:
+            i, j = op
+            if i < m: m = i
+            if j < n: n = j
+        return m * n 
 
 
 # Test
