@@ -132,6 +132,17 @@ def main605():
 			print("Right")
 # 	print(canPlaceFlowers(input_flowerbed[-1], input_n[-1]))
 
+#633
+def judgeSquareSum(c):
+	import math
+	limit = math.sqrt(2)/2
+	for a in range(1, int(c * limit) +1):
+		if math.sqrt(c - a**2) % 1 == 0: return True
+	return False
+
+def main633():
+
+
 #643
 def findMaxAverage(nums, k):
 	if k == 1: return max(nums)
