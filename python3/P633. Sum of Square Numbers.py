@@ -37,9 +37,10 @@ class Solution:
 class Solution:
     def judgeSquareSum(self, c):
         import math
-        limit = math.sqrt(2)/2
-        for a in range(1, int(c * limit) +1):
-            if math.sqrt(c - a**2) % 1 == 0: return True
+        limit = math.sqrt(2) / 2
+        for a in range(1, int(c * limit) + 1):
+            if a ** 2 >= c: break
+            if math.sqrt(abs(c - a ** 2)) % 1 == 0: return True
         return False
 
 
@@ -51,14 +52,14 @@ class Solution:
 
 """
 if __name__ == '__main__':
-    input1 = []
-    expected_output = []
+    input1 = [5, 3]
+    expected_output = [True, False]
     for i in range(len(input1)):
-        if func(input1[i]) != expected_output[i]:
-            print("Wrong!!!", ' Output:', func(input1[i]), '; Expected Output:', expected_output[i])
+        if judgeSquareSum(input1[i]) != expected_output[i]:
+            print("Wrong!!!", ' Output:', judgeSquareSum(input1[i]), '; Expected Output:', expected_output[i])
         else:
             print("Right")
-    # print(func(input1[-1]))
+    # print(judgeSquareSum(input1[-1]))
     
 
 ## Performance Test
