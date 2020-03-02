@@ -386,9 +386,30 @@ def main724():
             print("Wrong!!!", ' Output:', pivotIndex(input_nums[i]), '; Expected Output:', expected_output[i])
         else:
             print("Right")
+    #print(pivotIndex(input_nums[-1]))
 
+#728
+def selfDividingNumbers(left, right):
+    res = []
+    for i in range(left, right +1):
+        sdnum = True
+        for j in str(i):
+            if j == '0' or i % int(j) != 0:
+                sdnum = False
+                break
+        if sdnum: res.append(i)
+    return res
 
-# print(pivotIndex(input_nums[-1]))
+def main728():
+    input1 = [1]
+    input2 = [22]
+    expected_output = [[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]]
+    for i in range(len(input1)):
+        if selfDividingNumbers(input1[i], input2[i]) != expected_output[i]:
+            print("Wrong!!!", ' Output:', selfDividingNumbers(input1[i], input2[i]), '; Expected Output:', expected_output[i])
+        else:
+            print("Right")
+	# print(selfDividingNumbers(input1[-1], input2[-1]))
 
 # 744
 def nextGreatestLetter(letters, target):
@@ -1055,9 +1076,10 @@ if __name__ == "__main__":
     t_start = time.time()
     # main532()
     # main599()
-    main633()
+    # main633()
     # main645()
     # main720()
+    main728()
     # main748()
     # main811()
     # main844()
