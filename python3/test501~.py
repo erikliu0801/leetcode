@@ -151,7 +151,7 @@ def main605():
 def judgeSquareSum(c):
     import math
     limit = math.sqrt(2) / 2
-    for a in range(1, int(c * limit) + 1):
+    for a in range(int(c * limit) + 1):
         if a**2 >= c: break
         if math.sqrt(abs(c - a ** 2)) % 1 == 0: return True
     return False

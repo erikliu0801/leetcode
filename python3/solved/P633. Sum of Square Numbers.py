@@ -34,15 +34,24 @@ class Solution:
         
 ## code here
 #1
+"""
+Wrong Answer
+Input: 0
+Output: false
+Expected: true
+
+Success
+Runtime: 356 ms, faster than 21.00% of Python3 online submissions for Sum of Square Numbers.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Sum of Square Numbers.
+"""
 class Solution:
     def judgeSquareSum(self, c):
         import math
         limit = math.sqrt(2) / 2
-        for a in range(1, int(c * limit) + 1):
-            if a ** 2 >= c: break
+        for a in range(int(c * limit) + 1):
+            if a ** 2 > c: break
             if math.sqrt(abs(c - a ** 2)) % 1 == 0: return True
         return False
-
 
 
 # Test
