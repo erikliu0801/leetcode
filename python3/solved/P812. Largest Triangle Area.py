@@ -40,8 +40,21 @@ class Solution:
         
 ## code here
 #1
+"""
+Success
+Runtime: 116 ms, faster than 79.67% of Python3 online submissions for Largest Triangle Area.
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Largest Triangle Area.
+"""
 class Solution:
     def largestTriangleArea(self, points):
+        from itertools import combinations
+        res = 0
+        for p in combinations(points,3):
+            a, b, c = p
+            area = abs(a[0]*(b[1]-c[1]) + b[0]*(c[1]-a[1]) + c[0]*(a[1]-b[1]))/2
+            if area > res: res = area
+        return res
+
 
 
 # Test
@@ -51,15 +64,15 @@ class Solution:
 
 """
 if __name__ == '__main__':
-	input1 = []
-	expected_output = []
-	for i in range(len(input1)):
-		if func(input1[i]) != expected_output[i]:
-			print("Wrong!!!", ' Output:', func(input1[i]), '; Expected Output:', expected_output[i])
-		else:
-			print("Right")
-	# print(func(input1[-1]))
-	
+    input1 = []
+    expected_output = []
+    for i in range(len(input1)):
+        if func(input1[i]) != expected_output[i]:
+            print("Wrong!!!", ' Output:', func(input1[i]), '; Expected Output:', expected_output[i])
+        else:
+            print("Right")
+    # print(func(input1[-1]))
+    
 
 ## Performance Test
 import cProfile
@@ -69,8 +82,8 @@ cProfile.run('')
 ## Unit Test
 import unittest
 class Test(unittest.TestCase):
-	def test(self):
-		pass
+    def test(self):
+        pass
 
 if __name__ == '__main__':
 unittest.main()
