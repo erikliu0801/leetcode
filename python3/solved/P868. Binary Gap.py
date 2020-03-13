@@ -39,6 +39,10 @@ Wrong Answer
 Input: 21 '0b10101'
 Output: 4
 Expected: 2
+
+Success
+Runtime: 28 ms, faster than 65.99% of Python3 online submissions for Binary Gap.
+Memory Usage: 12.6 MB, less than 100.00% of Python3 online submissions for Binary Gap.
 """
 class Solution:
     def binaryGap(self, N):
@@ -51,6 +55,22 @@ class Solution:
             b2 -= 1
         return b2 - b1
 
+#2
+class Solution:
+    def binaryGap(self, N):
+        bi = bin(N)[2:]
+        res = 0
+        dis = 1
+        if bi.count('1') < 2: return 0
+        for b in bi[1:]:
+            if b == '1':
+                if dis > res:
+                    res = dis 
+                dis = 0
+            dis += 1
+        return res
+
+
 
 # Test
 ## Functional Test
@@ -59,14 +79,14 @@ class Solution:
 
 """
 if __name__ == '__main__':
-    input1 = [22, 5, 6, 8]
-    expected_output = [2, 2, 1, 0]
+    input1 = [22, 5, 6, 8, 1, 13, 21, 129, 85]
+    expected_output = [2, 2, 1, 0, 0, 3, 4, 7, 2]
     for i in range(len(input1)):
-        if func(input1[i]) != expected_output[i]:
-            print("Wrong!!!", ' Output:', func(input1[i]), '; Expected Output:', expected_output[i])
+        if binaryGap(input1[i]) != expected_output[i]:
+            print("Wrong!!!", ' Output:', binaryGap(input1[i]), '; Expected Output:', expected_output[i])
         else:
             print("Right")
-    # print(func(input1[-1]))
+    # print(binaryGap(input1[-1]))
     
 
 ## Performance Test
