@@ -96,12 +96,26 @@ var minCostClimbingStairs = function(cost) {
 };
 
 // 1.2
-var minCostClimbingStairs = function(cost) {
+/*
+Success
+Runtime: 60 ms, faster than 73.36% of JavaScript online submissions for Min Cost Climbing Stairs.
+Memory Usage: 34.7 MB, less than 100.00% of JavaScript online submissions for Min Cost Climbing Stairs.
+*/
+var minCostClimbingStairs = function(cost) {    
+    var f1 = cost[0],
+        f2 = cost[1],
+        i = 2
 
+    while (i < cost.length) {
 
-    
+        pre = f2
+        f2 = cost[i] + Math.min(f1, f2)
+        f1 = pre
 
+        i++
+    }
 
+    return Math.min(f1, f2)
 };
 
 // Test
