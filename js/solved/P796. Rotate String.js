@@ -44,7 +44,11 @@ var rotateString = function(A, B) {
 
 // code here
 // 1
-/* */
+/*
+Success
+Runtime: 68 ms, faster than 13.97% of JavaScript online submissions for Rotate String.
+Memory Usage: 36.2 MB, less than 50.00% of JavaScript online submissions for Rotate String.
+*/
 var rotateString = function(A, B) {
     if (A.length !== B.length) {return false}
 
@@ -53,7 +57,7 @@ var rotateString = function(A, B) {
 
     var i = 0
     do {
-        if (A == B) {return true} //arrayA == arrayB is disgusting
+        if (JSON.stringify(A) === JSON.stringify(B)) {return true} //arrayA == arrayB is disgusting
 
         A.push(A[0])
         A.shift()
