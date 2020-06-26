@@ -732,8 +732,45 @@ def main830():
         else:
             print("Right")
 
+# 840
+def numMagicSquaresInside(grid):
+    count = 0
+    rows, cols = len(grid), len(grid[0])
+    if rows < 3 or cols < 3: return 0
+    for r in range(rows-2):
+        for c in range(cols-2):
 
-# 	print(largeGroupPositions(input_S[-1]))
+            # origin = (r,c)
+            r1 = [grid[r][c], grid[r][c+1], grid[r][c+2]]
+            r2 = [grid[r+1][c], grid[r+1][c+1], grid[r+1][c+2]]
+            r3 = [grid[r+2][c], grid[r+2][c+1], grid[r+2][c+2]]
+            c1 = [grid[r][c], grid[r+1][c], grid[r+2][c]]
+            c2 = [grid[r][c+1], grid[r+1][c+1], grid[r+2][c+1]]
+            c3 = [grid[r][c+2], grid[r+1][c+2], grid[r+2][c+2]]
+            d1 = [grid[r][c], grid[r+1][c+1], grid[r+2][c+2]]
+            d2 = [grid[r][c+2], grid[r+1][c+1], grid[r+2][c]]
+
+            nums = r1 + r2 + r3
+            if len(nums) != len(set(nums)): continue
+            if sorted(nums) != [i for i in range(1,10)]: continue
+            if sum(r1) != 15 or \
+               sum(r2) != 15 or \
+               sum(r3) != 15 or \
+               sum(c1) != 15 or \
+               sum(c2) != 15 or \
+               sum(c3) != 15 or \
+               sum(d1) != 15 or \
+               sum(d2) != 15: continue
+
+            count += 1
+    return count
+
+def main840():
+    grid = [[4,3,8,4],
+                   [9,5,1,9],
+                   [2,7,6,2]]
+    return numMagicSquaresInside(grid)
+
 
 # 844
 def backspaceCompare(S, T):
@@ -1119,7 +1156,8 @@ if __name__ == "__main__":
     # main728()
     # main748()
     # main811()
-    main821()
+    # main821()
+    main840()
     # main844()
     # main1025()
     # main1078()
