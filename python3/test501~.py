@@ -623,8 +623,45 @@ def main819():
         else:
             print("Right")
 
+#821
+def shortestToChar(S, C):
+    def  mountainNums(num):
+        nums = [i for i in(range(1, num//2 + 1))]
+        numsRight = nums[::-1]
+        if num % 2 == 1:
+            nums += [ num//2 + 1 ]
+        nums += numsRight
+        return nums
 
-# 	print(mostCommonWord(input_paragraph[-1], input_banned[-1]))
+
+    # first part: increase
+    Cindex = S.index(C)
+    dist = [i for i in range(Cindex, -1, -1)]
+    if not S[Cindex+1:]: return dist
+
+    # middle part : first increase then decrease
+    step = 0
+    for i in range(Cindex+1, len(S)):
+        if S[i] == C:
+            if step == 0:
+                dist += [0]
+                continue
+            dist += mountainNums(step) + [0]
+
+            step = 0
+        else:
+            step += 1
+
+    # last part : decrease
+    dist += [i for i in range(1, step+1)]
+    return dist
+
+def main821():
+    S = "loveleetcode"
+    C = 'e'
+
+    return shortestToChar(S, C)
+
 
 # 824
 def toGoatLatin(S):
@@ -1079,9 +1116,10 @@ if __name__ == "__main__":
     # main633()
     # main645()
     # main720()
-    main728()
+    # main728()
     # main748()
     # main811()
+    main821()
     # main844()
     # main1025()
     # main1078()
