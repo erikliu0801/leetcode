@@ -801,6 +801,31 @@ def main844():
             print("Right")
     print(backspaceCompare(input_S[1], input_T[1]))
 
+# 849
+def maxDistToClosest(seats):
+    def maxDistance(dist):
+        if dist % 2 != 0:
+            distNums.append(dist//2 + 1)
+        else:
+            distNums.append(dist//2)
+
+    firstIndex = seats.index(1)
+    lastIndex = len(seats) - 1 - seats[::-1].index(1)
+    middle = seats[firstIndex + 1: lastIndex]
+    distNums = [firstIndex, seats[::-1].index(1)]
+    dist = 0 
+    for seat in middle:
+        if seat == 1:
+            maxDistance(dist)
+            dist = 0
+        else:
+            dist += 1
+    if dist != 0: maxDistance(dist)
+    return max(distNums)
+
+def main849():
+    seats = [1,0,0,0,1,0,0,0,0,0,1]
+    return maxDistToClosest(seats)
 
 # 859
 def buddyStrings(A, B):
@@ -1157,8 +1182,9 @@ if __name__ == "__main__":
     # main748()
     # main811()
     # main821()
-    main840()
+    # main840()
     # main844()
+    main849()
     # main1025()
     # main1078()
     # main1337()
