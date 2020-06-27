@@ -957,6 +957,35 @@ def main874():
         else:
             print("Right")
 
+# 896
+def isMonotonic(A):
+    monoType = "undefined"
+    if len(A) <= 1: return True
+    pre = A[0]
+    for n in A[1:]:
+        if n != pre:
+            if monoType == "undefined":
+                if n > pre: monoType = "increasing"
+                else: monoType = "decreasing"
+
+            elif monoType == "increasing":
+                if n < pre: return False
+                pre = n
+
+            elif monoType == "decreasing":
+                if n > pre: return False
+                pre = n
+
+    return True
+
+
+def main896():
+    A = [1,3,2]
+    print(isMonotonic(A))
+
+
+
+
 # 917
 def reverseOnlyLetters(S):
     i_c = {}
@@ -1279,7 +1308,8 @@ if __name__ == "__main__":
     # main844()
     # main849()
     # main867()
-    main874()
+    # main874()
+    main896()
     # main1025()
     # main1078()
     # main1337()
