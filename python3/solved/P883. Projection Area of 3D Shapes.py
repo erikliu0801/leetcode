@@ -33,7 +33,7 @@ class Solution:
         
 ## test part
 class Solution:
-    def projectionArea(self, grid):
+    def projectionArea(grid):
         """
         grid: List[List[int]]
         rtype: int
@@ -42,26 +42,22 @@ class Solution:
 ## code here
 #1
 """
-Wrong Answer
-Your input: [[1,2],[3,4,5]]
-Output: 24
-Expected: 19
+Success
+Runtime: 72 ms, faster than 83.94% of Python3 online submissions for Projection Area of 3D Shapes.
+Memory Usage: 13.8 MB, less than 84.05% of Python3 online submissions for Projection Area of 3D Shapes.
 """
-
-
-class Solution:
-    def projectionArea(self, grid):
-        zx, xy = 0, 0
-        yz = list()
-        for x in grid:
-            zx += max(x)
-            xy += len(x)
-            for i, v in enumerate(x):
-                try: 
-                    if yz[i] < v: yz[i] = v
-                except IndexError:
-                    yz.append(v)
-        return zx + xy + sum(yz)
+def projectionArea(grid):
+    zx, xy = 0, 0
+    yz = list()
+    for x in grid:
+        zx += max(x)
+        for i, v in enumerate(x):
+        	if v != 0: xy += 1
+            try: 
+                if yz[i] < v: yz[i] = v
+            except IndexError:
+                yz.append(v)
+    return zx + xy + sum(yz)
 
 
 # Test
