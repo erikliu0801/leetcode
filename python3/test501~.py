@@ -861,8 +861,24 @@ def main859():
         else:
             print("Right")
 
+# 867
+def transpose(A):
+    rowNum = len(A)
+    colNum = len(A[0])
+    # trans = [ [0] * rowNum  ] * colNum
+    # trans = [ [] ] * colNum # shallow copy issue
+    trans = []
+    for i in range(colNum):
+        trans.append([])
+    for ri in range(rowNum):
+        for ci in range(colNum):
+            trans[ci].append(A[ri][ci])
+    return trans
 
-# print(buddyStrings(input_A[-1], input_B[-1]))
+def main867():
+    A = [[1,2,3],[4,5,6],[7,8,9]]
+    return transpose(A)
+
 
 # 917
 def reverseOnlyLetters(S):
@@ -1184,7 +1200,8 @@ if __name__ == "__main__":
     # main821()
     # main840()
     # main844()
-    main849()
+    # main849()
+    main867()
     # main1025()
     # main1078()
     # main1337()
