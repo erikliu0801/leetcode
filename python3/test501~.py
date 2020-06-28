@@ -968,13 +968,13 @@ def isMonotonic(A):
                 if n > pre: monoType = "increasing"
                 else: monoType = "decreasing"
 
+
             elif monoType == "increasing":
                 if n < pre: return False
-                pre = n
 
             elif monoType == "decreasing":
                 if n > pre: return False
-                pre = n
+            pre = n
 
     return True
 
@@ -983,7 +983,24 @@ def main896():
     A = [1,3,2]
     print(isMonotonic(A))
 
+#908
+def smallestRangeI(A, K):
+    maxNum = max(A)
+    minNum = min(A)
+    if ( maxNum - minNum ) < K *2: return 0
+    else: return maxNum - minNum - K*2 
 
+
+def main908():
+    input_A = [[1], [0,10], [1,3,6], [9,9,2,8,7]]
+    input_K = [0, 2, 3, 4]
+    expected_output = [0, 6, 0, 0]
+    for i in range(len(input_A)):
+        if smallestRangeI(input_A[i], input_K[i]) != expected_output[i]:
+            print("Wrong!!!", ' Output:', smallestRangeI(input_A[i], input_K[i]), '; Expected Output:', expected_output[i])
+        else:
+            print("Right")
+    # print(smallestRangeI(input_A[-1], input_K[-1]))
 
 
 # 917
@@ -1309,7 +1326,8 @@ if __name__ == "__main__":
     # main849()
     # main867()
     # main874()
-    main896()
+    # main896()
+    main908()
     # main1025()
     # main1078()
     # main1337()
