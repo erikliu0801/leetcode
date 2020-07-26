@@ -5,7 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",  // 前端URL
+            "webRoot": "${workspaceFolder}/js/"  //實體的開發js目錄
+          },
+        {
+            "type": "Node: Current File",
             "request": "launch",
             "name": "Launch Program",
             "program": "${file}",
@@ -21,10 +28,10 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "Launch",
+            "name": "Go:  Current File",
             "type": "go",
             "request": "launch",
-            "mode": "auto",
+            "mode": "${file}",
             "program": "${workspaceRoot}",
             "env": {},
             "args": []
