@@ -70,46 +70,84 @@ var hasGroupsSizeX = function(deck) {
 
 // code here
 // 1
-/* */
+/* 
+Wrong Answer
+Input: [0,0,0,0,0,1,1,2,3,4]
+Output: true
+Expected: false
+
+Wrong Answer
+Input: [1,1,1,1,2,2,2,2,2,2]
+Output: false
+Expected: true
+
+Wrong Answer
+Input: [0,0,0,0,1,1,2,2,3,3]
+Output: false
+Expected: true
+
+Success
+Runtime: 128 ms, faster than 13.45% of JavaScript online submissions for X of a Kind in a Deck of Cards.
+Memory Usage: 43.7 MB, less than 5.85% of JavaScript online submissions for X of a Kind in a Deck of Cards.
+*/
 var hasGroupsSizeX = function(deck) {
-    if ( deck.length === 1 ) { return false }
-    
-    let val = [];
-    let count = []; 
+  if ( deck.length <= 1 ) return false;
 
+  const deckSet = new Set(deck);
+  // if (  deckSet.size === deck.length || deck.length % deckSet.size !==0 ) return false;
+  if (  (deck.length - deckSet.size) < deckSet.size ) return false;
 
-    deck.forEach(function(ele){
-        const i = val.indexOf
-        if ( i === -1 ) {
-            val.push(ele);
-            count.push(1)
-        } else {
-            count[i] += 1
-        }
-    });
+  const findGcd = (...arr) => {
+    const _gcd = (x, y) => (!y ? x : findGcd(y, x % y));
+    return [...arr].reduce((a, b) => _gcd(a, b));
+  };
 
-    const sameCount = count[0]
+  let groupNum; // X
+  let res = true;
+  deckSet.forEach( num => {
+    if (!res) return;
+    let count = 0
+    while ( deck.indexOf(num) >= 0 ){
+      let i = deck.indexOf(num);
+      deck.splice(i, 1);
+      count += 1;
+    };
+    if (groupNum === undefined) groupNum = count;
 
-    for ( const c of count){
-        if (c !== sameCount ){
-            return false
-        }
+    // find gretest common factor
+    if ( groupNum!==count ) {
+      let gcd = findGcd(groupNum, count);
+
+      // console.log({num, groupNum, count, gcd})
+
+      if (gcd !== 1) groupNum = gcd;
+      else res = false;
     }
-
-    return true
+  });
+  
+  return res;
 };
 
 
-// Test
-var inputNums = [[1,2,3,4,4,3,2,1], [1,1,1,2,2,2,3,3], [1], [1,1],  [1,1,2,2,2,2]]
-var outputNums = [true, false, false, true, true]
 
-var main = function{
-    for ( let i=0; i< inputNums.length; i++ ){
-        if ( function(inputNums[i]) === outputNums[i] ){
-            console.log('Right!')
-        } else {
-            console.log('Wrong!')
-        }
-    }
-}
+// Test
+var inputNums = [
+  [1,2,3,4,4,3,2,1], 
+  [1,1,1,2,2,2,3,3], 
+  [1], 
+  [1,1],  
+  [1,1,2,2,2,2],
+  [0,0,0,0,0,1,1,2,3,4],
+  [1,1,1,1,2,2,2,2,2,2],
+  [0,0,0,0,1,1,2,2,3,3],
+];
+var outputNums = [true, false, false, true, true, false, true, true]
+
+var main = (fn = hasGroupsSizeX) => {
+  for ( let i=0; i< inputNums.length; i++ ){
+      if ( fn(inputNums[i]) === outputNums[i] ) console.log('Right.');
+      else console.log('Wrong!');
+  }
+};
+
+main();
